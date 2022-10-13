@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Open Cursors By User</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+SELECT
+  r.command_id,
+  TO_CHAR(r.start_time, 'mm/dd/yyyy HH24:MI:SS'), 
+  r.time_taken_display,
+  r.input_type, 
+  r.status,
+  r.output_device_type,
+  r.input_bytes_display,
+  r.output_bytes_display,
+  r.output_bytes_per_sec_display,
+FROM
+    (select
+         command_id
+       , start_time
+       , time_taken_display
+       , status
+       , input_type
+       , output_device_type
+       , input_bytes_display
+       , output_bytes_display
+       , output_bytes_per_sec_display
+     from v$rman_backup_job_details
+     order by start_time DESC
+    ) r
+WHERE
+    rownum < 11; 
+</PRE>
+
+</BODY>
+</HTML>

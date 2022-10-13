@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Database Clusters</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   a.OWNER,
+         TABLESPACE_NAME,
+         a.CLUSTER_NAME,
+         TABLE_NAME,
+         TAB_COLUMN_NAME,
+         CLU_COLUMN_NAME
+from     dba_clusters a, dba_clu_columns b
+where    a.CLUSTER_NAME = b.CLUSTER_NAME
+and      a.OWNER not in ('SYS', 'SYSTEM')
+order by a.OWNER, TABLESPACE_NAME, a.CLUSTER_NAME, TABLE_NAME;
+</PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Database File Information</B></FONT>
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   'Archived Log Directory',
+         value
+from     sys.v_$parameter
+where    name = 'log_archive_dest'
+UNION ALL
+select   'Control Files',
+         value
+from     sys.v_$parameter
+where    name = 'control_files'
+UNION ALL
+select   'Datafile',
+         name
+from     sys.v_$datafile
+UNION ALL
+select   'LogFile Member',
+         member
+from     sys.v_$logfile;
+</PRE>
+
+</BODY>
+</HTML>

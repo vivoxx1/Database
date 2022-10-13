@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Questionable Indexes</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   TABLE_OWNER,
+         TABLE_NAME,
+         COLUMN_NAME
+from     dba_ind_columns 
+where    COLUMN_POSITION=1
+and      TABLE_OWNER not in ('SYS','SYSTEM')
+group by TABLE_OWNER, TABLE_NAME, COLUMN_NAME
+having   count(*) > 1 ;
+</PRE>
+
+</BODY>
+</HTML>

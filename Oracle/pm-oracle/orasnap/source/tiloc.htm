@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Table/Index Locations</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   OWNER,
+         TABLESPACE_NAME,
+         sum(decode(SEGMENT_TYPE,'TABLE',1,0)),
+         sum(decode(SEGMENT_TYPE,'INDEX',1,0))
+from     dba_segments
+where    SEGMENT_TYPE in ('TABLE','INDEX')
+group by OWNER, TABLESPACE_NAME;
+</PRE>
+
+</BODY>
+</HTML>

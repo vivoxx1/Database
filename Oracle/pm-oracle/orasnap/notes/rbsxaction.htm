@@ -1,0 +1,28 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Rollback Statistics on Transaction Tables</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>ROLLBACK STATISTIC (TRANSACTION TABLES) NOTES:</B><BR>
+<LI><B>Statistic Name</B> - Name of the statistic
+<LI><B>Value</B> - Current value
+<P>
+<LI>The name of the <B>consistent changes</B> statistic is misleading.  It does not indicate the number of updates 
+(or changes), but rather, the number of times a consistent get had to retrieve and &quot;old&quot; version of a block
+because of updates that occurred after the cursor had been opened.  As of Oracle7.3, a more accurate statistic was added.
+Named <B>data blocks consistent reads - undo records applied</B>; the new statistic gives the actual number of data 
+records applied.
+<LI>The <B>consistent gets</B> statistic reflects the number of accesses made to the block buffer to retrieve data in a 
+consistent mode.  Most accesses to the buffer are done with the consistent get mechanism, which uses the SCN 
+(System Change Number) to make sure the data being read has not changed since the query was started.
+<LI>The <B>data blocks consistent reads - undo records applied</B> statistic reflects the number of updates (or changes)
+applied.
+</FONT>
+
+</BODY>
+</HTML>
+

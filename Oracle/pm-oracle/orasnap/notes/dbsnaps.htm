@@ -1,0 +1,37 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Database Snapshots</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>DATABASE SNAPSHOT NOTES:</B><BR>
+<LI><B>Owner</B> - Owner of the snapshot
+<LI><B>Name</B> - The view used by users and applications for viewing the snapshot
+<LI><B>Table Name</B> - Table the snapshot is stored in, has an extra column for the master rowid
+<LI><B>Master View</B> - View of the master table, owned by the snapshot owner, used for refreshes 
+<LI><B>Master Owner</B> - Owner of the master table
+<LI><B>Master</B> - Name of the master table of which this snapshot is a copy 
+<LI><B>Master Link</B> - Database link name to the master site 
+<LI><B>Can Use Log</B> - If NO, this snapshot is complex and will never use a log 
+<LI><B>Updatable</B> - If NO, the snapshot is read only 
+<LI><B>Last Refresh</B> - SYSDATE from the master site at the time of the last refresh
+<LI><B>Error</B> - The number of failed automatic refreshes since last successful refresh 
+<LI><B>Type</B> - The type of refresh (complete, fast, force) for all automatic refreshes 
+<LI><B>Next Refresh</B> - The date function used to compute next refresh dates
+<LI><B>Refresh Group</B> - GROUP  All snapshots in a given refresh group get refreshed in the same transaction  
+<P>
+<LI>Oracle snapshots are an excellent method to replicate data from a small table in one database to another.  Typically you will create a snapshot log on the table to be replicated in the source database and create a snapshot from the target database. If you desire, you can replicate from one user in an instance to another user in the same instance.  
+<LI>Each release of Oracle7 made significant inroads into improving replication. Oracle8 has made still further significant improvements. Our advice is that if you plan to replicate large amounts of data across databases, if practical, you should be using Oracle8 Advanced Replication. Do NOT use snapshots for replicating large volumes of data with Oracle7! Oracle8 has introduced dramatic performance improvements in both snapshots and advanced replication. However, there are still many occasions where an entire table requires to be refreshed if snapshots are utilized. 
+<LI>Much of the performance improvement in Oracle8 is due to the snapshot logs and advanced replication being maintained by code in the kernel, as opposed to Oracle7's triggers. The kernel code is less error prone and more efficient. Another advance in Oracle8 has been the ability to perform parallel propagation. Many nodes on the network can be replicated to simultaneously. Another bonus is that Oracle8 supports LONG columns through it's implementation of the LOB data type. One major advantage of the Oracle8 snapshots is that a correlated subquery can be attached to a snapshot without a complete refresh of the replicated table.
+<LI>The main problem with snapshots is their inefficiency when they deal with large amounts of data, and the large amount of administration. 
+<LI>A simple snapshot is one in which each row is based on a single row in a single remote table. A simple snapshot's defining query has no GROUP BY or ORDER BY clauses, or subqueries, joins or set operations. If the defining query of a snapshot contains any of these clauses or operations, it is referred to as a complex snapshot. An Oracle8 simple snapshot can contain a WHERE clause. An Oracle7 simple snapshot cannot.
+<LI>The most important characteristic of a simple snapshot is that a fast refresh can be used.  A fast refresh allows just rows that have been inserted, updated or modified since the last refresh to be applied to the replicated table. 
+<LI>A complex snapshot requires a full refresh of the entire replicated table each time the snapshot is applied. Re-building the entire replicated table is unacceptable if high availability is required on the replicated database and the table is large. 
+</FONT>
+
+</BODY>
+</HTML>
+

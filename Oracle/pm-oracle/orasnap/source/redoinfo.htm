@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Redo Log Information</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   a.MEMBER,
+         b.GROUP#,
+         b.THREAD#,
+         b.SEQUENCE#,
+         b.BYTES,
+         b.MEMBERS,
+         b.ARCHIVED,
+         b.STATUS,
+         b.FIRST_CHANGE#,
+         b.FIRST_TIME
+from     sys.v_$logfile a, sys.v_$log b
+where    a.GROUP# = b.GROUP#
+order by a.MEMBER;
+</PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,21 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For SGA Stats</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>SGA STAT NOTES:</B><BR>
+<LI><B>Statistic Name</B> - SGA component name 
+<LI><B>Pool</B> - Designates the pool in which the memory in NAME resides. Value can be LARGE POOL - Memory is allocated from the large pool or SHARED POOL - Memory is allocated from the shared pool 
+<LI><B>Bytes</B> - Memory size in bytes 
+<P>
+<LI>The &quot;free memory&quot; value is an indicator of the free contiguous memory in the shared pool.  If this value is constantly low or is reduced in a short period of time after database startup, it is a good indicator that your shared pool should be increased.  In the case where free memory is low, a stored package or procedure may result in an error, since there may not be enough contiguous memory to load the object into the shared pool. 
+<LI>Pay close attention to <FONT COLOR="#FF0000">highlighted</FONT> items
+</FONT>
+
+</BODY>
+</HTML>
+

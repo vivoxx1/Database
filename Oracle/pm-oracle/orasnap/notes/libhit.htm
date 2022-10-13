@@ -1,0 +1,21 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Library Cache Hit Ratio</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>LIBRARY CACHE HIT RATIO NOTES:</B><BR>
+<LI><B>Executions</B> - Number of times the system issues pin request for objects in the cache in order to access them
+<LI><B>Execution Hits</B> - Number of times the system is pinning and accessing are already allocated and initialized in the cache.  Otherwise, it is a miss, and the system has to allocate it in the cache and initilize it with data queried from the database or generate the data.
+<LI><B>Misses</B> - Number of times that library objects have to reinitialized and reloaded with data because they have been aged out or invalidated
+<P>
+<LI>There is an execution (pin) hit ratio and a reload hit ratio.  The recommended hit ratio for both is greater than 99 percent.  If either of the hit ratios falls below this percentage, it indicates that the shared pool can be increased to improve overall performance.  
+<LI>Hit Ratio should be &gt; 95%, else increase SHARED_POOL_SIZE in init.ora  
+</FONT>
+
+</BODY>
+</HTML>
+

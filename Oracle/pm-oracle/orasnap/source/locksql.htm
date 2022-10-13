@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For SQL Associated With Locks</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   sn.USERNAME,
+         m.SID,
+         sn.SERIAL#,
+         m.TYPE,
+         decode(LMODE,
+            0, 'None',
+            1, 'Null',
+            2, 'Row-S (SS)',
+            3, 'Row-X (SX)',
+            4, 'Share',
+            5, 'S/Row-X (SSX)',
+            6, 'Exclusive'),
+         decode(REQUEST,
+            0, 'None', 
+            1, 'Null',
+            2, 'Row-S (SS)',
+            3, 'Row-X (SX)', 
+            4, 'Share', 
+            5, 'S/Row-X (SSX)',
+            6, 'Exclusive'),
+         m.ID1,
+         m.ID2,
+         t.SQL_TEXT
+from     sys.v_$session sn, sys.v_$lock m, sys.v_$sqltext t
+where    t.ADDRESS = sn.SQL_ADDRESS 
+and      t.HASH_VALUE = sn.SQL_HASH_VALUE 
+and      ((sn.SID = m.SID and m.REQUEST != 0) 
+or       (sn.SID = m.SID and m.REQUEST = 0 and LMODE != 4 and (ID1, ID2) in (
+            select   s.ID1, 
+                     s.ID2 
+            from     sys.v_$lock S 
+            where    REQUEST != 0 
+            and      s.ID1 = m.ID1 
+            and      s.ID2 = m.ID2)))
+order by sn.USERNAME, sn.SID, t.PIECE;
+</PRE>
+
+</BODY>
+</HTML>

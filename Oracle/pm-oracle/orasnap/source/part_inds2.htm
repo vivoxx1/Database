@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Index Level Partitioning Information</B></FONT>
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   INDEX_OWNER,
+         INDEX_NAME,
+         PARTITION_NAME,
+         HIGH_VALUE_LENGTH,
+         PARTITION_POSITION,
+         STATUS,
+         TABLESPACE_NAME,
+         PCT_FREE,
+         INI_TRANS,
+         MAX_TRANS,
+         INITIAL_EXTENT,
+         NEXT_EXTENT,
+         MIN_EXTENT,
+         MAX_EXTENT,
+         PCT_INCREASE,
+         FREELISTS,
+         FREELIST_GROUPS,
+         LOGGING,
+         BLEVEL,
+         LEAF_BLOCKS,
+         DISTINCT_KEYS,
+         AVG_LEAF_BLOCKS_PER_KEY,
+         AVG_DATA_BLOCKS_PER_KEY,
+         CLUSTERING_FACTOR,
+         NUM_ROWS,
+         SAMPLE_SIZE,
+         LAST_ANALYZED,
+         BUFFER_POOL
+from     dba_ind_partitions
+where    INDEX_OWNER not in ('SYS','SYSTEM')
+order by INDEX_OWNER, INDEX_NAME, PARTITION_NAME;
+</PRE>
+
+</BODY>
+</HTML>

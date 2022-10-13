@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Table Level Partitioning Information</B></FONT>
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   TABLE_OWNER,
+         TABLE_NAME,
+         PARTITION_NAME,
+         HIGH_VALUE_LENGTH,
+         PARTITION_POSITION,
+         TABLESPACE_NAME,
+         PCT_FREE,
+         PCT_USED,
+         INI_TRANS,
+         MAX_TRANS,
+         INITIAL_EXTENT,
+         NEXT_EXTENT,
+         MIN_EXTENT,
+         MAX_EXTENT,
+         PCT_INCREASE,
+         FREELISTS,
+         FREELIST_GROUPS,
+         LOGGING,
+         NUM_ROWS,
+         BLOCKS,
+         EMPTY_BLOCKS,
+         AVG_SPACE,
+         CHAIN_CNT,
+         AVG_ROW_LEN,
+         SAMPLE_SIZE,
+         LAST_ANALYZED,
+         BUFFER_POOL
+from     dba_tab_partitions
+where    TABLE_OWNER not in ('SYS','SYSTEM')
+order by TABLE_OWNER, TABLE_NAME, PARTITION_NAME;
+</PRE>
+
+</BODY>
+</HTML>

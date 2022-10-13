@@ -1,0 +1,75 @@
+SOA KUNING =
+10.204.125.164 (NODE 1)
+10.204.125.165 (NODE 2)
+SOA MANDOL =
+10.204.125.36 (NODE 1)
+10.204.125.37 (NODE 2)
+==========================================
+cd /home/oracle/MII/PM_202209/orasnap/
+@snap10.sql
+@$ORACLE_HOME/rdbms/admin/awrrpt.sql
+@$ORACLE_HOME/rdbms/admin/addmrpt.sql
+==========================================
+Action_OS_Node.txt
+==========================================
+hostname
+uname -a
+vmstat 2 10
+df -h
+free -g
+ps -ef|grep pmon
+ps -ef|grep tns
+env | grep ORA
+lsnrctl status
+sar
+==========================================
+DB.txt
+==========================================
+spool DB.txt
+set time on
+set linesize 350
+select name,open_mode,db_unique_name from v$database;
+select name from v$controlfile;
+alter database backup controlfile to '/home/oracle/MII/PM_202207/control_bkp.trc';
+show parameter spfile;
+create pfile='/home/oracle/MII/PM_202207/pfile.ora' from spfile='+DATA/dbeai/spfiledbeai.ora';
+show parameter background;
+select value from GV$DIAG_INFO where name='Diag Trace';
+select * from dba_hist_wr_control;
+spool off;
+=========================================
+ASM.txt
+=========================================
+spool ASM.txt
+set time on
+set linesize 350
+select name,open_mode,db_unique_name from v$database;
+select GROUP_NUMBER,NAME,STATE,TYPE,TOTAL_MB,FREE_MB, to_char((free_mb/total_mb)*100,'99.99') Pct_Free from v$asm_diskgroup;
+select NAME,MOUNT_STATUS,TOTAL_MB,FREE_MB,PATH from v$asm_disk order by 1;
+select NAME,HEADER_STATUS from v$asm_disk where header_status<>'MEMBER';
+spool off;
+==========================================
+PARAMETER.txt
+==========================================
+spool Parameter.txt
+set time on
+show parameter;
+spool off;
+==========================================
+RESOURCE_LIMIT.txt
+==========================================
+spool resource_limit.txt
+set time on linesize 350
+select * from gv$resource_limit;
+spool off;
+==========================================
+GRID.txt (PAKAI USER GRID)
+==========================================
+crs_stat -t
+srvctl status nodeapps -n hostnamenode1
+srvctl status nodeapps -n hostnamenode2
+srvctl status database -d dbeai
+ocrcheck
+crsctl query css votedisk
+ocrconfig -showbackup
+==========================================

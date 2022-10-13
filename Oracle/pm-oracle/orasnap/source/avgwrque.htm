@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Average Length Write Queue Length</B></FONT>
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   sum(decode(NAME,'summed dirty queue length',VALUE)),
+         sum(decode(NAME,'write requests',VALUE)),
+         sum(decode(NAME,'summed dirty queue length',VALUE)) / 
+         sum(decode(NAME,'write requests',VALUE))
+from     sys.v_$sysstat
+where    NAME in ('summed dirty queue length','write requests')
+and      VALUE > 0;
+</PRE>
+
+</BODY>
+</HTML>

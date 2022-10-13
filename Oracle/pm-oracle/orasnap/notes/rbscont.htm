@@ -1,0 +1,27 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Rollback Segment Contention</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>ROLLBACK SEGMENT CONTENTION NOTES:</B><BR>
+<LI><B>Segment Name</B> - Name of the rollback segment.
+<LI><B>Seg#</B> - Rollback segment number.
+<LI><B>Gets</B> - Number of header gets.
+<LI><B>Waits</B> - Number of header waits.
+<LI><B>Hit Ratio</B> - Ratio of <B>gets</B> to <B>waits</B>.  This should be &gt;= 99%.
+<LI><B>Active Transactions</B> - Number of active transactions.
+<LI><B>Writes</B> - Number of bytes written to rollback segment.
+<P>
+<LI>Hit Ratio should be &gt;= 99% - if not, consider adding additional rollback segments.
+<LI>Check the <B>system undo header, system undo block, undo header, undo block</B> statistics under
+&quot;Wait Statistics&quot; for additional information on rollback contention.
+<LI>Note: This report only shows information for ROLLBACK segments that are ONLINE.
+</FONT>
+
+</BODY>
+</HTML>
+

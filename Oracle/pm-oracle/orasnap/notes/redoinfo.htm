@@ -1,0 +1,37 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Redo Log Information</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>REDO LOG INFORMATION NOTES:</B><BR>
+<LI><B>Member</B> - Redo Log member name
+<LI><B>Group#</B> - Log group number  
+<LI><B>Thread#</B> - Log thread number  
+<LI><B>Sequence#</B> - Log sequence number  
+<LI><B>Bytes</B> - Size of the log in bytes  
+<LI><B>Members</B> - Number of members in the log group  
+<LI><B>Archived</B> - Archive status
+<LI><B>Status</B> - Log status. (see below)
+<LI><B>First Change#</B> - Lowest SCN in the log  
+<LI><B>First Time</B> - Time of first SCN in the log  
+<P>
+<B>Redo Log Status:</B><BR>
+<LI><B>UNUSED</B> -  Indicates the online redo log has never been written to. This is the state of a redo log that was just added, or just after a RESETLOGS, when it is not the current redo log.  
+<LI><B>CURRENT</B> - Indicates this is the current redo log. This implies that the redo log is active. The redo log could be open or closed.  
+<LI><B>ACTIVE</B> - Indicates the log is active but is not the current log. It is needed for crash recovery. It may be in use for block recovery. It might or might not be archived.  
+<LI><B>CLEARING</B> - Indicates the log is being recreated as an empty log after an ALTER DATABASE CLEAR LOGFILE command. After the log is cleared, the status changes to UNUSED.  
+<LI><B>CLEARING_CURRENT</B> - Indicates that the current log is being cleared of a closed thread. The log can stay in this status if there is some failure in the switch such as an I/O error writing the new log header.  
+<LI><B>INACTIVE</B> - Indicates the log is no longer needed for instance recovery. It may be in use for media recovery. It might or might not have already been archived.  
+<P>
+<LI>Redo logs cannot be altered, they can only be created via the CREATE DATABASE and ALTER DATABASE commands or dropped via the ALTER DATABASE command. 
+<LI>You can force a log switch or checkpoint if needed to ensure proper backups during a hot backup or to ensure proper execution of certain operations such as an Oracle tablespace defragmentation.  The ALTER SYSTEM SWITCH LOGFILE command is used to switch log files.
+<LI>You may also need to perform a manual checkpoint on the database.  This is accomplished through the ALTER SYSTEM CHECKPOINT command:
+</FONT>
+
+</BODY>
+</HTML>
+

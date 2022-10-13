@@ -1,0 +1,25 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Tables With Questionable Indexes</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>TABLES WITH QUESTIONABLE INDEX(ES) NOTES:</B><BR>
+<LI><B>Owner</B> - Owner of the table
+<LI><B>Table Name</B> - Name of the table
+<LI><B>Column</B> - Name of the column in question
+<P>
+<LI> The above query shows all tables that have more than one index with the same leading column.
+These indexes can cause queries to use an inappropriate indexes; in other words, Oracle will use the index that
+was created most recently if two indexes are of equal ranking.  This can cause different indexes to be used
+from one environment to the next (e.g., from DEV to QA to PROD).
+<LI> The information does not automatically indicate that an index is incorrect; however, you may need to
+justify the existence of each of the indexes above.
+</FONT>
+
+</BODY>
+</HTML>
+

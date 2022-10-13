@@ -1,0 +1,24 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Database Triggers</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>DATABASE TRIGGER NOTES:</B><BR>
+<LI><B>Table Owner</B> - Owner of the table
+<LI><B>Table Name</B> - Name of the table
+<LI><B>Trigger Name</B> - Name of the trigger
+<LI><B>Trigger Name</B> - When the trigger fires (BEFORE EACH ROW, AFTER EACH ROW, BEFORE STATEMENT, AFTER STATEMENT)
+<LI><B>Triggering Event</B> - Statement that fires the trigger (INSERT, UPDATE, DELETE)
+<LI><B>Status</B> - Whether the trigger is enabled (ENABLED or DISABLED)
+<P>
+<LI>Before Oracle 7.3 triggers where compiled at runtime. After 7.3, triggers are stored in the database as Pcode. This provides significant performance benefits over earlier versions since the overhead of re-parsing the trigger for each firing is eliminated. This allows larger and more complex triggers to be created without fear of performance degradation caused by re-parsing large sections of code.  In Oracle8.0 and 8.1 triggers can be pinned into memory using the DBMS_SHARED_POOL.KEEP('trigger_name','T') procedure call.
+<LI>The Oracle8i DDL and database event triggers are also created using the CREATE TRIGGER command. DDL events which can cause a trigger to fire are CREATE, ALTER or DROP on clusters, tables, views, procedures, functions, packages, roles, sequences, synonyms, indexes, tablespaces, triggers, types and users. The database event triggers are LOGON, LOGOFF, SERVERERROR, STARTUP and SHUTDOWN with the LOGON, STARTUP and SERVERERROR being AFTER event triggers. The LOGOFF and SHUTDOWN are BEFORE event triggers. 
+</FONT>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,21 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For All INIT.ORA Parameters</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>ALL INIT.ORA PARAMETER NOTES:</B><BR>
+<LI><B>Parameter</B> - Name of the undocumented parameter
+<LI><B>Desc</B> - Brief description of parameter
+<LI><B>Value</B> - Current value for the parameter
+<LI><B>Default?</B> - Is this the default value.  FALSE indicates the value has been changed in the init.ora.
+<P>
+<LI>Some of these default values parameters are derived from others. They have KSPPSTDF = FALSE because the parameters on which they are based are not defaulting. Note also that there is some non-trivial operating system dependency (read inconsistency) here, particularly with the cpu_count derived parameters.
+<LI>Always double check your init.ora to determine if the value has actually been changed.
+</FONT>
+
+</BODY>
+</HTML>

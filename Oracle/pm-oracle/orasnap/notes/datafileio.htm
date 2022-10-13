@@ -1,0 +1,24 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Datafile I/O</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>DATAFILE I/O NOTES:</B><BR>
+<LI><B>File Name</B> - Datafile name
+<LI><B>Physical Reads</B> - Number of physical reads
+<LI><B>Reads %</B> - Percentage of physical reads
+<LI><B>Physical Writes</B> - Number of physical writes
+<LI><B>Writes %</B> - Percentage of physical writes
+<LI><B>Total Block I/O's</B> - Number of I/O blocks
+<P>
+<LI>When an Oracle instance is initially configured, the data and index configuration is determined based on analysis of best guess statistics.  Once an application becomes production, it is very important to monitor the true disk activity.  If the output reveals that the balance is not distributed properly, then it is the responsibility of the DBA to reconfigure the system to ensure proper balancing.  Any time there is a significant imbalance; there will be overall system performance degradation.  
+<LI>Use this report to identify any "hot spots" and I/O contention
+</FONT>
+
+</BODY>
+</HTML>
+

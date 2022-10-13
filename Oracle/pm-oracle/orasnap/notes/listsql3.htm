@@ -1,0 +1,20 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Shared Pool SQL with Most Loads (&gt;50)</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>SQL WITH MOST LOAD NOTES:</B><BR>
+<LI><B>Loads</B> - Number of times the cursor has been loaded after the body of the cursor has been aged
+out of the cache while the text of the SQL statement remained in it, or after the cursor is invalidated
+<LI><B>First Load Time</B> - Time at which the cursor was first loaded into the SGA
+<LI><B>Sorts</B> - Number of sorts performed by the SQL statement
+<LI><B>SQL Text</B> - Text of the SQL statement requiring the cursor, or the PL/SQL anonymous code
+</FONT>
+
+</BODY>
+</HTML>
+

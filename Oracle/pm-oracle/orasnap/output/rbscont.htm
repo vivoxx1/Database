@@ -1,0 +1,994 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+<BODY BGCOLOR="#C0C0C0">
+<CENTER><FONT FACE="Arial" SIZE="2">
+<TABLE WIDTH="100%">
+<TR>
+<TD><B><FONT FACE="Arial" SIZE="2"><A HREF="rbscont.htm" TARGET="_blank">13-SEP-2022 19:56:36</A></FONT></B></TD>
+<TD ALIGN="RIGHT"><B><FONT FACE="Arial" SIZE="2">DBEAI</FONT></B></TD>
+</TR>
+</TABLE><BR>
+<TABLE BORDER=1 CELLPADDING=5>
+<TR>
+<TD ALIGN="CENTER" BGCOLOR="#FFFFFF" COLSPAN=7>
+<FONT SIZE="4"><B>Rollback Segment Contention</B></FONT>
+</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#CCCC99" NOWRAP><FONT FACE="Arial" SIZE="2"><B>Segment Name (1)</B></FONT></TD>
+<TD ALIGN="RIGHT" BGCOLOR="#CCCC99"><FONT FACE="Arial" SIZE="2"><B>Seg#</B></FONT></TD>
+<TD ALIGN="RIGHT" BGCOLOR="#CCCC99"><FONT FACE="Arial" SIZE="2"><B>Gets</B></FONT></TD>
+<TD ALIGN="RIGHT" BGCOLOR="#CCCC99"><FONT FACE="Arial" SIZE="2"><B>Waits</B></FONT></TD>
+<TD ALIGN="RIGHT" BGCOLOR="#CCCC99"><FONT FACE="Arial" SIZE="2"><B>Hit Ratio</B></FONT></TD>
+<TD ALIGN="RIGHT" BGCOLOR="#CCCC99"><FONT FACE="Arial" SIZE="2"><B>Active<BR>Transactions</B></FONT></TD>
+<TD ALIGN="RIGHT" BGCOLOR="#CCCC99"><FONT FACE="Arial" SIZE="2"><B>Writes</B></FONT></TD>
+</TR>
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYSTEM</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">              59,640</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">             605,748</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU10_3551522999$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">10</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          42,026,923</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 241</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,214,575,218</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU11_3954662861$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">11</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          42,604,082</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 280</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,640,474,048</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU12_479825023$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">12</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          43,080,310</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 277</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,605,682,844</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU13_4146030865$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">13</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          52,178,830</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 278</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,762,934,270</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU14_1175315729$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">14</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          43,749,683</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 277</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,537,256,774</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU15_4277829013$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">15</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          44,203,586</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 263</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,595,754,842</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU16_2642137645$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">16</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          44,616,968</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 336</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,805,446,420</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU17_3034387533$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">17</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          45,478,622</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 330</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,636,885,066</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU18_2471627457$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">18</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          45,139,849</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 337</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,142,252,288</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU19_1749735779$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">19</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          45,502,749</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 349</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,630,567,968</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU1_3216807638$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">1</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          39,003,671</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 232</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,709,700,102</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU20_188898075$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">20</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          46,194,553</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 352</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       4,118,525,042</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU21_1498312122$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">21</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          46,320,883</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 368</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,915,324,568</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU22_474621515$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">22</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          46,803,959</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 349</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          76,316,292</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU23_361165711$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">23</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          47,348,108</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 384</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         340,475,954</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU24_2777996932$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">24</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,707,951</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 403</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,420,005,778</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU25_1046087809$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">25</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,820,884</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 439</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,875,832,750</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU26_3027435398$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">26</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          49,720,451</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 411</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,897,118,156</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU27_3238658997$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">27</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          50,647,809</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 432</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,593,140,660</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU28_3819503532$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">28</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          50,869,511</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 370</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,081,861,876</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU29_4262703459$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">29</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          51,084,790</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 433</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,744,913,840</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU2_334593150$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">2</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          38,920,862</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 227</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,417,468,266</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU30_279316695$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">30</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          53,839,952</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 481</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         339,488,198</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU31_881789568$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">31</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          52,848,205</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 461</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         534,993,794</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU32_2984978604$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">32</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          52,299,485</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 463</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,496,467,306</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU33_4255739299$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">33</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          53,248,770</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 510</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       4,237,206,944</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU34_2036927718$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">34</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          53,307,400</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 508</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         125,189,130</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU35_1873788772$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">35</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          54,845,094</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 547</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         847,619,672</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU36_2090804270$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">36</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          63,281,611</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 489</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,491,345,772</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU37_1352972984$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">37</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          56,427,955</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 500</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,623,813,368</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU38_2237052693$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">38</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          58,938,679</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 555</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,889,968,072</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU39_4215452183$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">39</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          59,966,335</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 580</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,703,336,558</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU3_4267874453$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">3</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          39,187,722</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 237</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,691,494,404</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU40_230677771$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">40</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          62,425,556</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 515</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,719,068,216</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU41_1779202344$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">41</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          62,289,783</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 654</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,534,764,644</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU42_2439228728$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">42</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          38,919,464</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 194</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,951,528,678</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU43_2759410594$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">43</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          38,931,091</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 206</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,557,180,200</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU44_4281010109$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">44</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          39,175,966</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 177</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,669,734,320</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU45_3590454993$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">45</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          39,586,765</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 190</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       4,092,995,024</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU46_1273495478$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">46</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         338,050,905</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 218</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,724,768,458</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU47_2974093591$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">47</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          41,144,361</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 211</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         627,662,922</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU48_2044487206$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">48</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          42,015,885</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 213</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,129,331,472</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU49_67127121$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">49</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          41,634,500</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 249</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,141,564,656</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU4_2435108481$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">4</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          39,521,262</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 201</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,762,587,478</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU50_1483645225$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">50</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          41,692,042</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 234</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         879,804,822</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU51_960990569$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">51</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          42,050,559</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 252</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,293,452,978</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU52_2256816193$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">52</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          42,618,156</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 247</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,436,958,824</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU53_2294728872$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">53</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          43,198,462</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 265</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,051,611,374</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU54_4194855270$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">54</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          43,617,780</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 308</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,130,395,334</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU55_3744397885$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">55</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          43,837,437</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 287</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,372,919,674</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU56_1393417405$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">56</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          44,190,386</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 332</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,740,541,972</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU57_2363171096$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">57</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          44,882,774</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 290</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,577,362,190</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU58_621727172$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">58</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          45,219,776</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 385</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,442,809,938</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU59_1843274789$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">59</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          45,252,191</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 306</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,488,015,242</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU5_372011966$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">5</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          40,292,243</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 216</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,737,314</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU60_1260649001$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">60</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          45,542,585</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 315</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,681,155,522</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU61_575099371$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">61</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          46,222,487</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 379</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          11,070,768</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU62_1354520858$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">62</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          46,380,648</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 368</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       4,283,592,264</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU63_2892739381$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">63</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          46,888,649</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 402</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         291,782,318</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU64_2146801306$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">64</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          47,260,731</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 361</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         175,574,860</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU65_1151087554$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">65</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,633,078</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 384</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,004,796,276</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU66_934107680$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">66</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,698,428</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 385</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,021,094,230</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU67_738792484$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">67</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          49,375,420</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 431</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,489,735,676</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU68_2277012308$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">68</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,773,191</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 427</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,661,432,036</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU69_2997501154$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">69</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,623,339</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 422</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,255,330,886</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU6_2535135994$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">6</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          41,130,904</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 200</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         653,611,628</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU70_69131356$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">70</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,887,408</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 457</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,329,086,348</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU71_1793635807$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">71</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          50,214,429</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 466</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,338,556,058</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU72_2772911170$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">72</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,373,738</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 496</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         958,643,002</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU73_2668682261$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">73</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,456,324</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 468</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,213,034,926</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU74_2058301719$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">74</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,559,921</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 440</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,453,128,660</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU75_2115216309$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">75</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,514,593</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 478</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,006,023,568</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU76_1528944142$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">76</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,431,797</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 473</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         948,656,994</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU77_4000283873$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">77</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,790,170</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 505</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,091,027,932</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU78_3678429866$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">78</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          48,433,838</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 434</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,120,723,526</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU79_4187271148$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">79</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          45,207,792</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 446</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,162,964,034</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU7_1047839610$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">7</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          41,642,677</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 253</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         990,012,316</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU80_3419494811$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">80</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          44,651,074</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 430</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,088,152,620</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU81_3818735673$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">81</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          41,537,564</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 458</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         587,506,536</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU82_2477778586$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">82</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          42,043,034</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 438</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,433,599,440</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU83_242978003$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">83</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          28,211,857</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 122</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         845,858,682</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU84_3893100390$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">84</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          28,097,763</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 132</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         896,250,004</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU85_4076516971$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">85</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          27,612,123</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 108</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         521,619,456</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU86_3730942601$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">86</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          26,855,609</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 110</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       4,220,248,474</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU87_3288939452$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">87</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          26,356,709</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 133</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       3,957,000,536</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU88_2835130049$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">88</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          24,639,357</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 109</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,781,558,812</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU89_2673214648$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">89</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          23,685,676</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 115</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,419,174,336</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU8_3715199680$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">8</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          41,713,481</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 221</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,387,945,738</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU90_422069571$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">90</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          23,652,350</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 120</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,325,227,926</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU91_1967332922$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">91</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          23,502,524</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 130</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,273,752,020</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU92_253418432$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">92</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          22,845,184</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 109</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,655,173,116</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU93_975154239$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">93</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          21,683,068</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 114</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       1,129,037,756</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU94_535006174$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">94</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          20,713,560</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                  97</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         321,685,542</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU95_157276217$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">95</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          19,950,031</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                  94</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       4,084,457,276</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">_SYSSMU9_992117204$</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">9</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          41,691,320</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                 261</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">100</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         907,505,516</FONT></TD>
+	</TR>
+
+</TABLE><BR>
+<FORM ACTION="../source/rbscont.htm" METHOD=GET>
+<INPUT TYPE=submit NAME=foo VALUE="Source Code"></FORM>
+</FONT></CENTER>
+<SCRIPT LANGUAGE="JavaScript" SRC="footer.js"></SCRIPT>
+</BODY></HTML>

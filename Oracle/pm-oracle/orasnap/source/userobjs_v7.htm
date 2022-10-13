@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For User Objects</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   USERNAME,
+         count(decode(o.TYPE, 2,o.OBJ#,'')),
+         count(decode(o.TYPE, 1,o.OBJ#,'')),
+         count(decode(o.TYPE, 5,o.OBJ#,'')),
+         count(decode(o.TYPE, 4,o.OBJ#,'')),
+         count(decode(o.TYPE, 6,o.OBJ#,'')),
+         count(decode(o.TYPE, 7,o.OBJ#,'')),
+         count(decode(o.TYPE, 8,o.OBJ#,'')),
+         count(decode(o.TYPE, 9,o.OBJ#,'')),
+         count(decode(o.TYPE,12,o.OBJ#,'')),
+         count(decode(o.TYPE,10,o.OBJ#,''))
+from     sys.obj$ o, dba_users u
+where    u.USER_ID = o.OWNER# (+)
+and      o.TYPE is NOT NULL
+group by USERNAME
+order by USERNAME;
+</PRE>
+
+</BODY>
+</HTML>

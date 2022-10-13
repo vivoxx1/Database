@@ -1,0 +1,26 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Database Jobs</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>DATABASE JOB NOTES:</B><BR>
+<LI><B>Log User</B> - USER who was logged in when the job was submitted.
+<LI><B>Schema</B> - Default schema used to parse the job. 
+For example, if the SCHEMA_USER is SCOTT and you submit the procedure HIRE_EMP as a job, Oracle looks for SCOTT.HIRE_EMP. 
+<LI><B>Job#</B> - Identifier of job. Neither import/export nor repeated executions change it. 
+<LI><B>Interval</B> - A date function, evaluated at the start of execution, becomes next NEXT_DATE.
+<LI><B>Next Execution</B> - Date/time that this job will next be executed.
+<LI><B>Broken</B> - If Y, no attempt is made to run this job. See DBMS_JOBQ.BROKEN (JOB). 
+<LI><B>What</B> - Body of the anonymous PL/SQL block that this job executes.
+<P>
+<LI>The DBMS_JOB package is actually an API into an Oracle subsystem known as the job queue. The Oracle job queue allows for the scheduling and execution of PL/SQL routines (jobs) at predefined times and/or repeated job execution at regular intervals. The DBMS_JOB package provides programs for submitting and executing jobs, changing job execution parameters, and removing or temporarily suspending job execution. This package is the only interface with the Oracle job queue.
+<LI>DBMS_JOB is used to schedule many different types of tasks that can be performed in PL/SQL and that require regular execution. The job queue is used extensively by Oracle replication facilities, and was originally developed for the purpose of refreshing Oracle snapshots. DBMS_JOB is often used by DBAs to schedule regular maintenance activities on databases, typically during periods of low usage by end users. It can similarly be used by applications to schedule large batch operations during off hours. The job queue can also be used to start up service programs that listen on database pipes and respond to service requests by user sessions.
+</FONT>
+
+</BODY>
+</HTML>
+

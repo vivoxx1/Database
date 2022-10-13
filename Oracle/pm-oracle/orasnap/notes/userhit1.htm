@@ -1,0 +1,26 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For User Hit Ratio</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>USER HIT RATIO NOTES:</B><BR>
+<LI><B>Username</B> - Name of the user
+<LI><B>Consistent Gets</B> - The number of accesses made to the block buffer to retrieve data in a 
+consistent mode.
+<LI><B>DB Blk Gets</B> - The number of blocks accessed via single block gets (i.e. not through
+the consistent get mechanism).
+<LI><B>Physical Reads</B> - The cumulative number of blocks read from disk.
+<P>
+<LI>Logical reads are the sum of <B>consistent gets</B> and <B>db block gets</B>.
+<LI>The <B>db block gets</B> statistic value is incremented when a block is read for update and when segment header
+blocks are accessed.
+<LI>Hit ratio should be &gt; 90%
+</FONT>
+
+</BODY>
+</HTML>
+

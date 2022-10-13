@@ -1,0 +1,32 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Library Cache Statistics</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>LIBRARY CACHE STATISTIC NOTES:</B><BR>
+<LI><B>Namespace</B> - Library cache namespace (SQL AREA, TABLE/PROCEDURE, BODY, TRIGGER, INDEX, CLUSTER, OBJECT, PIPE)
+<LI><B>Gets</B> - Number of times the system requests handles to library objects belonging to this namespace
+<LI><B>GetHits</B> - Number of times the handles are already allocated in the cache.
+If the handle is not already allocated, it is a miss.  The handle is then allocated and inserted into the cache.
+<LI><B>GetHit Ratio</B> - Number of GETHITS divided by GETS.  Values close to 1 indicate that most of the handles the system
+has tried to get are cached.
+<LI><B>Pins</B> - Number of times the system issues pin requests for objects in the cache in order to access them.
+<LI><B>PinHits</B> - Number of times that objects the system is pinning and accessing are already allocated and
+initialized in the cache.  Otherwise, it is a miss, and the system has to allocate it in the cache and initialize it with
+data queried from the database or generate the data.
+<LI><B>PinHit Ratio</B> - Number of PINHITS divided by number of PINS.  Values close to 1 indicate that most of the objects
+the system has tried to pin and access have been cached.
+<LI><B>Reloads</B> - Number of times that library objects have to be reinitialized and reloaded with data because
+they have been aged out or invalidated.
+<LI><B>Invalidations</B> - Number of times that non-persistent library objects (like shared SQL areas) have been invalidated.
+<P>
+<LI>GetHit Ratio and PinHit Ratio should be &gt; 70
+</FONT>
+
+</BODY>
+</HTML>
+

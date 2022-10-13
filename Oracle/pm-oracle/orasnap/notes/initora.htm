@@ -1,0 +1,1629 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For INIT.ORA Parameters</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>INIT.ORA PARAMETER NOTES:</B><BR>
+<LI><B>Parameter</B> - Init.ora parameter name
+<LI><B>Value</B> - Current value
+<LI><B>Is Default</B> - Whether the parameter value is the default.  FALSE indicates the value has been altered in the init.ora.
+<LI><B>Session Modifiable</B> - TRUE=the parameter can be changed with ALTER SESSION / FALSE=the parameter cannot be changed with ALTER SESSION 
+<LI><B>System Modifiable</B> - IMMEDIATE=the parameter can be changed with ALTER SYSTEM / DEFERRED=the parameter cannot be changed until the next session / FALSE=the parameter cannot be changed with ALTER SYSTEM 
+<LI><B>Is Modified</B> - Indicates how the parameter was modified. If an ALTER SESSION was performed, the value will be MODIFIED. If an ALTER SYSTEM (which will cause all the currently logged in sessions' values to be modified) was performed the value will be SYS_MODIFIED. 
+<P>
+<B>ALLOW_PARTIAL_SN_RESULTS</B> - Specifies whether to allow partial results when processing gv$ views. 
+Obsoleted in 8.1.3.<BR>
+<I>DEFAULT:	FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>ALWAYS_ANTI_JOIN</B> - Set the parameter to HASH to allow parallel processing of the NOT IN clause
+(a real resource hog).  If you set the parameter to NESTED_LOOPS, the NOT IN is evaluated the same way it was
+as Oracle7.2 and earlier (which will not please you).  MERGE uses the SORT_MERGE algorithm to process the
+NOT IN, which is faster than NESTED_LOOPS but not as fast as HASH.<BR>
+<I>DEFAULT: NULL<BR>
+VALUES: NESTED_LOOPS, MERGE, HASH</I>
+<P>
+<B>ALWAYS_SEMI_JOIN</B> - ALWAYS_SEMI_JOIN sets the type of semijoin that the Oracle server uses. The system 
+checks to verify that it is legal to perform a semijoin, and if it is, processes the subquery depending on the 
+value of this parameter. When set to the value NESTED_LOOPS, the Oracle server uses a nested loop semijoin algorithm. 
+When set to the value MERGE, it uses the sort merge semijoin algorithm. When set to the value HASH, it uses the 
+hash semijoin algorithm.<BR>
+<I>DEFAULT: STANDARD<BR>  
+VALUES: NESTED_LOOPS/MERGE/HASH<BR>
+VERSION: 8.0</I>
+<P>
+<B>AQ_TM_PROCESSES</B> - Specifies the number of AQ Time Managers to start.  If set to 1, then one queue monitor 
+process is created to monitor the messages. If AQ_TM_PROCESSES is not specified or is set to 0, then the queue 
+monitor is not created.<BR>
+<I>DEFAULT: 0<BR>
+VALUES: 0-10<BR>
+VERSION: 8.0</I>
+<P>
+<B>ARCH_IO_SLAVES</B> - Number of ARCH (archive writer process) I/O slaves. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT:	0<BR>
+VERSION: 8.0</I>
+<P>
+<B>ASYNC_READ</B> (As of Release 8.0, this has been renamed <B>DISK_ASYNCH_IO</B>) - Determines if parallel reads are done 
+on database loading using SQLLoader.  The datafiles being loaded from should be on raw devices.  This parameter also 
+allows parallel I/Os from datafiles on raw devices during database recovery.<BR>
+<I>DEFAULT: O/S Dependent</I>
+<P>
+<B>ASYNC_IO</B> - Determines whether async I/O is used.  If this parameter is set to True, db_writers must be set 
+to 1.  The performance increase for supported platforms is 0-50%.<BR>
+<I>DEFAULT:	FALSE</I>
+<P>
+<B>ASYNC_WRITE</B> (As of Release 8.0, this has been renamed <B>DISK_ASYNCH_IO</B>) - Determines whether async 
+I/O is used.  If this parameter is set to True, db_writers must be set to 1.  The performance increase for 
+supported platforms is 0-50%.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>AUDIT_FILE_DEST</B> - Sets the path that audit files are written to.<BR>
+<I>DEFAULT: $ORACLE_HOME/RDBMS/AUDIT</I>
+<P>
+<B>AUDIT_TRAIL</B> - Enables or disables the writing of rows to the audit table. The values TRUE and FALSE are 
+also supported for backward compatibility. TRUE is equivalent to DB, and FALSE is equivalent to NONE. The SQL 
+AUDIT statements can set auditing options regardless of the setting of this parameter.<BR>
+<I>DEFAULT: FALSE/NONE</I>
+<P>
+<B>B_TREE_BITMAP_PLANS</B> - Makes the optimizer consider a bitmap access path even when a table only has regular 
+B-tree indexes. Do not change the value of this parameter unless instructed by Oracle Technical Support. Obsoleted 
+in 8.1.3.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>BACKGROUND_CORE_DUMP</B> - Controls type of core dump done on an error condition. When BACKGROUND_CORE_DUMP=FULL, 
+the SGA is dumped as part of the generated core file. If BACKGROUND_CORE_DUMP=PARTIAL, then the SGA is not dumped as 
+part of the generated core file.<BR>
+<I>DEFAULT: PARTIAL<BR>
+VALUES: FULL/PARTIAL</I>
+<P>
+<B>BACKGROUND_DUMP_DEST</B> - BACKGROUND_DUMP_DEST specifies the pathname for a directory where debugging trace files 
+for the background processes (LGWR, DBWn, and so on) are written during Oracle operations. An ALERT file in the 
+directory specified by BACKGROUND_DUMP_DEST logs significant database events and messages. Anything that affects 
+the database instance-wide or globally is recorded here. This file records all instance start ups and shut downs, 
+messages to the operator console, and errors that cause trace files to be written. It also records every CREATE, 
+ALTER, or DROP operation on a database, tablespace, or rollback segment. The ALERT file is a normal text file. Its 
+filename is operating system-dependent. For platforms that support multiple instances, it takes the form 
+ALERT_sid.LOG. This file grows slowly, but without limit, so the database administrator might want to delete it 
+periodically. The file can be deleted even when the database is running.<BR>
+<I>DEFAULT: O/S Dependent</I>
+<P>
+<B>BACKUP_DISK_IO_SLAVES</B> - Number of I/O slaves used by the Recovery Manager to backup, copy, or restore. Note 
+that every Recovery Manager channel can get the specified number of I/O slave processes. By default, the value is 0 
+and I/O slaves are not used. Typically I/O slaves are used to "simulate" asynchronous I/O on platforms that either do 
+not support asynchronous I/O or implement it inefficiently. However, I/O slaves can be used even when asynchronous 
+I/O is being used. In that case the I/O slaves will use asynchronous I/O. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 0<BR>
+VALUES: 0 - 15; 7 or lower is recommended<BR>
+VERSION: 8.0</I>
+<P>
+<B>BACKUP_TAPE_IO_SLAVES</B> - Specifies whether I/O slaves are used by the Recovery Manager to backup, copy, or 
+restore data to tape. When BACKUP_TAPE_IO_SLAVES = TRUE, an I/O slave process is used to write to or read from a 
+tape device. If this parameter is FALSE (the default), then I/O slaves are not used for backups; instead, the shadow 
+process engaged in the backup will access the tape device. Note, as a tape device can only be accessed by one process 
+at any given time, this parameter is a boolean, that allows or disallows deployment of an I/O slave process to access 
+a tape device. Typically I/O slaves are used to "simulate" asynchronous I/O on platforms that either do not support 
+asynchronous I/O or implement it inefficiently. However, I/O slaves can be used even when asynchronous I/O is being 
+used. In that case the I/O slaves will use asynchronous I/O.<BR>
+<I>DEFAULT: TRUE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>BITMAP_MERGE_AREA_SIZE</B> - Merges bitmapped indexes. Typically, a large installation that has many bitmapped 
+indexes will increase this parameter to 10 megabytes. The parameter is measured in bytes. (See 
+<B>CREATE_BITMAP_AREA_SIZE</B> as well.)<BR>
+<I>DEFAULT: 1048576<BR>
+VALUES: 0 to O/S Dependent<BR>
+VERSION: 7.3</I>
+<P>
+<B>BLANK_TRIMMING</B> - Specifies the data assignment semantics of character datatypes. A value of TRUE allows the 
+data assignment of a source character string/variable to a destination character column/variable even though the 
+source length is longer than the destination length. In this case, however, the additional length over the 
+destination length is all blanks. This is in compliance with SQL92 Transitional Level and above semantics. A value 
+of FALSE disallows the data assignment if the source length is longer than the destination length and reverts to 
+SQL92 Entry Level semantics.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>BUFFER_POOL_KEEP</B> - This parameter is used to improve buffer cache performance. It allows you to keep an object 
+in the buffer cache.<BR>
+<I>DEFAULT: None<BR>
+VERSION: 8.0</I>
+<P>
+<B>BUFFER_POOL_RECYCLE</B> - This parameter is used to improve buffer cache performance. It allows you to limit the 
+size of an object in the buffer cache.<BR>
+<I>DEFAULT: None<BR>
+VERSION: 8.0</I>
+<P>
+<B>CACHE_SIZE_THRESHOLD</B> - Specifies the maximum size of a cached partition of a table split among the caches of 
+multiple instances. If the partition is larger than the value of this parameter, the table is not split among the 
+instances' caches. The default value of this parameter is 1/10 the number of database blocks in the buffer cache. 
+Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 0.1 * DB_BLOCK_BUFFERS<BR>
+VERSION: 7.1</I>
+<P>
+<B>CCF_IO_SIZE</B> - Obsoleted in 8.0.4. Use <B>DB_FILE_DIRECT_IO_COUNT</B> instead. 
+<P>
+<B>CHECKPOINT_PROCESS</B> - Turns the new background process, CKPT, on (TRUE) or off (FALSE). Checkpoints can have a 
+negative impact on performance, typically causing a 1- or 2-second delay, as the DBWR process writes data to the 
+database and the LGWR updates the database and control files to record the current log sequence number (required for 
+archive recovery) and writes entries from the redo log buffer to the redo log file. CKPT updates the database and 
+control files; this takes a load off the LGWR process and allows it to concentrate on the task of clearing the log 
+buffer to the redo log. CHECKPOINT_PROCESS has a greater influence if the frequency of checkpoints is high and there 
+are numerous database files. It is recommended that you set the parameter to TRUE. Obsoleted in 8.0.4.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>CLEANUP_ROLLBACK_ENTRIES</B> - Number of rollback entries to cleanup in a single pass. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 20</I>
+<P>
+<B>CLOSE_CACHED_OPEN_CURSORS</B> - This parameter controls whether cursors opened and cached in memory by PL/SQL are 
+automatically closed at each COMMIT. A value of FALSE signifies that cursors opened by PL/SQL are held open so that 
+subsequent executions need not open a new cursor. If PL/SQL cursors are reused frequently, setting the parameter to 
+FALSE can cause subsequent executions to be faster. A value of TRUE causes open cursors to be closed at each COMMIT 
+or ROLLBACK. The cursor can then be reopened as needed. If cursors are rarely reused, setting the parameter to TRUE 
+frees memory used by the cursor when the cursor is no longer in use. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: FALSE<BR>
+VERSION: 7.1</I>
+<P>
+<B>COMMIT_POINT_STRENGTH</B> - Specifies the bias this node has toward not preparing in a two phase commit.<BR>
+<I>DEFAULT: O/S Dependent</I>
+<P>
+<B>COMPATIBLE</B> - This parameter specifies the release with which the Oracle Server must maintain compatibility.
+Set to the release of Oracle RDBMS that you are currently running to take full advantage
+of any new features.  Allows you to use the current version while at the same time guaranteeing backward
+compatibility with an earlier release. This is in case it becomes necessary to revert to the earlier release.
+Some features of the current release may be restricted.  Oracle 7.1.5 introduced the ability to bypass the buffer 
+cache (direct reads) for table scans and sorts (COMPATIBLE=7.1.5).  Oracle 7.3 introduced temporary tablespaces
+that improve the performance of sorts and hash joins (COMPATIBLE=7.3.1)<BR>
+<I>DEFAULT: NULL<BR>
+VALUES: Any Oracle RDBMS (e.g., Oracle7.2.3)</I>
+<P>
+<B>COMPATIBLE_NO_RECOVERY</B> - Earliest version this one is compatible with without being recoverable. Obsoleted in 
+8.1.3.<BR>
+<I>DEFAULT: VERSION DEPENDENT</I>
+<P>
+<B>CONTROL_FILE_RECORD_KEEP_TIME</B> - Specifies the number of days to keep the control file record.<BR>
+<I>DEFAULT: 7<BR>
+VERSION: 8.0</I>
+<P>
+<B>CONTROL_FILES</B> - Specifies one or more names of control files, separated by commas. Oracle Corporation
+recommends using multiple files on different devices or mirroring the file at the OS level.<BR>
+<I>DEFAULT: OS Dependent<BR>
+VALUES: 1 - 8 Filenames</I>
+<P>
+<B>CORE_DUMP_DEST</B> - Path name for destination of core dumps in an error situation.<BR>
+<I>DEFAULT: OS Dependent</I>
+<P>
+<B>CPU_COUNT</B> - The number of CPUs installed in the system.  Warning: On most platforms, Oracle automatically 
+sets the value of CPU_COUNT to the number of CPUs available to your Oracle instance. Do not change the value of 
+CPU_COUNT.<BR>
+<I>DEFAULT: System dependent</I>
+<P>
+<B>CREATE_BITMAP_AREA_SIZE</B> - Number of bytes of memory used to create bitmapped indexes. For the creation of 
+very large bitmapped indexes, consider increasing this value.<BR>
+<I>DEFAULT: 8388608<BR>
+VALUES: 0 to O/S Dependent</I>
+<P>
+<B>CURSOR_SPACE_FOR_TIME</B> - Turns waiting for application cursors on (TRUE) or off (FALSE).
+If it is set to TRUE, the database uses more space for cursors to save time. It
+affects both the shared SQL area and the client's private SQL area. Shared SQL areas are kept pinned
+in the shared pool when this parameter's value is TRUE. As a result, shared SQL areas are not aged out
+of the pool as long as there is an open cursor that references them. Because each active cursor's SQL
+area is present in memory, execution is faster. Because the shared SQL areas never leave memory while
+they are in use, however, you should set this parameter to TRUE only when the shared pool is large enough
+to hold all open cursors simultaneously. Setting this parameter to TRUE also retains the private SQL
+area allocated for each cursor between executes instead of discarding it after cursor execution.
+This saves cursor allocation and initialization time.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>DB_BLOCK_BUFFERS</B> - Sets the size, in database blocks, of the data block buffer cache 
+in the SGA.  The larger the data block buffer cache is, the more memory will be available for sharing data 
+already in memory amoung users - reducing the need for physical reads.  You can determine the effectiveness 
+of the data block buffer cache by measuring the hit ratio of the database.<BR>
+<I>DEFAULT: 32 Buffers<BR>
+VALUES: 4 to unlimited</I>
+<P>
+<B>DB_BLOCK_CHECKPOINT_BATCH</B> - Number of blocks the DBWR background process writes at any one time. You can 
+increase this parameter to allow checkpoints to complete faster. The setting is often too small on a heavily used 
+system. It is recommended that you leave this parameter at its default unless you are experiencing delays during 
+checkpointing. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 8<BR>
+VALUES: 0 to derived</I>
+<P>
+<B>DB_BLOCK_CHECKING</B> - This parameter is used to control whether block checking is done for transaction managed 
+blocks. The FALSE setting is provided for compatibility with ealier releases where block checking is disabled as a 
+default. As the parameter is dynamic, it provides more flexibility than events 10210 and 10211, which it will 
+ultimately replace. Note that the setting of DB_BLOCK_CHECKING overrides any setting of events 10210 and 10211.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.1</I>
+<P>
+<B>DB_BLOCK_CHECKSUM</B> - If DB_BLOCK_CHECKSUM is set to TRUE, DBWn and the direct loader will calculate a checksum 
+and store it in the cache header of every data block when writing it to disk. Checksums will be verified when a block 
+is read only if this parameter is TRUE and the last write of the block stored a checksum. If DB_BLOCK_CHECKSUM is set 
+to TRUE, every log block will also be given a checksum before it is written to the current log. Warning: Setting 
+DB_BLOCK_CHECKSUM to TRUE can cause performance overhead.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>DB_BLOCK_LRU_EXTENDED_STATISTICS</B> - Forces statistics to be gathered on the effect of increasing the buffer 
+cache. Use this parameter very sparingly; may cause performance degradation. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>DB_BLOCK_LRU_LATCHES</B> - LRU latch contention has always been a source of frustration on multiprocessor 
+machines; this parameter relieves much of the pain. Set it to your number of CPUs, and watch the MISSES and 
+IMMEDIATE_MISSES columns in the V$LATCH table diminish.<BR>
+<I>DEFAULT: CPU_COUNT/2<BR>
+VALUES: 1 to the number of CPUs<BR>
+VERSION: 7.3</I>
+<P>
+<B>DB_BLOCK_LRU_STATISTICS</B> - Disables (FALSE) or enables (TRUE) the compilation of statistics on the effect of 
+having fewer buffers in the buffer cache. Don't leave this parameter set to TRUE in your production database because 
+it can increase your latch contention significantly and cause poor performance. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>DB_BLOCK_MAX_DIRTY_TARGET</B> - Specifies the number of buffers that can be dirty (modified and different from 
+what is on disk). If the number of dirty buffers in a buffer cache exceeds this value, DBWR will write out buffers 
+in order to try and keep the number of dirty buffers below the specified value. Note that this parameter does not 
+impose a hard limit on the number of dirty buffers; in other words, DBWR attempts to keep the number of dirty buffers 
+below this value, but will NOT stop (or slow) database activity if the number of dirty buffers exceeds this value 
+occasionally. This parameter can be used to influence the amount of time it takes to perform instance recovery since 
+recovery is related to the number of buffers that were dirty at the time of the crash. The smaller the value of this 
+parameter, the faster the instance recovery. Note that this improvement in recovery time is achieved at the expense 
+of writing more buffers during normal processing. Hence, setting this parameter to a very small value might adversely 
+affect performance if the workload modifies large numbers of buffers. Setting this value to 0 disables writing of 
+buffers for incremental checkpointing purposes; all other write activity continues as before (that is, it is 
+unaffected by setting this parameter to 0).<BR>
+<I>DEFAULT: All buffers in cache<BR>
+VALUES: 100 to all buffers in cache</I>
+<P>
+<B>_DB_BLOCK_MAX_SCAN_CNT</B> - Maximum number of buffers that the user will scan before DBWR is invoked. This 
+parameter can use an excessive amount of CPU if it is set too high, particularly for a database that has a very 
+high percentage of queries and very few updates. DBWR scanning will continue until either the number of modified 
+blocks specified in _DB_BLOCK_WRITE_BATCH has been found or the _DB_BLOCK_MAX_SCAN_CNT number of blocks has been 
+scanned. The default value is adequate for most sites. If you have a DB_BLOCK_BUFFER size greater than 10 megabytes, 
+though, consider increasing this parameter, especially if you are experiencing CPU problems.<BR>
+<I>DEFAULT: 30<BR>
+VALUE: 0 to value of DB_BLOCK_BUFFERS</I>
+<P>
+<B>DB_BLOCK_SIZE</B> - Defined when the database is created; it determines the size of each 
+block within the database.  You CANNOT change the block size of an existing database; the only method 
+available for increasing the block size is to perform a full database Export, recreate the database with 
+a different DB_BLOCK_SIZE value, and Import the database.  In most environments, the default value for 
+DB_BLOCK_SIZE is 2048 bytes (2KB).  If you operating environment permits, you should increase the value 
+to 4KB, 8KB, or higher.  The performance gains obtained by using a larger block size are significant 
+for both OLTP and batch applications.  In general, each doubling of the database block size will reduce
+the time required for I/O-intensive batch operations be around 40 percent.  As the database block size 
+increases, your overall memory requirements may increase.<BR>
+<I>DEFAULT: OS Dependent<BR>
+VALUES: 1024-32768</I>
+<P>
+<B>_DB_BLOCK_WRITE_BATCH</B> - Number of blocks DBWR passes at one time to the operating system for writing. Setting 
+this parameter higher allows the operating system to write to different disks in parallel and to write adjacent 
+blocks in a single I/O (if your operating system allows these features). If your buffer cache is small, having a 
+high value will increase the wait time to modify a block that is in the batch being written.<BR>
+<I>DEFAULT: 8<BR>
+VALUES: 1 to O/S Dependent</I>
+<P>
+<B>DB_DOMAIN</B> - This parameter specifies the extension components of a global database name, consisting of valid 
+identifiers, separated by periods. Specifying DB_DOMAIN as a unique string for every database is highly recommended.
+For example, this parameter allows one department to create a database without worrying that it might have the same 
+name as a database created by another department. If one sales department's DB_DOMAIN = "JAPAN.ACME.COM", then their 
+"SALES" database (SALES.JAPAN.ACME.COM) is uniquely distinguished from another database with DB_NAME = "SALES" but 
+with DB_DOMAIN = "US.ACME.COM".<BR>
+<I>DEFAULT: WORLD</I>
+<P>
+<B>DB_FILE_DIRECT_IO_COUNT</B> - Specifies the number of blocks to be used for IO operations done by backup, restore 
+or direct path read and write functions. The IO buffer size is a product of DB_FILE_DIRECT_IO_COUNT and DB_BLOCK_SIZE.
+The IO buffer size cannot exceed max_IO_size for your platform. Assigning a high value to this parameter results in 
+greater use of PGA or SGA memory. Note: If you have previously used CCF_IO_SIZE and are migrating to 
+DB_FILE_DIRECT_IO_COUNT, remember that CCF_IO_SIZE was specified in bytes while DB_FILE_DIRECT_IO_COUNT must be 
+specified in database blocks.<BR>
+<I>DEFAULT: 64<BR>
+VALUES: O/S Specific<BR>
+VERSION: 8.0</I>
+<P>
+<B>DB_FILE_MULTIBLOCK_READ_COUNT</B> parameter helps determine how many blocks are read at a time 
+by the database during full table scans.  You should set the DB_BLOCK_MULTIBLOCK_READ_COUNT parameter 
+to a value that takes the greatest advantage of the operating system's buffer during reads.  For example, 
+suppose the OS buffer available for reads is 64KB in size.  If your database block size is 2KB, you should 
+set DB_FILE_MULTIBLOCK_READ_COUNT to 32; if the block size is 4KB, set DB_FILE_MULTIBLOCK_READ_COUNT to 16.  
+In some operating systems, the available buffer size is configurable.<BR>
+<I>DEFAULT: OS Dependent but usually a function of DB_BLOCK_BUFFERS and PROCESSES<BR>
+VALUES: OS Dependent (normally 1 to either the DB_BLOCK_BUFFERS / 4 or the OS maximum I/O size / DB_BLOCK_SIZE)</I>
+<P>
+<B>DB_FILE_NAME_CONVERT</B> - Converts the filename of a new data file on the primary database to a filename on 
+the standby database. Adding a datafile to the primary database necessitates adding a corresponding file to the 
+standby database.  When the standby database is updated, this parameter is used to convert the datafile name on 
+the primary database to the a datafile name on the standby database. The file must exist and be writable on the 
+standby database or the recovery process will halt with an error. Set the value of this parameter to two strings: 
+the first string is the pattern found in the datafile names on the primary database; the second string is the 
+pattern found in the datafile names on the standby database.
+<P>
+<B>DB_FILE_SIMULTANEOUS_WRITES</B> - Number of write batches written by the database writers.  If you
+are experiencing problems getting buffers written to your disks during checkpoints, try increasing the value.
+It is applicable only to the operation systems that support more than one write to your disk devices.<BR>
+<I>DEFAULT: 4<BR>
+VALUES: 1 to 24</I>
+<P>
+<B>DB_FILES</B> - Number of database files that can be open when the database is running. Set this value lower 
+than the default if you are not using 32 data files (to reduce the space used in the SGA). You can increase this 
+value by shutting down your database, changing the parameter value, and restarting the database. All instances must 
+be set to the same value if you are using the parallel server.<BR>
+<I>DEFAULT: O/S Dependent<BR>
+VALUES: MAXDATAFILES for the database being mounted to O/S dependent</I>
+<P>
+<B>DB_NAME</B> - The name of the database. DB_NAME can specify a database identifier of up to eight characters. If 
+specified, it must correspond to the name specified in the CREATE DATABASE statement. Although the use of DB_NAME 
+is optional, it should generally be set before invoking CREATE DATABASE and then referenced in that statement. If 
+not specified, a database name must appear on either the STARTUP or the ALTER DATABASE MOUNT command line for each 
+instance of the parallel server.<BR>
+<I>DEFAULT: NULL</I>
+<P>
+<B>DB_WRITER_PROCESSES</B> - This parameter specifies the initial number of database writer processes for an instance. 
+If you use DBWR_IO_SLAVES, only one database writer process will be used, regardless of the setting for 
+DB_WRITER_PROCESSES.<BR>
+<I>DEFAULT: 1<BR>
+VALUES: 1-10</I>
+<P>
+<B>DB_WRITERS</B> (As of Version 8.0, this has been renamed <B>DBWR_IO_SLAVES</B>)- Once the database block size and 
+memory areas are properly established, tune the way in which Oracle writes data from memory.  If your OS 
+permits using multiple DBWR processes, set a value greater than '1' for the DB_WRITERS parameter.  
+If you start more than on DBWR process, you may be able to reduce
+contention for blocks within the database block buffer cache.  If there is only one DBWR process available,
+it becomes a possible bottleneck during I/O operations, even if the data is distributed among multiple devices.
+<P>
+<B>DBLINK_ENCRYPT_LOGIN</B> - Signifies whether attempts to connect to other Oracle Servers through database links 
+should use encrypted passwords. When you attempt to connect to a database using a password, Oracle encrypts the 
+password before sending it to the database. If the DBLINK_ENCRYPT_LOGIN parameter is TRUE and the connection fails, 
+Oracle does not reattempt the connection. If this parameter is FALSE, Oracle reattempts the connections using an 
+unencrypted version of the password.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 7.1</I>
+<P>
+<B>DBWR_IO_SLAVES</B> - Number of DBWR I/O slaves.<BR>
+<I>DEFAULT: 0<BR>
+VERSION: 8.0</I>
+<P>
+<B>DDL_LOCKS</B> - Number of parse locks.<BR>
+<I>DEFAULT: 5*Sessions</I>
+<P>
+<B>DELAYED_LOGGING_BLOCK_CLEANOUTS</B> - Turns the delayed block cleanout feature on or off. This reduces pinging 
+in an Oracle Parallel Server. Keeping this feature set to TRUE sets a fast path, no logging block cleanout at 
+commit time. Logging the block cleanout occurs at the time of a subsequent change to the block. This generally 
+improves Oracle Parallel Server performance, particularly if block pings are a problem. When Oracle commits a 
+transaction, each block that the transaction changed is not immediately marked with the commit time.  This is 
+done later, on demand, when the block is read or updated. This is called block cleanout. When block cleanout is 
+performed during an update to a current block, the cleanout changes and the redo records are appended with those 
+of the update. In previous releases, when block cleanout was needed during a read to a current block, extra 
+cleanout redo records were generated and the block was dirtied. This has been changed. When a transaction commits, 
+all blocks changed by the transaction are cleaned out immediately. This cleanout performed at commit time is a 
+"fast version" which does not generate redo log records (delayed logging) and does not re-ping the block.  Most 
+blocks will be cleaned out in this way, with the exception of blocks changed by long running transactions. During 
+queries, therefore, the data block's transaction information is normally up-to-date and the frequency of needing 
+block cleanout is greatly reduced. Regular block cleanouts are still needed when querying a block where the 
+transactions are still truly active, or when querying a block which was not cleaned out during commit.
+Note: In long-running transactions, block cleanouts will not be performed during the transaction. If the transaction 
+is not long running, block cleanout will be performed and the block cleanout is logged at the change of block.
+During changes (INSERT, DELETE, UPDATE), the cleanout redo log records are generated and appended with the redo 
+of the changes.<BR>
+<I>DEFAULT: TRUE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>DIRECT_READ</B> - Allows Oracle on some platforms to use direct read bypassing the Unix file buffers.  Reading 
+through the buffers can improve read performance  in some cases and in OLTP situations direct reads can enhance 
+performance.	<BR>
+<I>DEFAULT: Platform Dependent</I>
+<P>
+<B>DISCRETE_TRANSACTIONS_ENABLED</B> - Enables (TRUE) or disables (FALSE) discrete transactions. Discrete 
+transactions can be run with nondiscrete (normal) transactions. The reason why discrete transactions run faster 
+is that no undo (rollback) information is stored. Instead, the redo information is stored in a separate location 
+in memory, and all changes made to the data is committed when data is transferred to the redo log buffer and 
+updates to the database are performed as usual. Use discrete transactions only when you are absolutely certain 
+that the transaction falls into the category specified here and only when your database is experiencing excessive 
+rollback activity. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>DISK_ASYNCH_IO </B> - Controls whether I/O to datafiles, controlfiles and logfiles are asynchronous. If a 
+platform supports asynchronous I/O to disk, it is recommended that this parameter is left to its default. 
+However, if the asynchronous I/O implementation is not stable, this parameter can be set to FALSE to disable 
+asynchronous I/O. If a platform does not support asynchronous I/O to disk, this parameter has no effect. If 
+DISK_ASYNCH_IO is set to FALSE, then DBWR_IO_SLAVES should also be set.<BR>
+<I>DEFAULT: TRUE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>DISTRIBUTED_LOCK_TIMEOUT</B> - Time a distributed transaction will wait for locked resources. Obsoleted in 
+8.1.3.<BR>
+<I>DEFAULT: 60 seconds</I>
+<P>
+<B>DISTRIBUTED_RECOVERY_CONNECTION_HOLD_TIME</B> - The length of time to hold a remote connection open after a 
+distributed transaction fails. The reconnection and recovery background process runs every 30 minutes (1800 seconds) 
+whether or not a failure occurs, such that a value of 1800 or larger means that the connection never closes. 
+Obsolete in 8.1.3.<BR>
+<I>DEFAULT: 200 seconds</I>
+<P>
+<B>DISTRIBUTED_TRANSACTIONS</B> - This parameter specifies the maximum number of distributed transactions in which 
+this database can concurrently participate. The value of this parameter cannot exceed the value of the parameter 
+TRANSACTIONS. If network failures occur at an abnormally high rate, causing many in-doubt transactions, you may want 
+to temporarily decrease this parameter's value. This limits the number of concurrent distributed transactions, 
+which then reduces the number of in-doubt transactions. If DISTRIBUTED_TRANSACTIONS is set to 0, no distributed 
+transactions are allowed for the database. The recovery (RECO) process also does not start when the instance 
+starts up.<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>DML_LOCKS</B> - Maximum number of data manipulation language (DML) locks. If three users are modifying data on 
+two tables, you will need six DML locks. If this value is set to 0, enqueues are disabled and performance is 
+improved, particularly if you are using parallel server. The downside is that you cannot use DDL statements, 
+such as CREATE INDEX, and you also can't perform LOCK TABLE tname in EXCLUSIVE MODE. If you do set the parameter 
+to 0, which is recommended for a parallel server, you must set DML_LOCKS equal to 0 for all instances.<BR>
+<I>DEFAULT: 4*Transactions<BR>
+VALUES: 20 to unlimited or 0</I>
+<P>
+<B>ENQUEUE_RESOURCES</B> - An enqueue is a sophisticated locking mechanism which permits several concurrent 
+processes to share known resources to varying degrees. Any object which can be used concurrently can be protected 
+with enqueues. For example, Oracle allows varying levels of sharing on tables: two processes can lock a table in 
+share mode or in share update mode.<BR>
+<I>DEFAULT: Derived<BR>
+VALUES: 10 - 65535</I>
+<P>
+<B>FAST_FULL_SCAN_ENABLED</B> - This parameter enables fast full scans, a useful alternative to full table scans. 
+Fast full scans require an index containing all the columns that are needed for the query. Also, at least one 
+column of the table must be NOT NULL.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: Added in 8.0 -- Obsoleted in 8.1</I>
+<P>
+<B>FAST_START_IO_TARGET</B> - This parameter specifies the number of IOs that should be needed during crash or 
+instance recovery. It imposes a more accurate bound on the number of recovery IOs than DB_BLOCK_MAX_DIRTY_TARGET.
+Note that this parameter does not impose a hard limit on the number of recovery IOs. There may be transient 
+workload situations in which the number of IOs needed during recovery is greater than the value specified in 
+this parameter, but if this occurs, DBWn will not slow down database activity. Smaller values for this parameter 
+result in faster recovery times. This improvement in recovery performance is achieved at the expense of additional 
+writing activity during normal processing. Setting this parameter's value to 0 disables the mechanism that limits 
+the number of IOs that need to be performed during recovery. All other writing activity is unaffected.<BR>
+<I>DEFAULT: All the buffers in the cache<BR>
+VALUES: 1000 to all buffers in the cache, setting to 0 disables limiting recovery IOs<BR>
+VERSION: 8.1</I>
+<P>
+<B>FAST_START_PARALLEL_ROLLBACK</B> - This parameter helps to determine the maximum number of processes which may 
+exist for performing parallel rollback. If the value is false, parallel rollback is disabled. If the value is 
+low, 2 * CPU_COUNT number of processes may be used. If the value is high, at most 4 * CPU_COUNT number of rollback 
+servers are used for parallel rollback.<BR>
+<I>DEFAULT: LOW<BR>
+VALUES: FALSE, LOW, HIGH<BR>
+VERSION:8.1</I>
+<P>
+<B>FIXED_DATE</B> - Allows you to set a constant for SYSDATE in the format YYYY-MM-DD-HH24:MI:SS.  This is only 
+used for testing.<BR>
+<I>VALUE: NULL</I>
+<P>
+<B>FREEZE_DB_FOR_FAST_INSTANCE_RECOVERY</B> - Specifies to freeze the database during instance recovery.<BR>
+<I>VALUE: FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>GC_DB_LOCKS</B> - Controls locks on table and index data blocks. The total number of PCM locks is specified by 
+the parameter GC_DB_LOCKS. All instances must have the same value set for this parameter. PCM locks are distributed 
+evenly among all data files if you do not set the GC_FILES_TO_LOCKS parameter. You must almost always set the 
+numbers of locks per data file using the GC_FILES_TO_LOCKS parameter to obtain the best performance. This parameter 
+and GC_FILES_TO_LOCKS are the most critical parameters in tuning parallel server. GC_DB_LOCKS needs to be equal to 
+or larger than the number of locks in GC_FILES_TO_LOCKS.  The advantage of setting the number of PCM locks high is 
+that it lessens the chance of damaging PCM lock contention. The disadvantages are that it may take considerably 
+longer to start and recover your database and that the locks may use a substantial amount of memory. This is a 
+substantial difference for very large tables that have a large potential for cross-instance locking. You must have 
+the identical GC_DB_LOCKS for all instances.<BR>
+<I>DEFAULT: 0<BR>
+VALUES: 1 to unlimited<BR>
+This parameter is invalid with Oracle8</I>
+<P>
+<B>GC_DEFER_TIME</B> - Specifies the time (in 100ths of a second) that the server waits, or defers, before 
+responding to forced-write requests for hot blocks from other instances. Specifying the GC_DEFER_TIME parameter 
+makes it more likely that buffers will be properly cleaned out before being written, thus making them more useful 
+when they are read by other instances. It also improves the chance of hot blocks being used multiple times within 
+an instance between forced writes.<BR>
+<I>DEFAULT: 0 = disabled, no deferring occurs<BR>
+VALUES: Any positive integer</I>
+<P>
+<B>GC_FILES_TO_LOCKS </B> - This parameter assigns locks on a per data file basis, which affects table and index 
+data blocks within the data file. If you add a data file to your tablespace, don't forget to add the 
+GC_FILES_TO_LOCKS settings to the data file. GC_FILES_TO_LOCKS protects only data blocks, not rollback segment 
+blocks.  Don't assign locks to tablespaces that contain only rollback segments or tablespaces used exclusively 
+for temporary segments. Group read-only tables/indexes together and assign only one lock to that data file. Make 
+the tablespace read-only (Oracle7.1 and later) to ensure that no updates occur to the tablespace.<BR>
+<I>DEFAULT: NULL</I>
+<P>
+<B>GC_FREELIST_GROUPS</B> - Freelist groups locks in (DFS).<BR>
+<I>DEFAULT: 50<BR>
+This parameter is invalid with Oracle8</I>
+<P>
+<B>GC_LCK_PROCS</B> - Replaces MI_BG_PROCS from Version 6.  Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>GC_RELEASABLE_LOCKS</B> - Lock elements can be fixed or non-fixed. Fixed lock elements are used by hashed PCM 
+locks, in which the lock element name is preassigned. Non-fixed lock elements are used with fine-grain locking. 
+If the GC_RELEASABLE_LOCKS parameter is set, its value is used to allocate space for fine-grain locking. There is 
+no maximum value, except as imposed by memory restrictions. This parameter is specific to the Oracle Parallel 
+Server in shared mode.<BR>
+<I>DEFAULT: DB_BLOCK_BUFFERS<BR>
+VALUES: 0 to DB_BLOCK_BUFFERS or higher</I>
+<P>
+<B>GC_ROLLBACK_LOCKS</B> - Controls the locks on rollback segment blocks. If you see a lot of pinging on undo 
+blocks, you should increase the value of this parameter. Each rollback segment gets GC_ROLLBACK_LOCKS assigned to 
+it, regardless of the rollback segment sizes. It is useful to have rollback segments equally sized.<BR>
+<I>DEFAULT: 20</I>
+<P>
+<B>GC_ROLLBACK_SEGMENTS</B> - Controls the locking on the rollback segment header block sometimes referred to as 
+the transaction table. Set this parameter to the total number of rollback segments in your database including the 
+SYSTEM rollback segment. If you add rollback segments to your database, don't forget to adjust this parameter.<BR>
+<I>DEFAULT: 20<BR>
+This parameter is invalid with Oracle8</I>
+<P>
+<B>GC_SAVE_ROLLBACK_LOCKS</B> - Also affects locking on the header block for the deferred rollback segment. As 
+for GC_TABLESPACES, unless you are taking a number of files offline concurrently, don't change the parameter from 
+its default. If you are taking tablespaces offline, increase the setting to 10 per instance.<BR>
+<I>DEFAULT: 20<BR>
+This parameter is invalid with Oracle8</I>
+<P>
+<B>GC_SEGMENTS</B> - Controls segment header blocks. A segment header block is the first block of a table or 
+index. It contains the extents within the table or index as well as other information. Your aim should be to set 
+the value of this parameter to cause the least possible number of pings. The default parameter can cause a lot of 
+false pings. The segment header blocks are usually accessed in Shared mode for full table scans (SELECT) and in 
+Exclusive mode for bumping up the high-water mark (INSERT). The parameter must have the same setting across all 
+instances.<BR>
+<I>DEFAULT: 10<BR>
+This parameter is invalid with Oracle8</I>
+<P>
+<B>GC_TABLESPACES</B> - Affects locking on the header block for the deferred rollback segment. This segment is 
+used when a rollback is requested on a tablespace that is offline. When the tablespace comes back online, the 
+rollback is applied to the tablespace automatically. Unless you are taking a number of files offline concurrently, 
+don't change the parameter from its default.<BR>
+<I>DEFAULT: 5<BR>
+This parameter is invalid with Oracle8</I>
+<P>
+<B>GLOBAL_NAMES</B> - Enables db link name checking.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>HASH_AREA_SIZE</B> - This parameter specifies the maximum amount of memory, in bytes, to be used for the hash 
+join. If this parameter is not set, its value defaults to twice the value of the SORT_AREA_SIZE parameter.  You 
+can change the value of this parameter without shutting down your Oracle instance by using the ALTER SESSION command.<BR>
+<I>DEFAULT: 2 times the value of SORT_AREA_SIZE<BR>
+VALUES: Any integer</I>
+<P>
+<B>HASH_JOIN_ENABLED</B> - This parameter enables or disables the hash join feature. Set this parameter to 
+TRUE to use hash joins. Set this parameter to FALSE to disable hash joins.  You can change the value of this 
+parameter without shutting down your Oracle instance by using the ALTER SESSION command.<BR>
+<I>DEFAULT: TRUE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>HASH_MULTIBLOCK_IO_COUNT</B> - This parameter specifies how many blocks a hash join reads and writes at 
+once. When operating in multi-threaded server mode, however, this parameter is ignored (that is, the default value 
+of 1 is used even if you set the parameter to another value).  The value of DB_BLOCK_SIZE multiplied by the 
+value of HASH_MULTIBLOCK_IO_COUNT should be less than 64 KB.  This parameter strongly affects performance 
+because it controls the number of partitions into which the input is divided.<BR>
+<I>DEFAULT: 1<BR>
+VALUES: 1 - (65,536/DB_BLOCK_SIZE)</I>
+<P>
+<B>HI_SHARED_MEMORY_ADDRESS</B> - SHARED_MEMORY_ADDRESS and HI_SHARED_MEMORY_ADDRESS specify the SGA's starting 
+address at runtime. These parameters are ignored on platforms which specify the SGA's starting address at linktime.
+Use HI_ SHARED_MEMORY_ADDRESS to specify the high order 32 bits of a 64 bit address on 64 bit platforms. If both 
+parameters are 0 or unspecified, the SGA address defaults to a platform-specific location.<BR>
+<I>DEFAULT: 0<BR>
+VERSION: 8.0</I>
+<P>
+<B>IFILE</B> - Full path name of additional parameter file.<BR>
+<I>DEFAULT: NULL</I>
+<P>
+<B>INIT_SQL_FILES</B> - Contains SQL file names to execute on startup.<BR>
+<I>DEFAULT: NULL</I>
+<P>
+<B>INSTANCE_GROUPS</B> - List of instance group names.<BR>
+<I>DEFAULT: N/A<BR>
+VERSION: 8.0</I>
+<P>
+<B>INSTANCE_NAME</B> - This parameter is a string value representing the name of the instance and is used to 
+uniquely identify a specific instance when multiple instances share common services names. INSTANCE_NAME should 
+not be confused with the SID, which actually uniquely identifies the instances shared memory on a host.<BR>
+<I>DEFAULT: The SID<BR>
+VERSION: 8.1</I>
+<P>
+<B>INSTANCE_NUMBER</B> - If set, sets the instance number for use with threads.<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>IO_MIN_SERVERS</B> - Minimum I/O slaves per instance.<BR>
+<I>DEFAULT: 2<BR>
+VERSION: 8.0</I>
+<P>
+<B>JAVA_POOL_SIZE</B> - This parameter pecifies the size in bytes of the Java pool.<BR>
+<I>DEFAULT: 10MB<BR>
+VERSION: 8.1</I>
+<P>
+<B>JOB_QUEUE_INTERVAL</B> - The job queue processes “wake up” periodically and check the job queue catalog to see 
+if any jobs are due to execute.  JOB_QUEUE_INTERVAL controls how long the SNP processes “sleep” (in seconds) between 
+catalog checks. Setting the interval too low can cause unnecessary overhead as SNP processes constantly check the 
+catalog. Setting the interval too high can keep jobs from executing at the expected time if an SNP process does not 
+awaken promptly enough. The proper balance will depend on the specific mix of jobs in a given environment. For most 
+purposes, the default setting of 60 seconds is adequate.<BR>
+<I>DEFAULT: 60 seconds<BR>
+VALUES: 1-3600 seconds</I>
+<P>
+<B>JOB_QUEUE_KEEP_CONNECTIONS</B> - When this parameter is TRUE, the SNP processes will retain open connections to 
+Oracle between job executions during their sleep periods. When FALSE, the SNP processes will disconnect from the 
+database and reconnect when it is time to awaken and check the queue. The primary tradeoff is between job queue 
+efficiency and database shutdown methods. Keeping connections open is more efficient, but can interfere with doing 
+a normal shutdown of the database. This is because the job queue processes appear as user processes to Server 
+Manager and a normal shutdown requires all users to be disconnected. Disconnecting and reconnecting the SNP 
+processes involves significant overhead, yet you should periodically leave the database with no connected SNP 
+processes, permitting a normal shutdown to proceed.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>JOB_QUEUE_PROCESSES</B> - The job queue (or SNP) background processes are started when the Oracle instance is 
+started. There are as many SNP processes started as specified in the INIT.ORA parameter JOB_QUEUE_PROCESSES. The 
+range of valid values is from 0 to 36, so there can be a maximum of 36 SNP processes per Oracle instance. Under 
+most operating systems, the characters SNP will appear as part of the process name. One significant difference 
+between the SNP background processes and other Oracle background processes is that killing an SNP process will 
+not crash the instance. While you’re not likely to want to do this very often, this behavior is useful to know 
+in case a job queue process “runs away” and consumes excessive resources. When an SNP process is killed or fails 
+on its own, Oracle automatically starts a new one to replace it.<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>LARGE_POOL_MIN_ALLOC</B> - Minimum allocation size in bytes for the large allocation pool. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 16K<BR>
+VERSION: 8.0</I>
+<P>
+<B>LARGE_POOL_SIZE</B> - Size in bytes of the large allocation pool.<BR>
+<I>DEFAULT: 0<BR>
+VERSION: 8.0</I>
+<P>
+<B>LGWR_IO_SLAVES</B> - Number of LGWR (log writer) I/O slaves. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 0<BR>
+VERSION: 8.0</I>
+<P>
+<B>LICENSE_MAX_SESSIONS</B> - Set to your session license value. LICENSE_MAX_SESSIONS specifies the maximum 
+number of concurrent user sessions allowed simultaneously. When this limit is reached, only users with the 
+RESTRICTED SESSION privilege can connect to the server. Users who are not able to connect receive a warning 
+message indicating that the system has reached maximum capacity. A zero value indicates that concurrent usage 
+(session) licensing is not enforced. If you set this parameter to a non-zero number, you might also want to set 
+LICENSE_SESSIONS_WARNING. Concurrent usage licensing and user licensing should not both be enabled. Either 
+LICENSE_MAX_SESSIONS or LICENSE_MAX_USERS should always be zero.<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>LICENSE_MAX_USERS</B> - Set to your user license value. Concurrent usage (session) licensing and user 
+licensing should not both be enabled. Either LICENSE_MAX_SESSIONS or LICENSE_MAX_USERS, or both, should be zero. 
+If different instances specify different values for this parameter, the value of the first instance to mount 
+the database takes precedence.<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>LICENSE_SESSION_WARNING</B> - This parameter specifies a warning limit on the number of concurrent user sessions. 
+When this limit is reached, additional users can connect, but Oracle writes a message in the ALERT file for each new 
+connection. Users with RESTRICTED SESSION privilege who connect  after the limit is reached receive a warning message 
+stating that the system is nearing its maximum capacity. If this parameter is set to zero, no warning is given when 
+approaching the concurrent usage (session) limit. If you set this parameter to a nonzero number, you should also set 
+LICENSE_MAX_SESSIONS.<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>LIST</B> - List parameters during startup.	<BR>
+<I>DEFAULT: N/A</I>
+<P>
+<B>LM_LOCKS</B> - Number of locks configured for the lock manager.<BR>
+<I>DEFAULT: 12000<BR>
+VERSION: 8.0</I>
+<P>
+<B>LM_PROCS</B> - Number of client processes configured for the lock manager.<BR>
+<I>DEFAULT: 64 + the maximum number of instances supported on the port<BR>
+VERSION: 8.0</I>
+<P>
+<B>LM_RESS</B> - Number of resources configured for the lock manager.<BR>
+<I>DEFAULT: 6000<BR>
+VERSION: 8.0</I>
+<P>
+<B>LOCAL_LISTENER</B> - This optional parameter identifies "local" Net8 listeners so that they can complete client 
+connections to dedicated servers. LOCAL_LISTENER specifies the network name of either a single address or an address 
+list of Net8 listeners. These Net8 listeners need to be running on the same machine as the instance.
+<P>
+<B>LOCK_NAME_SPACE</B> - Lock name space used for generating lock names for standby / clone.<BR>
+<I>DEFAULT: N/A<BR>
+VERSION: 8.0</I>
+<P>
+<B>LOCK_SGA</B> - LOCK_SGA is used to lock the entire SGA into physical memory. It is ignored on platforms that don't 
+support it.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>LOG_ARCHIVE_BUFFER_SIZE</B> - The size of each archival buffer, in redo log blocks (operating system blocks). 
+The default should be adequate for most applications.  This parameter, with LOG_ARCHIVE_BUFFERS, can tune 
+archiving so that it runs as fast as necessary, but not so fast that it reduces system performance.<BR>
+<I>DEFAULT: OS Dependent<BR>
+VALUES: 1 - OS Dependent (in O/S blocks)</I>
+<P>
+<B>LOG_ARCHIVE_DEST</B> - Applicable only if using the redo log in ARCHIVELOG mode. Use a text string to 
+specify the default location and root of the disk file or tape device when archiving redo log files. 
+(Archiving to tape is not supported on all operating systems.) The value cannot be a raw partition.  To override 
+the destination that this parameter specifies, either specify a different destination for manual archiving or 
+use the Server Manager command ARCHIVE LOG START filespec for automatic archiving, where filespec is the new 
+archive destination.<BR>
+<I>DEFAULT: OS Dependent<BR>
+VALUES: Any valid path or device name, except raw partitions</I>
+<P>
+<B>LOG_ARCHIVE_DUPLEX_DEST</B> - Specifies the location of the duplex archive log. Deprecated in favor of 
+LOG_ARCHIVE_DEST_n when Oracle Enterprise Edition is installed. If Oracle Enterprise Edition is not installed, 
+this parameter is valid.<BR>
+<I>DEFAULT: N/A<BR>
+VERSION: 8.0</I>
+<P>
+<B>LOG_ARCHIVE_FORMAT</B> - Sets format for archive log files.<BR>
+<I>DEFAULT: O/S Dependent</I>
+<P>
+<B>LOG_ARCHIVE_MAX_PROCESSES</B> - LOG_ARCHIVE_MAX_PROCESSES specifies the number of ARCH processes to be invoked. 
+This value is evaluated at instance startup if the LOG_ARCHIVE_START initialization parameter has the value TRUE; 
+otherwise, this parameter is evaluated when the ARCH process is invoked via SQL*Plus or SQL syntax.<BR>
+<I>DEFAULT: 1<BR>
+VALUES: Any integer from 1 - 10 inclusive<BR>
+VERSION: 8.1</I>
+<P>
+<B>LOG_ARCHIVE_START</B> - Applicable only when you use the redo log in ARCHIVELOG mode, LOG_ARCHIVE_START 
+indicates whether archiving should be automatic or manual when the instance starts up. TRUE indicates that 
+archiving is automatic. FALSE indicates that the DBA will archive filled redo log files manually. (The Server 
+Manager command ARCHIVE LOG START or STOP overrides this parameter.)  In ARCHIVELOG mode, if all online redo 
+log files fill without being archived, an error message is issued, and instance operations are suspended 
+until the necessary archiving is performed. This delay is more likely if you use manual archiving. You can 
+reduce its likelihood by increasing the number of online redo log files.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>LOG_BUFFER</B> Sets the size, in bytes, of the redo log buffer area in the SGA.
+The default is set to four times the maximum database block size for the OS.  For an OLTP application
+in which many users perform transactions, the LOG_BUFFER parameter needs to be increased beyond its
+default value.  If the 'redo log space requests' statistic in V$SYSSTAT is non-zero, you should increase
+LOG BUFFER to support the transaction load without forcing transactions to wait for accesses to the
+redo log buffer.<BR>
+<I>DEFAULT: OS Dependent<BR>
+VALUES: OS Dependent</I>
+<P>
+<B>LOG_CHECKPOINT_INTERVAL</B> - The number of newly filled redo log file blocks needed to trigger a 
+checkpoint. Regardless of this value, a checkpoint always occurs when switching from one online redo log 
+file to another. If the value exceeds the actual redo log file size, checkpoints occur only when switching 
+logs.  The number of times DBWR has been notified to do a checkpoint for a given instance is shown in 
+the cache statistic dbwr checkpoints, which is displayed in the System Statistics Monitor of the Server 
+Manager. Additional cache statistics include background checkpoints started and background checkpoints completed.<BR>
+<I>DEFAULT: OS Dependent<BR>
+VALUES: Unlimited (OS blocks, not database blocks)</I>
+<P>
+<B>LOG_CHECKPOINTS_TO_ ALERT</B> - This parameter allows you to log your checkpoints to the alert file. This is 
+useful to determine if checkpoints occur at the desired frequency.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>LOG_ENTRY_PREBUILD_THRESHOLD</B> - Causes redo copy latch entries to be prebuilt in readiness for writing to 
+the log buffer via the redo copy latches. This once undocumented parameter is now an official parameter again. If 
+you have LOG_SIMULATANEOUS_COPIES greater than 1, you can increase this value to 65,536 or larger to get a 
+performance boost.<BR>
+<I>DEFAULT: 0 bytes<BR>
+VALUES: 0 to unlimited<BR>
+VERSION: 7.3</I>
+<P>
+<B>LOG_FILE_NAME_CONVERT</B> - Converts the filename of a new log file on the primary database to the filename of a 
+log file on the standby database. Adding a log file to the primary database necessitates adding a corresponding file 
+to the standby database. When the standby database is updated, this parameter is used to convert the log file name 
+on the primary database to the log file name on the standby database. The file must exist and be writable on the 
+standby database or the recovery process will halt with an error. Set the value of this parameter to two strings: 
+the first string is the pattern found in the log file names on the primary database; the second string is the 
+pattern found in the log file names on the standby database.<BR>
+<I>DEFAULT: None</I>
+<P>
+<B>LOG_FILES</B> - Number of log files. Obsoleted in 8.1.3.	<BR>
+<I>DEFAULT: 16</I>
+<P>
+<B>LOG_SIMULTANEOUS_COPIES</B> - The maximum number of redo buffer copy latches available to write log 
+entries simultaneously. For good performance, you can have up to twice as many redo copy latches as CPUs. 
+For a single-processor system, set to zero so that all log entries are copied on the redo allocation latch.
+If this parameter is set to 0, redo copy latches are turned off, and the parameters LOG_ENTRY_PREBUILD_THRESHOLD 
+and LOG_SMALL_ENTRY_MAX_SIZE are ignored.  You can change the value of this parameter without shutting 
+down your Oracle instance by using the ALTER SESSION command.<BR>
+<I>DEFAULT: CPU_COUNT<BR>
+VALUES: 0 - unlimited </I>
+<P>
+<B>LOG_SMALL_ENTRY_MAX_SIZE</B> - Size in bytes of the largest copy to log buffers that may occur without obtaining 
+a redo copy latch. The redo allocation latch will be used for all changes greater than LOG_SMALL_ENTRY_SIZE bytes. 
+This parameter applies only when the LOG_SIMULTANEOUS_ COPIES is greater than zero. If the entry to be written to the 
+buffer is larger than 0, user processes will release the latch after allocating space in the log buffer and getting 
+a redo copy latch. If the entry to be written is smaller than this size, the user process releases the redo allocation
+latch after the copy.  It may need to be decreased later if you are experiencing redo allocation latch contention. 
+Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: O/S Dependent (usually 800)</I>
+<P>
+<B>MAX_DUMP_FILE_SIZE</B> - Max trace file size.<BR>
+<I>DEFAULT: 500 blocks</I>
+<P>
+<B>MAX_ENABLED_ROLES</B> - Maximum number of roles per user.<BR>
+<I>DEFAULT: 20</I>
+<P>
+<B>MAX_ENABLED_SEGS</B> - Maximum number of rollback names cached.<BR>
+<I>DEFAULT: 20</I>
+<P>
+<B>MAX_ROLLBACK_SEGMENTS</B> - The maximum size of the rollback segment cache in the SGA. The number specified 
+signifies the maximum number of rollback segments that can be kept online simultaneously by one instance.<BR>
+<I>DEFAULT: 30<BR>
+VALUES: 1 to 65536</I>
+<P>
+<B>NLS_COMP</B> - NLS_COMP lets you avoid the cumbersome process of using NLS_SORT in SQL statements. Normally, 
+comparison in the WHERE clause is binary. To use linguistic comparison, the NLSSORT function must be used. Sometimes 
+this can be tedious, especially when the linguistic sort needed has already been specified in the NLS_SORT session 
+parameter. NLS_COMP can be used in such cases to indicate that the comparisons must be linguistic according to the 
+NLS_SORT session parameter.<BR>
+<I>DEFAULT: BINARY<BR>
+VALUES: any valid character string, with a maximum of 10 bytes (not including null)<BR>
+VERSION: 8.1</I>
+<P>
+<B>NLS_CURRENCY</B> - Defaults to currency for NLS_LANGUAGE.<BR>
+<I>DEFAULT: Derived</I>
+<P>
+<B>NLS_DATE_FORMAT</B> - Defines the default date format to use with the TO_CHAR and TO_DATE functions. The default 
+value of this parameter is determined by NLS_TERRITORY. The value of this parameter can be any valid date format 
+mask, and the value must be surrounded by double quotes.<BR>
+<I>DEFAULT: Derived<BR>
+VALUES: Any valid date format mask but not exceeding a fixed length</I>
+<B>NLS_DATE_LANGUAGE</B> - The language used for printing and reporting dates.<BR>
+<I>DEFAULT: Defaults to NLS_LANGUAGE</I>
+<P>
+<B>NLS_DUAL_CURRENCY</B> - NLS_DUAL_CURRENCY can be used to override the default dual currency symbol defined in the 
+territory. When starting a new session without setting NLS_DUAL_CURRENCY, the default dual currency symbol defined 
+in the territory of your current language environment will be used. When you set NLS_DUAL_CURRENCY, you will start 
+up a session with its value as the dual currency symbol.<BR>
+<I>DEFAULT: Dual currency symbol<BR>
+VALUES: Any valid format name<BR>
+VERSION: 8.1.5</I>
+<P>
+<B>NLS_ISO_CURRENCY</B> - Defaults to NLS_LANGUAGE.<BR>
+<I>DEFAULT: Derived</I>
+<P>
+<B>NLS_LANGUAGE</B> - The language the instance should use.<BR>
+<I>DEFAUL: O/S Dependent</I>
+<P>
+<B>NLS_NUMERIC_CHARACTERS</B> - Defaults to the normal for NLS_LANGUAGE. The default value of this parameter is 
+determined by NLS_TERRITORY.<BR>
+<I>DEFAULT: Derived</I>
+<P>
+<B>NLS_SORT</B> - Sort order based on NLS Language if true.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>NLS_TERRITORY</B> - Name of territory whose conventions to use.<BR>
+<I>DEFAULT: O/S Dependent</I>
+<P>
+<B>OBJECT_CACHE_MAX_SIZE_PERCENT</B> - This parameter specifies the percentage of the optimal cache size that the 
+session object cachecan grow past the optimal size; the maximum size is equal to the optimal size plus the product 
+of this percentage and the optimal size. When the cache size exceeds this maximum size, the system will attempt to 
+shrink the cache to the optimal size.<BR>
+<I>DEFAULT: 10%<BR>
+VALUES: 0% to operating system-dependent maximum<BR>
+VERSION: 8.0</I>
+<P>
+<B>OBJECT_CACHE_OPTIMAL_SIZE</B> - This parameter specifies the size to which the session object cache is reduced 
+when the size of the cache exceeds the maximum size.<BR>
+<I>DEFAULT: 100 Kbytes<BR>
+VALUES: 10 Kbytes to operating system-dependent maximum</I>
+<P>
+<B>O7_DICTIONARY_ACCESSIBILITY</B> - Specifies whether to provide Version7 dictionary accessibility support<BR>
+<I>DEFAULT: TRUE<BR>
+VERSION: 8.0</I>
+<P>
+<B>OPEN_CURSORS</B> - Maximum number of cursors that a user session can have open at any one time. If the number of 
+cursors being held by users is frequently near the maximum, increase the OPEN_CURSORS value for a performance boost. 
+If the setting is too high, you will be wasting memory. A typical setting for users of a large application is between 
+200 and 300.<BR>
+<I>DEFAULT: 64<BR>
+VALUES: 1 to O/S dependent</I>
+<P>
+<B>OPEN_LINKS</B> - Max number of open database links per user.<BR>
+<I>DEFAULT: 4</I>
+<P>
+<B>OPEN_LINKS_PER_INSTANCE</B> - Specifies whether to close cursors cached by PL/SQL at each commit.<BR>
+<I>DEFAULT: 4<BR>
+VERSION: 8.0</I>
+<P>
+<B>OPS_ADMIN_GROUP</B> - Specifies the instance group to be used for global v$ queries. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: N/A<BR>
+VERSION: 8.0</I>
+<P>
+<B>OPTIMIZER_FEATURES_ENABLE</B> - This parameter allows you to change the init.ora parameters which control the 
+optimizer's behavior. The parameters affected are: PUSH_JOIN_PREDICATE, FAST_FULL_SCAN_ENABLED, COMPLEX_VIEW_MERGING,
+B_TREE_BITMAP_PLANS.  The values 8.0.0 and 8.0.3 set those parameters to FALSE; 8.0.4 sets them to TRUE. However, 
+regardless of the setting, you can change each parameter individually.<BR>
+<I>DEFAULT: 8.0.0<BR>
+VALUES: 8.0.0; 8.0.3; 8.0.4; 8.1.3<BR>
+VERSION: 8.0</I>
+<P>
+<B>OPTIMIZER_INDEX_CACHING</B> - This parameter lets the user adjust the behavior of the cost-based optimizer to 
+select nested loops joins more often. The cost of executing a nested loops join where an index is used to access the 
+inner table is highly dependent on the caching of that index in the buffer cache. The amount of caching depends on 
+factors, such as the load on the system and the block access patterns of different users, that the optimizer cannot 
+predict. The user can modify the optimizer's assumptions about index caching for nested loops joins by setting this 
+parameter to a value between 0 and 100 percent and thereby indicate what percentage of the index blocks should be 
+assumed to be in the cache. Setting this parameter to a higher value makes nested loops join look less expensive to 
+the optimizer and it will be more likely to pick nested loops joins over hash or sort-merge joins. The default for 
+this parameter is 0, which gives the old optimizer behavior.<BR>
+<I>DEFAULT: 0<BR>
+VALUES: 0-100<BR>
+VERSION: 8.0</I>
+<P>
+<B>OPTIMIZER_INDEX_COST_ADJ</B> - This parameter lets the user tune the optimizer behavior for access path selection 
+to be more or less index-friendly. Some users are using the first_rows optimizer mode to get plans that use more 
+index access paths and that are more similar to those generated by the rule-based optimizer. However, the first_rows 
+mode was never intended as a pure mechanism to force the use of indexes. The OPTIMIZER_INDEX_COST_ADJ parameter lets 
+the user adjust the costing of index access paths in the cost-based optimizer and thereby make the optimizer more or 
+less prone to selecting an index access path over a full table scan. The default for this parameter is 100 percent, 
+which makes the optimizer cost index access paths a the regular cost. Any other value will make the optimizer cost 
+the access path at that percentage of the regular cost, e.g., setting it to 50 percent, will make the index access 
+path look half as expensive as normal. The legal range of values for this parameter is 1 to 10000 percent. This 
+parameter can be used to tune the performance of a system where it is felt that the optimizer chooses too few or too 
+many index access paths. The adjustment does not apply to user-defined cost functions for domain indexes.<BR>
+<I>DEFAULT: 100<BR>
+VALUES: 1-10000<BR>
+VERSION: 8.0</I>
+<P>
+<B>OPTIMIZER_MAX_PERMUTATIONS</B> - This parameter lets the user limit the amount of work the optimizer spends on 
+optimizing queries with large joins. By restricting the number of permutations of the tables the optimizer will 
+consider, the user can ensure that the parse time for the query stays within acceptable limits. However, in doing so, 
+there is a slight risk that the optimizer will overlook a good plan it would otherwise have found. The default value 
+for this parameter is 80000, which corresponds to the old behavior. Setting this parameter to a value less than 1000 
+should ensure parse times of a few seconds or less.<BR>
+<I>DEFAULT: 80,000<BR>
+VALUES: 4-2^32 (~4.3 billion)<BR>
+VERSION: 8.0</I>
+<P>
+<B>OPTIMIZER_MODE</B> - When set to RULE, this parameter causes rule-based optimization to be used 
+unless hints are specified in the query. When set to CHOOSE, the optimizer uses the cost-based approach 
+for a SQL statement if there are statistics in the dictionary for at least one table accessed in the 
+statement. (Otherwise, the rule-based approach is used.)  You can set the goal for cost-based optimization 
+by setting this parameter to FIRST_ROWS or ALL_ROWS. FIRST_ROWS causes the optimizer to choose execution 
+plans that minimize response time. ALL_ROWS causes the optimizer to choose execution plans that minimize 
+total execution time. The goal of cost-based optimization can also be set within a session by using 
+ALTER SESSION SET OPTIMIZER_MODE.<BR>
+<I>DEFAULT: CHOOSE<BR>
+VALUES: RULE/CHOOSE/FIRST_ROWS/ALL_ROWS</I>
+<P>
+<B>OPTIMIZER_PERCENT_PARALLEL</B> - Determines the level of parallelism that the optimizer will use in its costing 
+calculations. If you set the value to 100, the optimizer will use an object's degree of parallelism when computing 
+the cost of a full table scan. Simply put, low values will use indexes, and high values will make more use of the 
+parallel query option in preference. It is recommended that you use the default setting for OLTP applications and set 
+it to 100 for decision support applications, where you have multiple processors and would like to make use of the 
+parallel query option. Note that the cost-based optimizer will always be used for an object that has a nonzero degree 
+of parallelism.<BR>
+<I>DEFAULT: 100<BR>
+VALUES: 0 to 100</I>
+<P>
+<B>OPTIMIZER_SEARCH_LIMIT</B> - Specifies the search limit for the optimizer.<BR>
+<I>DEFAULT: 5</I>
+<P>
+<B>ORACLE_TRACE_COLLECTION_NAME</B> - Specifies the Oracle Trace collection name. This parameter is also used in the 
+output file names (collection definition file .CDF and data file .DAT).<BR>
+<I>DEFAULT: NULL</I>
+<P>
+<B>ORACLE_TRACE_COLLECTION_PATH</B> - Specifies the directory pathname where Oracle Trace collection definition and 
+data files are located. If you accept the default, the complete file specification is generally (may be different 
+for non-UNIX systems) $ORACLE_HOME/rdbms/log/collection name.cdf and collection name.dat.<BR>
+<I>DEFAULT: O/S Specific</I>
+<P>
+<B>ORACLE_TRACE_COLLECTION_SIZE</B> - Specifies the maximum size, in bytes, of the Oracle Trace collection file. Once 
+the collection file reaches this maximum, the collection is disabled.<BR>
+<I>DEFAULT: 5242880<BR>
+VALUES: 0 - 4294967295</I>
+<P>
+<B>ORACLE_TRACE_ENABLE</B> - In order to enable Oracle Trace collections for the server, should be set and left at 
+TRUE.  When set to TRUE, this does not start an Oracle Trace collection, it allows Oracle Trace to be used for that 
+server. When set to TRUE, Oracle Trace can then be started by using the Oracle Trace Manager application (supplied 
+with the Oracle Enterprise Manager Performance Pack), or including a name in the oracle_trace_collection_name 
+parameter (default = null).<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>ORACLE_TRACE_FACILITY_NAME</B> - Specifies the Oracle Trace product definition file (.FDF file). The file must be 
+located in the directory pointed to by the ORACLE_TRACE_FACILITY_PATH parameter. The product definition file 
+contains definition information for all the events and data items that can be collected for a product that uses the 
+Oracle Trace data collection API. Products can have multiple product definition files (multiple event sets and data 
+items). The Oracle Server has multiple event sets and therefore multiple product definition files. Oracle recommends 
+that you use the "default" event set for Server collections ORACLED.FDF.<BR>
+<I>DEFAULT: O/S Specific<BR>
+VALUES: Any valid 16 character facility name</I>
+<P>
+<B>ORACLE_TRACE_FACILITY_PATH</B> - Specifies the directory pathname where Oracle TRACE facility definition files 
+are located.<BR>
+<I>DEFAULT: O/S Specific</I>
+<P>
+<B>OS_AUTHENT_PREFIX</B> - Specifies what prefix for autologin accounts.<BR>
+<I>DEFAULT: O/S Specific (typically "OPS$")</I>
+<P>
+<B>OS_ROLES</B> - OS system manages roles if set to True.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>PARALLEL_ADAPTIVE_MULTI_USER</B> - When set to TRUE, enables an adaptive algorithm designed to improve performance 
+in multi-user environments that use parallel execution. It does this by automatically reducing the requested degree 
+of parallelism based on the system load at query startup time. The effective degree of parallelism is based on the 
+default degree of parallelism, or the degree from the table or hints, divided by a reduction factor. The reduction 
+factor is computed using the load on the system and the number of active parallel execution users. This load is 
+compared to a target optimal system load which is computed using the number of CPUs on the system and the parameter 
+PARALLEL_THREADS_PER_CPU among others. The algorithm assumes that the system has been tuned for optimal performance 
+in a single user environment, and that it works best when the parameter PARALLEL_AUTOMATIC_TUNING set to true, and 
+the tables and hint use the DEFAULT degree of parallelism.<BR>
+<I>DEFAULT: If PARALLEL_AUTOMATIC_TUNING = TRUE, then TRUE, else FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>PARALLEL_AUTOMATIC_TUNING</B> - Note: This parameter applies to Parallel Execution, not the Oracle8i Parallel 
+Server Option. Enable PARALLEL_AUTOMATIC_TUNING when you want Oracle to determine the default values for parameters 
+that control Parallel Execution. In addition to setting this parameter, you must enable PARALLEL, for the target 
+tables in the system. All subsequent tuning will be done by the system. If you used Parallel Execution in a previous 
+release and are now enabling PARALLEL_AUTOMATIC_TUNING, you should reduce the amount of memory allocated from the 
+Shared Pool to account for the decreased demand on that pool. This memory will be allocated from the Large Pool, 
+and will be computed automatically if LARGE_POOL_SIZE is left unset. This will include setting the 
+PARALLEL_ADAPTIVE_MULTI_USER parameter which will override user-provided hints in favor of maintaining the load on 
+the system within acceptable ranges. The database administrator can override any of the system-provided defaults if 
+desired.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.1</I>
+<P>
+<B>PARALLEL_BROADCAST_ENABLED</B> - Note: This parameter refers to Parallel Execution, not the Oracle8i Parallel 
+Server Option. This parameter allows you to improve performance in certain cases involving hash and merge joins. When 
+set to TRUE, if you are joining a very large join result set with a very small result set (size being measured in 
+bytes, rather than number of rows), the optimizer has the option of broadcasting the row sources of the small result 
+set, such that a single table queue will send all of the small set's rows to each of the parallel servers which are 
+processing the rows of the larger set. The result is enhanced performance.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>PARALLEL_DEFAULT_MAX_INSTANCES</B> - Specifies the default number of instances to split a table across for 
+parallel query processing. The value of this parameter is used if the INSTANCES DEFAULT is specified in the 
+PARALLEL clause of a table's definition. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: O/S Dependent<BR>
+VALUES: 0 .. number of instances<BR>
+VERSION: 7.1</I>
+<P>
+<B>PARALLEL_DEFAULT_MAX_SCANS</B> - The maximum number of query servers that can be used by default for a query. 
+This parameter is only used if there is no numeric value specified in a PARALLEL hint or in the PARALLEL clause of 
+the table's definition. This limits the number of query servers that are selected by default when the value of the 
+PARALLEL_DEFAULT_SCANSIZE parameter is used by a query coordinator.<BR>
+<I>DEFAULT: O/S Dependent<BR>
+VALUES: 0 .. number of instances<BR>
+VERSION: 7.1</I>
+<P>
+<B>PARALLEL_DEFAULT_SCANSIZE</B> - Used with an estimate of a table's size to determine the default number of 
+query servers needed for a particular table. The number of blocks in the table are divided by the value of this 
+parameter and the result is the number of query servers to use for the query. This number cannot exceed the value 
+of the PARALLEL_DEFAULT_MAX_SCANS parameter.<BR>
+<I>DEFAULT: O/S Dependent<BR>
+VALUES: 0 .. number of instances<BR>
+VERSION: 7.1</I>
+<P>
+<B>PARALLEL_EXECUTION_MESSAGE_SIZE</B> - This parameter specifies the size of messages for parallel execution 
+(formerly parallel query, PDML, Parallel Recovery, replication). The default value should be adequate for most 
+applications. Note:  When PARALLEL_AUTOMATIC_TUNING is set to TRUE, message buffers are allocated out of the 
+Large Pool. In this case, the default will generally be higher.<BR>
+<I>DEFAULT: operating system-dependent. (Usually 2148 if PARALLEL_AUTOMATIC_TUNING is FALSE, 4096 if PARALLEL_AUTOMATIC_TUNING is TRUE.<BR>
+VALUES: 2148 - infinity<BR>
+VERSION: 8.0</I>
+<P>
+<B>PARALLEL_INSTANCE_GROUP</B> - Specifies instance group to use for all parallel operations.  
+<P>
+<B>PARALLEL_MAX_SERVERS</B> - Each instance must either have a value of zero or the same value as 
+the other instances.  Maximum number of query servers or parallel recovery processes for an instance.<BR>
+<I>DEFAULT: OS Dependent<BR>
+VALUES: 0 - 256</I>
+<P>
+<B>PARALLEL_MIN_MESSAGE_POOL</B> - Specifies the minimum permanent amount of memory which will be allocated from 
+the SHARED POOL (see SHARED_POOL_SIZE), to be used for messages in parallel execution. This memory is allocated at 
+startup time if PARALLEL_MIN_SERVERS is set to a non-zero value, or when the server is first allocated. Setting 
+this parameter is most effective when PARALLEL_MIN_SERVERS is set to a non-zero value, because the memory will be 
+allocated in a contiguous section. This parameter should only be set if the default formula is known to be 
+significantly inaccurate. setting this parameter too high will lead to a shortage of memory for the shared pool; 
+setting it too low will lead to costlier memory allocation when doing parallel execution. This parameter cannot 
+be set to a number higher than 90% of the shared pool. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: cpus*parallel_max_servers*1.5*(OS message buffer size) or cpus*5*1.5*(OS message size)<BR>
+VALUES: 0 -(SHARED_POOLSIZE*.90)</I>
+<P>
+<B>PARALLEL_MIN_PERCENT</B> - Introduced in Oracle7.3. If a query has a degree of parallelism requirement and is 
+unable to obtain the percentage of query servers specified in this parameter, the query will terminate with an error. 
+The default value for this parameter is 0, which allows your query to run with whatever resources are available. 
+If you have long-running jobs that run considerably faster if they are able to run with the full quota of query 
+servers, it may pay to set this parameter to 50 or higher and restart the query when the required number of servers 
+becomes available.<BR>
+<I>DEFAULT: 0<BR>
+VALUES: 0 - 100<BR>
+VERSION: 7.3</I>
+<P>
+<B>PARALLEL_MIN_SERVERS</B> - Minimum number of query server processes for an instance. This is also 
+the number of query server processes Oracle creates when the instance is started.<BR>
+<I>DEFAULT: 0<BR>
+VALUES: 0 - PARALLEL_MAX_SERVERS</I>
+<P>
+<B>PARALLEL_SERVER</B> - Set to TRUE to enable the Parallel Server option.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>PARALLEL_SERVER_IDLE_TIME</B> - Number of minutes that a server remains idle before Oracle can terminate it. 
+There can be a few seconds of startup time for servers, so you usually leave the parameter at its default to avoid 
+frequent shutdown. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: O/S Dependent<BR>
+VALUES: 0 .. unlimited<BR>
+VERSION: 7.1</I>
+<P>
+<B>PARALLEL_SERVER_INSTANCES</B> - This parameter shows the number of instances currently configured. It is used to 
+size SGA structures which depend on the number of instances configured. Setting this parameter properly will improve 
+memory use of the SGA. The default values of several parameters are computed using this number.<BR>
+<I>DEFAULT: 1<BR>
+VALUES: Any non-zero value<BR>
+VERSION: 8.1</I>
+<P>
+<B>PARALLEL_THREADS_PER_CPU</B> - Note: This parameter applies to Parallel Execution, not the Oracle8i Parallel 
+Server Option. This parameter is used to set the default degree of parallelism, and to tune the parallel adaptive 
+and load balancing algorithms. The parameter describes the number of processes or threads that a CPU can handle 
+during parallel execution. The default is platform-dependent. The default provided by the system should be adequate 
+for most cases. This number should be decreased from the default provided if the machine appears to be overloaded 
+when a representative query is executed. The value for this parameter should be increased if the system is I/O 
+bound.<BR>
+<I>DEFAULT: O/S Dependent (usually 2)<BR>
+VALUES: Any non-zero value<BR>
+VERSION: 8.1</I>
+<P>
+<B>PARALLEL_TRANSACTION_RESOURCE_TIMEOUT</B> - Global parallel transaction resource deadlock timeout in seconds. 
+Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 300<BR>
+VERSION: 8.0</I>
+<P>
+<B>PARTITION_VIEW_ENABLED</B> - Decision support databases will often use partitioned views to ease the 
+administration of huge tables and improve the performance of queries that join several of the partitions. If you 
+have tables (partitions) that have been divided into financial years 1990, 1991, 1992, 1993, 1994, 1995, 1996, 
+and 1997, for example, and you would like to query a view across all of the tables for dates in the range January 
+1, 1996 to December 31, 1997, setting this parameter to TRUE will provide the intelligence to just have the last 
+two tables read from if you have the appropriate check constraints on the tables. Set the value to TRUE if you are 
+using partitioned views.<BR>
+<I>DEFAULT: FALSE<BR>
+VERSION: 7.3</I>
+<P>
+<B>PLSQL_V2_COMPATABILITY</B> - Specifies whether to allow language constructs that are illegal in Oracle8 
+(PL/SQL V3), but were legal in Oracle7 (PL/SQL V2). TRUE enables Oracle8 PL/SQL V3 programs to execute Oracle7 
+PL/SQL V2 constructs.  FALSE disallows illegal Oracle7 PL/SQL V2 constructs.<BR> 
+<I>DEFAULT: FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>PRE_PAGE_SGA</B> - When set to YES, this parameter touches all the SGA pages, causing them to be brought 
+into memory. As a result, it increases instance startup time and user login time, but it can reduce the number 
+of page faults that occur shortly thereafter. The reduction in page faults allows the instance to reach its maximum 
+performance capability quickly rather than an incremental build up. It is most useful on systems that have 
+sufficient memory to hold all the SGA pages without degrading performance in other areas.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>PROCESSES</B> - For a multiple-process operation, this parameter specifies the maximum number of 
+operating system user processes that can simultaneously connect to an Oracle7 Server. Should include up 
+to 6 for the background processes (or more if GC_LCK_PROCS is non-zero or if you use the dispatcher 
+configuration) plus one for login; so a value of 20 would permit 13 or 14 concurrent users.  The default 
+values of DB_FILE_MULTIBLOCK_READ_COUNT and SESSIONS are derived from PROCESSES. If you alter the value 
+of PROCESSES, you may want to adjust the values of these derived parameters.<BR>
+<I>DEFAULT: 25<BR>
+VALUES: 6 - OS Dependent</I>
+<P>
+<B>QUERY_REWRITE_ENABLED</B> - This parameter allows you to enable or disable query rewriting. Query rewriting is 
+enabled for a particular materialized view only if both the session parameter and the individual materialized view 
+are enabled and when cost-based optimization is enabled.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.1.4</I>
+<P>
+<B>QUERY_REWRITE_INTEGRITY</B> - This parameter determines the degree to which query rewriting must be enforced by 
+the Oracle server. In the safest level, query rewrite transformations that rely on unenforced relationships are not 
+used. With ENFORCE, consistency and integrity are enforced and guaranteed by Oracle. With NO_ENFORCE, rewrites are 
+allowed using relationships that have been declared, but that are not enforced by Oracle. With USE_STALE, rewrites 
+are allowed using unenforced relationships, and materialized views are eligible for rewrite even if they are known 
+to be inconsistent with the underlying detail data.<BR>
+<I>DEFAULT: ENFORCE<BR>
+VALUES: ENFORCE, NO_ENFORCE, USE_STALE<BR>
+VERSION: 8.1.4</I>
+<P>
+<B>RDBMS_SERVER_DN</B> - Note: Global user functionality is currently available only to beta customers. This 
+feature will be available to all users in a subsequent release of Oracle8i. This parameter value is the Distinguished 
+Name of the RDBMS server. It is used for retrieving Enterprise Roles from an enterprise directory service.<BR>
+<I>DEFAULT: NONE<BR>
+VALUES: All X.500 Distinguished Name format values<BR>
+VERSION: 8.1</I>
+<P>
+<B>READ_ONLY_OPEN_DELAYED</B> - When set to TRUE, causes datafiles in read-only tablespaces to be accessed for the 
+first time only when an attempt is made to read data stored within them. When set to FALSE, datafiles are accessed 
+at database open time. This parameter is used to speed certain operations, primarily the 'open database' operation, 
+for very large databases, when substantial portions of the database are stored in read-only tablespaces. It should 
+be considered for such databases, especially if portions of the read-only data are stored on slow-access devices or 
+hierarchical storage. Note that RECOVER DATABASE and ALTER DATABASE OPEN RESETLOGS will continue to access all 
+read-only datafiles regardless of the parameter value. If you want to avoid accessing read-only files for these 
+operations, those files should be taken offline. Also note that if a backup controlfile is used, the read-only 
+status of some files may be inaccurate. This may cause some of these operations to return unexpected results. 
+Care should be taken in this situation.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>RECOVERY_PARALLELISM</B> - Specifies the number of processes to participate in instance or media recovery. A 
+value of zero or one indicates that recovery is to be performed serially by one process.<BR>
+<I>DEFAULT: O/S Dependent<BR>
+VALUES: O/S dependent, but cannot exceed PARALLEL_MAX_SERVERS<BR>
+VERSION: 7.1</I>
+<P>
+<B>REMOTE_DEPENDENCIES_MODE</B> - Specifies how dependencies upon remote stored procedures are to be handled by the 
+database. If this parameter is set to TIMESTAMP, which is the default setting, the client running the procedure 
+compares the timestamp recorded on the server side procedure with the current timestamp of the local procedure and 
+executes the procedure only if the timestamps match. If the parameter is set to SIGNATURE, the procedure is allowed 
+to execute as long as the signatures are considered safe.  This allows client PL/SQL applications to be run without 
+recompilation.<BR>
+<I>DEFAULT: TIMESTAMP<BR>
+VALUES: TIMESTAMP/SIGNATURE</I>
+<P>
+<B>REMOTE_LOGIN_PASSWORDFILE</B> - Specifies whether Oracle checks for a password file and how many databases can 
+use the password file. Setting the parameter to NONE signifies that Oracle should ignore any password file (and 
+therefore privileged users must be authenticated by the operating system). Setting the parameter to EXCLUSIVE 
+signifies that the password file can only be used by one database and the password file can contain names other 
+than SYS and INTERNAL. Setting the parameter to SHARED allows more than one database to use a password file; 
+however, the only users recognized by the password file are SYS and INTERNAL.<BR>
+<I>DEFAULT: NONE<BR>
+VALUES: NONE/SHARED/EXCLUSIVE<BR>
+VERSION: 7.1</I>
+<P>
+<B>REMOTE_OS_AUTHENT</B> - Allows remote users to automatically login.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>REMOTE_OS_ROLES</B> - Allows OS roles for remote users.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>REPLICATION_DEPENDENCY_TRACKING</B> - Set to TRUE to turn on dependency tracking for read/write operations to the 
+database. Dependency tracking is essential for the Replication Server to propagate changes in parallel. This is the 
+default value. FALSE allows read/write operations to the database to run faster, but does not produce dependency 
+information for the Replication Server to perform parallel propagations. Users should not specify this value unless 
+they are sure that their application will perform absolutely no read/write operations to replicated tables.<BR>
+<I>DEFAULT: TRUE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>RESOURCE_LIMIT</B> - Limits (TRUE) or does not limit (FALSE) a user's database resources to those defined in his 
+or her profile. Your setting takes effect after the database has been shut down and restarted. You can enable 
+resource limits by issuing the command: ALTER SYSTEM SET RESOURCE_LIMIT TRUE  After you issue this command, the 
+resource limits are returned to the INIT.ORA value after the database has been shut down and restarted. It is 
+recommended that you set RESOURCE_LIMIT to TRUE (and manage the way users are using your site's resources).<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>RESOURCE_MANAGER_PLAN</B> - This parameter dictates which top plan to use for this instance. The resource manager 
+will load this top plan as well as all its descendants (subplans, directives and consumer groups). If the parameter 
+is not specified, the resource manager is, by default, off. The administrator may use the ALTER SYSTEM command on 
+the parameter to turn on the resource manager (if it was previously off), turn off the resource manager or change 
+the current plan schema (if it was previously on). If a plan is specified that does not exist in the data dictionary, 
+an error message will be returned.<BR>
+<I>DEFAULT: NULL<BR>
+VALUES: Any valid character string<BR>
+VERSION: 8.1</I>
+<P>
+<B>ROLLBACK_SEGMENTS</B> - One or more rollback segments to allocate by name to this instance. 
+If ROLLBACK_SEGMENTS is not overridden, an instance acquires all of the rollback segments named in this 
+parameter, even if the number of rollback segments exceeds the minimum number required by the instance 
+(calculated from the ratio TRANSACTIONS / TRANSACTIONS_PER_ROLLBACK_SEGMENT).<BR>
+<I>DEFAULT: NULL (the instance uses public rollback segments by default if you do not specify this parameter<BR>
+VALUES: Any rollback segment names listed in DBA_ROLLBACK_SEGS except SYSTEM</I>
+<P>
+<B>ROW_CACHE_CURSORS</B> - The number of cached recursive cursors used by the row cache manager 
+for selecting rows from the data dictionary. The default value is sufficient for most systems.<BR>
+<I>DEFAULT: 10<BR>
+VALUES: 10 - 3300</I>
+<P>
+<B>ROW_CACHE_ENQUEUES</B> - Number of all objects in all row caches accessed concurrently.<BR>
+<I>DEFAULT: 100</I>
+<P>
+<B>ROW_LOCKING</B> - Should row locking be used?	<BR>
+<I>DEFAULT: ALWAYS</I>
+<P>
+<B>SEQUENCE_CACHE_ENTRIES</B> - Number of sequences that will be cached in memory (in the SGA). Set this parameter 
+to the number of sequences that will be used by your instance at one time. Setting this parameter too low affects 
+response times because a disk read is required to obtain each sequence number. If you have the NOCACHE option set 
+when you create the sequence in the CREATE SEQUENCE command, the sequence will not reside in this cache; it will 
+have to be brought in from disk. Many sites use the NOCACHE option, however, because they cannot skip sequence 
+numbers that can occur when the sequence cache facility is used. To obtain the exact setting for your database, 
+perform the following query: SELECT SUM(CACHE_SIZE) from ALL_SEQUENCES; The summed total provides you with the 
+exact number of cache entries that are required if all of your sequences are being used. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 10<BR>
+VALUES: 10 to 32,000</I>
+<P>
+<B>SEQUENCE_CACHE_HASH_BUCKETS</B> - Number of hash buckets used for locating sequences. Obsoleted in 8.1.3.<BR>
+<I>DEFAULT: 7</I>
+<P>
+<B>SERIAL_REUSE</B> - Specifies whether to reuse the frame segments.<BR>
+<I>DEFAULT: NULL<BR>
+VERSION: 8.0</I>
+<P>
+<B>SERVICE_NAMES</B> - This parameter specifies the service names supported by the instance. SERVICE_NAMES is one or 
+more strings which represent the names of the database on the network.  It is possible to provide multiple services 
+names so that different usages of a single database can be identified separately. Service names can also be used to 
+identify a single service that is available from two different databases through the use of replication.<BR>
+<I>DEFAULT: DB_NAME.DB_DOMAIN if defined<BR>
+VALUES: Any ASCII string, or comma-separated list of string names<BR>
+VERSION: 8.1</I>
+<P>
+<B>SERIALIZABLE</B> - If true you get read locks.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>SESSION_CACHED_CURSORS</B> - This parameter allows you to specify the number of session cursors to cache. 
+Repeated parse calls of the same SQL statement cause the session cursor for that statement to be moved into the 
+session cursor cache. Subsequent parse calls will find the cursor in the cache and need not reopen the cursor. 
+The value of this parameter is the maximum number of session cursors to keep in the session cursor cache. This 
+parameter can improve performance of OLTP applications when you frequently switch between the same group of forms 
+and would like to have your cursors remain cached. Storing the cursors in this cache will avoid them having to be 
+reopened. A typical setting is 150. Obsolete in Oracle7.3 and later<BR>
+<I>DEFAULT: 0<BR>
+VALUES: 0 .. O/S Dependent<BR>
+VERSION: 7.1</I>
+<P>
+<B>SESSION_MAX_OPEN_FILES</B> - Specifies the maximum number of open files allowed per session.<BR>
+<I>DEFAULT: 10<BR>
+VERSION: 8.0</I>
+<P>
+<B>SESSIONS</B> - Total number of user and system processes.<BR>
+<I>DEFAULT: Derived</I>
+<P>
+<B>SHADOW_CORE_DUMP</B> - Path to where the shadow core dump is placed on an error condition.<BR>
+<I>DEFAULT: PARTIAL</I>
+<P>
+<B>SHARED_MEMORY_ADDRESS</B> - SHARED_MEMORY_ADDRESS and HI_SHARED_MEMORY_ADDRESS specify the SGA's starting 
+address at runtime. Many platforms specify the SGA's starting address at linktime; these parameters are ignored 
+on those platforms. Use HI_SHARED_MEMORY_ADDRESS to specify the high order 32 bits of a 64-bit address on 64-bit 
+platforms. If both parameters are 0 or unspecified, the SGA address defaults to a platform-specific location.<BR>
+<I>DEFAULT: 0<BR>
+VERSION: 8.0</I>
+<P>
+<B>SHARED_POOL_RESERVED_MIN_ALLOC</B> - This parameter controls allocation of reserved memory. Memory 
+allocations larger than this value can allocate space from the reserved list if a chunk of memory of 
+sufficient size is not found on the shared pool free lists.  The default value is adequate for most systems. 
+If you increase the value, then the Oracle Server will allow fewer allocations from the reserved list and 
+will request more memory from the shared pool list.<BR>
+<I>DEFAULT: 5000<BR>
+VALUES: 5000 - SHARED_POOL_RESERVED_SIZE (in bytes)</I>
+<P>
+<B>SHARED_POOL_RESERVED_SIZE</B> - This parameter controls the amount of SHARED_POOL_SIZE reserved 
+for large allocations. SHARED_POOL_RESERVED_SIZE must be greater than SHARED_POOL_RESERVED_MIN_ALLOC to 
+create a reserved list. The default value of 0 represents no reserved shared pool area. Ideally, this parameter 
+should be large enough to satisfy any request scanning for memory on the reserved list without flushing 
+objects from the shared pool. The amount of operating system memory, however, may constrain the size of 
+the shared pool. In general, you should set SHARED_POOL_RESERVED_SIZE to 10% of SHARED_POOL_SIZE. For 
+most systems, this value will be sufficient if you have already tuned the shared pool.<BR>
+<I>DEFAULT: 0<BR>
+VALUES: From SHARED_POOL_RESERVED_MIN_ALLOC to one half of SHARED_POOL_SIZE (in bytes)</I>
+<P>
+<B>SHARED_POOL_SIZE</B> - Sets the size, in bytes, of the shared pool in the SGA.
+If your application is OLTP-oriented, and you use packages and other procedural objects, you'll
+need a large shared SQL area.  In environments using a large number of procedural objects, the size
+of your shared pool may exceed your data block buffer cache.  If you have many users, you should
+increase the SHARED_POOL_SIZE parameter everytime you increase the DB_BLOCK_BUFFERS parameter.<BR>
+<I>DEFAULT: 3,500,000<BR>
+VALUES: 300 Kbytes - OS Dependent</I>
+<P>
+<B>SINGLE_PROCESS</B> - If true database is brought up single user.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>_SMALL_TABLE_THRESHOLD</B> - Number of blocks that will be stored in the most-recently-used end of the buffer 
+cache during a full table scan before the rest of the blocks from the same table will be stored in the 
+least-recently-used end of the list and will be overwritten by new data coming into the buffer cache. This parameter 
+keeps the data blocks read using full table scans in the buffer cache for a longer time. If you perform a query that 
+uses a full table scan and then repeat the query, the same or a similar number of physical reads from the database 
+will occur in both situations. The reason is that, for a full table scan, Oracle assumes that the data will be needed 
+only briefly. It places the first five blocks (as specified by this parameter) into the most-recently-used end of 
+the list and all data after the first four blocks read into the least-recently-used end of the list. As new data is 
+read from the table, the new data replace the least-recently-used blocks in the buffer. Oracle recommends that you 
+keep the default for this parameter. Oracle7.1 and later introduce another facility, ALTER TABLE tname CACHE, which 
+also assists with the caching of data.<BR>
+<I>DEFAULT: 5<BR>
+VALUES: 0 to O/S Maximum</I>
+<P>
+<B>SNAPSHOT_REFRESH_INTERVAL</B> - This parameter sets the interval between wake-ups for the snapshot refresh 
+process(es) on the instance.<BR>
+<I>DEFAULT: 60 (1 minute)<BR>
+VALUES: 1 .. 3600 seconds (1 second to 60 minutes)</I>
+<P>
+<B>SNAPSHOT_REFRESH_KEEP_CONNECTIONS</B> - This parameter specifies whether the snapshot refresh process(es) should 
+keep remote database connections after all snapshots are refreshed. If set to FALSE, remote database connections 
+that are made to refresh snapshots are closed after all the refreshes are complete. Obsoleted in 8.1<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>SNAPSHOT_REFRESH_PROCESSES</B> - This parameter sets the number of snapshot refresh processes per instance. 
+If you wish to have your snapshots updated automatically, you must set this parameter to a value of one or higher. 
+One snapshot refresh process will usually be sufficient unless you have many snapshots that refresh simultaneously. 
+Obsoleted in 8.1<BR>
+<I>DEFAULT: 0<BR>
+VALUES: 0 - 10</I>
+<P>
+<B>SORT_AREA_RETAINED_SIZE</B> - This parameter specifies the maximum amount, in bytes, of Program 
+Global Area (PGA) memory retained after a sort. This memory is released back to the PGA, not to the 
+operating system, after the last row is fetched from the sort space.  If a sort requires more memory, a 
+temporary segment is allocated and the sort becomes an external (disk) sort. The maximum amount of memory 
+to use for the sort is then specified by SORT_AREA_SIZE instead of by this parameter.  Larger values 
+permit more sorts to be performed in memory. However, multiple sort spaces of this size may be allocated. 
+Usually, only one or two sorts occur at one time, even for complex queries. In some cases, though, 
+additional concurrent sorts are required. Each sort occurs in its own memory area, as specified by 
+SORT_AREA_RETAINED_SIZE.<BR>
+<I>DEFAULT: The value of SORT_AREA_SIZE<BR>
+VALUES: From the value equivalent to one database block to the value of SORT_AREA_SIZE</I>
+<P>
+<B>SORT_AREA_SIZE</B> - This parameter specifies the maximum amount, in bytes, of Program Global Area 
+(PGA) memory to use for a sort. After the sort is complete and all that remains to do is to fetch the rows 
+out, the memory is released down to the size specified by SORT_AREA_RETAINED_SIZE. After the last row is 
+fetched out, all memory is freed. The memory is released back to the PGA, not to the operating system.  
+Increasing SORT_AREA_SIZE size improves the efficiency of large sorts. Multiple allocations never exist; 
+there is only one memory area of SORT_AREA_SIZE for each user process at any time.  The default is usually 
+adequate for most database operations. Only if very large indexes are created might you want to adjust 
+this parameter. For example, if one process is doing all database access, as in a full database import, 
+then an increased value for this parameter may speed the import, particularly the CREATE INDEX statements.<BR>
+<I>DEFAULT: OS Dependent<BR>
+VALUES: The value equivalent to two database blocks (minimum)</I>
+<P>
+<B>SORT_DIRECT_WRITES</B> - SORT_DIRECT_WRITES can improve sort performance if memory and temporary 
+space are abundant on your system. When set to the default value of AUTO, and if the value of SORT_AREA_SIZE 
+is greater than ten times the buffer size, SORT_DIRECT_WRITES automatically configures the SORT_WRITE_BUFFER_SIZE 
+and SORT_WRITE_BUFFERS parameters. When SORT_DIRECT_WRITES is in AUTO mode, SORT_WRITE_BUFFERS and 
+SORT_WRITE_BUFFER_SIZE have no effect.  When SORT_DIRECT_WRITES is set to TRUE, each sort allocates 
+additional buffers in memory to write directly to disk.  When SORT_DIRECT_WRITES is set to FALSE, the sorts 
+that write to disk write through the buffer cache.<BR>
+<I>DEFAULT: AUTO<BR>
+VALUES: AUTO/TRUE/FALSE</I>
+<P>
+<B>SORT_MULTIBLOCK_READ_COUNT</B> - This parameter specifies the number of database blocks to read each time a sort 
+performs a read from a temporary segment. Temporary segments are used by a sort when the data does not fit in 
+SORT_ARE_SIZE of memory. In these situations, sort writes out sections of data to temporary segments in the form of 
+sorted runs. Once all the data has been partially sorted to these runs, sort merges the runs by reading pieces of 
+them from the temporary segment into memory to produce the final sorted output. If SORT_AREA_SIZE is not large enough 
+to merge all the runs at once, subsets of the runs are merged in a number of merge passes. Increasing the 
+SORT_MULTIBLOCK_READ_COUNT parameter forces sort to read a larger section of each run into memory during a merge 
+pass. This reduces the merge width, or number of runs that can be merged in one merge pass, and may increase the 
+number of merge passes. Each merge pass produces an intermediate run on disk, a run that contains all the data that 
+was part of the runs that were just merged. Any increase in I/O throughput obtained by increasing 
+SORT_MULTIBLOCK_READ_COUNT needs to be balanced with a possible increase in total amount of I/O performed due to an 
+increase in the number of merge passes. Sort may read more blocks at a time than what is specified by 
+SORT_MULTIBLOCK_READ_COUNT in cases where the number of runs, and therefore the merge width is small relative to 
+SORT_AREA_SIZE.<BR>
+<I>DEFAULT: 2<BR>
+VALUES: 1 - O/S Dependent<BR>
+VERSION: 8.1</I>
+<P>
+<B>SORT_READ_FAC</B> - SORT_READ_FAC is a unitless ratio that describes the amount of time to read a single 
+database block divided by the block transfer rate.<BR>
+<I>DEFAULT: OS Dependent</I>
+<P>
+<B>SORT_SPACEMAP_SIZE</B> - Adjust this parameter upward to reduce the run time involved in building very large 
+indexes. You can set the parameter back to its default after you have completed. Oracle recommends that you set the 
+parameter to: ((total sort bytes / (SORT_AREA_SIZE)) + 64) where total sort bytes = (number of records) * 
+(average row length + (2 * # columns)). Obsoleted in 8.1.3<BR>
+<I>DEFAULT: O/S Dependent</I>
+<P>
+<B>SORT_WRITE_BUFFER_SIZE</B> - This parameter sets the size of the sort buffer when the SORT_DIRECT_WRITES 
+parameter is set to TRUE. This parameter is recommended for use with symmetric replication.<BR>
+<I>DEFAULT: 32768<BR>
+VALUES: Any integer</I>
+<P>
+<B>SORT_WRITE_BUFFERS</B> - This parameter sets the number of sort buffers when the SORT_DIRECT_WRITES 
+parameter is set to TRUE. This parameter is recommended for use with symmetric replication.<BR>
+<I>DEFAULT: 2<BR>
+VALUES: Any integer</I>
+<P>
+<B>SPIN_COUNT</B> - This parameter is used on multiple machines only.  It sets the number of times an Oracle 
+process will attempt to get a latch before sleeping.  If the latch is busy, Oracle spins and checks back spin_count 
+number of times until the latch is not busy, or, if spin_count is reached, sleeps a preset amount of time and then 
+tries again.  Excessive values can cause excessive cpu usage.  Low values can cause excessive Oracle sleeps while 
+waiting for a latch.  The default is 0 (no spin) while a reasonable set point is 2000.  For single cpu systems, 
+leave this at 0. Obsoleted in 8.1.3.  Note: On some systems (such as Solaris) the default is set to 2000 and should 
+NOT be lowered.  You should also not perform an  ALTER SYSTEM SET spin_count=0  while your database is running as 
+you won't be able to connect (even as SYS).<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>SQL92_SECURITY</B> - Specifies whether table-level SELECT privileges are required to execute an update or delete 
+that references table column values.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>SQL_TRACE</B> - Disables or enables the SQL trace facility. Setting this parameter to TRUE provides 
+information on tuning that you can use to improve performance. Because the SQL trace facility causes system 
+overhead, you should run the database with the value TRUE only for the purpose of collecting statistics.
+You can change the value of this parameter without shutting down your Oracle instance by using the ALTER 
+SESSION command.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>STANDBY_ARCHIVE_DEST</B> - This parameter defines the standby database destination for the archive redo log file 
+group. It is used by the RFS server on the standby database as the archive log destination, so that it can be 
+specified separately from the LOG_ARCHIVE_DEST parameter. Note that there is no corresponding RFS_ARCHIVE_DUPLEX_DEST 
+parameter. STANDBY_ARCHIVE_DEST specifies the location of archivelogs arriving from a primary instance. 
+STANDBY_ARCHIVE_DEST and LOG_ARCHIVE_FORMAT are used to fabricate the fully-qualified archivelog filename at the 
+standby site.<BR>
+<I>DEFAULT: NULL<BR>
+VALUES: NULL string or valid path/device name other than raw<BR>
+VERSION: 8.1</I>
+<P>
+<B>STAR_TRANSFORMATION_ENABLED</B> - Specifies whether to enable the use of star transformation.<BR>
+<I>DEFAULT: FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>TAPE_ASYNCH_IO</B> - Use asynch IO requests for tape devices.<BR>
+<I>DEFAULT: TRUE<BR>
+VERSION: 8.0</I>
+<P>
+<B>TEMPORARY_TABLE_LOCKS</B> - Determines the number of temporary tables that can be created in the temporary 
+segment space. A temporary table lock is needed any time a sort occurs that is too large too hold in memory, either 
+as the result of a select on a large table with ORDER BY or as a result of sorting a large index. Installations with 
+many users of applications that simultaneously perform several ordered queries on large tables may need to increase 
+this number. Most installations should do well with the default. Obsoleted in 8.1.3<BR>
+<I>DEFAULT: Derived<BR>
+VERSION: 7.1</I>
+<P>
+<B>THREAD</B> - Number of redo threads for this instance.<BR>
+<I>DEFAULT: 0</I>
+<P>
+<B>TIMED_STATISTICS</B> - By default (when set to FALSE), the Server Manager statistics related to 
+time (from the buffer manager) always are zero and the Server can avoid the overhead of requesting the 
+time from the operating system. To turn on statistics, set the value to TRUE. Should normally be set to FALSE.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>TIMED_OS_STATISTICS</B> - Maintains internal operating system statistics.<BR>
+<I>DEFAULT: 0 (not to refresh OS statistics)<BR>
+VERSION: 8.0</I>
+<P>
+<B>_TRACE_FILES_PUBLIC</B> - This parameter is useful if you are running SQL_TRACE. The parameter changes the 
+protection of the trace files so all can read them. The trace files are located in the directory specified in the 
+parameter USER_DUMP_DEST.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE</I>
+<P>
+<B>TRANSACTION_AUDITING</B> - Specifies whether to generate transaction auditing records in the redo log.<BR>
+<I>DEFAULT: TRUE<BR>
+VERSION: 8.0</I>
+<P>
+<B>TRANSACTIONS</B> - Max number of concurrent transactions.<BR>
+<I>DEFAULT: Derived</I>
+<P>
+<B>TRANSACTIONS_PER_ROLLBACK_SEGMENT</B> - Number of concurrent transactions for a public rollback segment.<BR>
+<I>DEFAULT: 5</I>
+<P>
+<B>USE_INDIRECT_DATA_BUFFERS</B> - This parameter controls the use of the extended buffer cache mechanism for 
+32-bit platforms that can support more than 4GB of physical memory. It is ignored on other platforms.<BR>
+<I>DEFAULT: FALSE<BR>
+VALUES: TRUE/FALSE<BR>
+VERSION: 8.0</I>
+<P>
+<B>USE_ISM</B> - Allows use of intimate shared memory.  Only set this to True if the value of SHMSYS:SHMINFO_SHMMAX 
+in etc/system is larger or equal to the database's SGA size.  This parameter may also cause problems when tstshm is 
+executed.  This parameter can improve performance on SUN-4m and SUN-4d systems by up to 200%.  Turning this parameter 
+on an unsupported system results in no change in performance -- it is ignored. Obsoleted in 8.1.3<BR>
+<I>DEFAULT: O/S Dependent</I>
+</P>
+<B>USE_POST_WAIT_DRIVER</B> - Used on some platforms to reduce the overhead of semaphore use between processes.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>USE_READV</B> - Since Oracle supports multi-block read, this parameter allows the multi-block read to be done 
+through the more efficient readv system call.  The readv system call does a scattered block read which is more 
+efficient than the all block, memory to memory copy that Oracle will perform on systems that don't support the 
+readv call.  Do not use readv on some systems, such as SUN Solaris 2 (SUNOS 5.x).  Use of use_readv under UFS files 
+can increase performance 10-20%, while use on RAW can decrease performance 30-50%.<BR>
+<I>DEFAULT: FALSE</I>
+<P>
+<B>USER_DUMP_DEST</B> - The pathname for a directory where the server will write debugging trace files 
+on behalf of a user process.<BR>
+<I>DEFAULT: OS Dependent<BR>
+VALUES: Valid local pathname, directory, or disk</I>
+<P>
+<B>UTL_FILE_DIR</B> - Used by the UTL_FILE package.  Defines the path to where files are located.  If set to "*" 
+(asterisk), then any directory that Oracle has access to may be used.<BR>
+<I>DEFAULT: NULL<BR>
+VERSION: 7.3</I>
+</FONT>
+
+</BODY>
+</HTML>

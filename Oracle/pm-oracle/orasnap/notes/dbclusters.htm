@@ -1,0 +1,25 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Database Clusters</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>DATABASE CLUSTER NOTES:</B><BR>
+<LI><B>Owner</B> - Owner of the table/cluster
+<LI><B>Tablespace</B> - Name of the tablespace containing the cluster
+<LI><B>Cluster Name</B> - Name of the cluster
+<LI><B>Table Name</B> - Clustered table name
+<LI><B>Table Column</B> - Key column in the table
+<LI><B>Cluster Column</B> - Key column in the cluster
+<P>
+<LI>A cluster can be used when several tables store a row that is of the same data type and size in the same location. This reduces storage requirements and in some cases can speed access to data. The major drawback is that in operations involving updates, inserts and deletes there can be performance degradation. The DBA should look at the expected mix of transaction types on the tables to be clustered and only cluster those that are frequently joined and don't have numerous updates, inserts and deletes.
+<LI>Clusters store shared data values in the same physical blocks (the cluster key values). For tables that are frequently joined this can speed access, for tables frequently accessed separately joining is not the answer. An exception is when a single table is clustered. A single table cluster forces the key values for that table into a single set of blocks thus access can be sped up for accesses of that table. Usually this single table clustering also uses a HASH structure to further improve access times.
+<LI>Oracle also has the ability to specify a HASH cluster. A HASH cluster uses a HASH form of storage and no index. Hash structures should only be used for static tables. Hashing is the process where a value, either of a unique or non-unique row, is used to generate a hash value. This hash value is used to place the row into the hashed table. To retrieve the row, the value is simply recalculated. Hashes can only by used for equality operations. 
+</FONT>
+
+</BODY>
+</HTML>
+

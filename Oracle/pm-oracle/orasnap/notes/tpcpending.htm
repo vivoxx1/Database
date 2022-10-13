@@ -1,0 +1,29 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Two Phase Commit Pending Information</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>TWO PHASE PENDING NOTES:</B><BR>
+<LI><B>Local Tran Id</B> - Local identifier of a transaction
+<LI><B>Global Tran ID</B> - Globally unique transaction ID  
+<LI><B>State</B> - Collecting, prepared, committed, forced commit, or forced rollback  
+<LI><B>Mixed</B> - YES = part of the transaction committed and part rolled back  
+<LI><B>Advice</B> - C for commit, R for rollback, else NULL  
+<LI><B>Tran Comment</B> - Text for commit work comment text  
+<LI><B>Fail Time</B> - Value of SYSDATE when the row was inserted (tx or system recovery)  
+<LI><B>Force Time</B> - Time of manual force decision (null if not forced locally)  
+<LI><B>Retry Time</B> - Time automatic recovery (RECO) last tried to recover the transaction  
+<LI><B>OS User</B> - Time automatic recovery (RECO) last tried to recover the transaction  
+<LI><B>OS Terminal</B> - Time automatic recovery (RECO) last tried to recover the transaction  
+<LI><B>Host</B> - Name of the host machine for the end-user  
+<LI><B>DB User</B> - Name of the host machine for the end-user  
+<LI><B>Commit#</B> - Name of the host machine for the end-user  
+</FONT>
+
+</BODY>
+</HTML>
+

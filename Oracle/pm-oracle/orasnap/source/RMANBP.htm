@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Open Cursors By User</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+SELECT  
+  bs.recid,
+  bp.piece#,
+  bp.copy# ,
+  Status,
+  Handle,
+  TO_CHAR(bp.start_time, 'mm/dd/yyyy HH24:MI:SS'),
+  TO_CHAR(bp.completion_time, 'mm/dd/yyyy HH24:MI:SS'),
+  bp.elapsed_seconds
+FROM
+   v$backup_set    bs
+  ,v$backup_piece  bp
+WHERE
+      bs.set_stamp = bp.set_stamp
+  AND bs.set_count = bp.set_count
+  AND bp.status IN ('A', 'X')
+ORDER BY
+    bs.recid
+  , piece#;
+</PRE>
+
+</BODY>
+</HTML>

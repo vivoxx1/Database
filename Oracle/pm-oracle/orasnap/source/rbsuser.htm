@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Rollback Users</B></FONT>
+<FORM>
+    	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   a.NAME,
+         b.XACTS,
+         c.SID,
+         c.SERIAL#,
+         c.USERNAME,
+         c.OSUSER,
+         d.SQL_TEXT
+from     sys.v_$rollname a, sys.v_$rollstat b, sys.v_$session c, 
+         sys.v_$sqlarea d, sys.v_$transaction e
+where    a.USN = b.USN
+and      b.USN = e.XIDUSN
+and      c.TADDR = e.ADDR
+and      c.SQL_ADDRESS = d.ADDRESS
+and      c.SQL_HASH_VALUE = d.HASH_VALUE
+order by a.NAME, c.SID;
+</PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Session Time</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   SID,
+         SERIAL#,
+         USERNAME,
+         OSUSER,
+         SERVER,
+         STATUS,
+         TYPE,
+         PROGRAM,
+         LOGON_TIME,
+         lpad(to_char(trunc(LAST_CALL_ET/3600)),2,0)||':'||
+         lpad(to_char(trunc(LAST_CALL_ET/60)-(trunc(LAST_CALL_ET/3600)*60)),2,0)||':'||
+         lpad(to_char(LAST_CALL_ET-(trunc(LAST_CALL_ET/60)*60)),2,0) 
+from     sys.v_$session
+order by USERNAME, OSUSER;
+</PRE>
+
+</BODY>
+</HTML>

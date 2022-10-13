@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Shared Pool SQL With Most Disk Reads</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   a.USERNAME,
+         DISK_READS,
+         EXECUTIONS,
+         round(DISK_READS / decode(EXECUTIONS, 0, 1, EXECUTIONS)),
+         SQL_TEXT
+from     dba_users a, sys.v_$session, sys.v_$sqlarea
+where    PARSING_USER_ID=USER_ID 
+and      ADDRESS=SQL_ADDRESS(+) 
+and      DISK_READS > 10000
+order by DISK_READS desc, EXECUTIONS desc;
+</PRE>
+
+</BODY>
+</HTML>

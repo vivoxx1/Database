@@ -1,0 +1,20 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Reserved Pool Setting for the Shared Pool Area</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+<FONT SIZE="2" FACE="Arial">
+<B>SHARED POOL RESERVED SIZE NOTES:</B><BR>
+<LI><B>Parameter</B> - Name of the parameter
+<LI><B>Value</B> - Current value for the parameter
+<P>
+<LI><B>shared_pool_reserved_size</B> - Controls the amount of SHARED_POOL_SIZE reserved for large allocations. The fixed view V$SHARED_POOL_RESERVED helps you tune these parameters. Begin this tuning only after performing all other shared pool tuning on the system.  
+ 
+<LI><B>shared_pool_reserved_min_alloc</B> - Controls allocation for the reserved memory. To create a reserved list, SHARED_POOL_RESERVED_SIZE must be greater than SHARED_POOL_RESERVED_MIN_ALLOC. Only allocations larger than SHARED_POOL_RESERVED_POOL_MIN_ALLOC can allocate space from the reserved list if a chunk of memory of sufficient size is not found on the shared pool's free lists. The default value of SHARED_POOL_RESERVED_MIN_ALLOC should be adequate for most systems.  
+</FONT>
+
+</BODY>
+</HTML>
+

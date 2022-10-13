@@ -1,0 +1,30 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Wait Statistics</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>WAIT STATISTIC NOTES:</B><BR>
+<LI><B>Class</B> - Class of block subject to contention 
+<LI><B>Count</B> - Number of waits by this OPERATION for this CLASS of block 
+<LI><B>Time</B> -Sum of all wait times for all the waits by this OPERATION for this CLASS of block  
+<P>
+<LI><B>Data Blocks</B> - Usually occurs when there are too many modified blocks in the buffer cache; reduce contention
+by adding DBWR processes.
+<LI><B>Free List</B> - May occur if multiple data loading programs run simultaneously.
+<LI><B>Segment Header</B> - May occur when may full table scans execute simultaneously with data loading processes;
+aggravated by the parallel options.  Reschedule data loading jobs to reduce contention;
+<LI><B>Sort Block</B> - Rarely seen except when the Parallel Query option is used; reduce contention by reducing
+the degree of parallelism or decreasing the SORT_AREA_SIZE init.ora parameter setting.
+<LI><B>Undo Block</B> - Very rarely occurs; may be caused by multiple users updating records in the same data block at
+a very fast rate; contention can usually be resolved by increasing the PCTFREE of the tables being modified.
+<LI><B>Undo Header</B> - May occur if there are not enough rollback segments to support the number of concurrent 
+transactions.
+</FONT>
+
+</BODY>
+</HTML>
+

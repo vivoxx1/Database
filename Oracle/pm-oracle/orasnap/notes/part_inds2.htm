@@ -1,0 +1,45 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Index Level Partitioning Information</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>INDEX LEVEL PARTITIONING NOTES:</B><BR>
+<LI><B>Index Owner</B> - Owner of the partitioned table
+<LI><B>Index Name</B> - Name of the partitioned table
+<LI><B>Partition Name</B> - Partition name
+<LI><B>High Value Length</B> - Length of the partition bound value expression
+<LI><B>Partition Position</B> - Position of the partition within the table
+<LI><B>Status</B> - Indicates whether the partition is usable or not
+<LI><B>Tablespace Name</B> - Name of the tablespace containing the partition
+<LI><B>Pctfree</B> - Minimum percentage of free space in a block
+<LI><B>Initrans</B> - Initial number of transactions
+<LI><B>Maxtrans</B> - Maximum number of transactions
+<LI><B>Initial Extent</B> - Size of the initial extent in bytes
+<LI><B>Next Extent</B> - Size of secondary extents in bytes
+<LI><B>Min Extents</B> - Minimum number of extents allowed in the segments
+<LI><B>Max Extents</B> - Maximum number of extents allowed in the segments
+<LI><B>Pct Increase</B> - Percentage increase in extent size
+<LI><B>Freelists</B> - Number of process freelists allocated in this segment
+<LI><B>Freelist Groups</B> - Number of freelist groups allocated in this segment
+<LI><B>Logging</B> - Logging attribute of partition
+<LI><B>Blevel *</B> - B-Tree level
+<LI><B>Leaf Blocks *</B> - Number of leaf blocks in the index partition
+<LI><B>Distinct Keys *</B> - Number of distinct keys in the index partition
+<LI><B>Avg Leaf Blocks Per Key *</B> - Average number of leaf blocks per key
+<LI><B>Avg Data Blocks Per Key *</B> - Average number of data blocks per key
+<LI><B>Clustering Factor *</B> - Measurement of the amount of (dis)order of the table this index partition is for
+<LI><B>Num Rows *</B> - Number of rows in the partition
+<LI><B>Sample Size *</B> - Sample size used in analyzing this partition
+<LI><B>Last Analyzed *</B> - Date of the most recent time this parition was analyzed
+<LI><B>Buffer Pool</B> - The buffer pool for the partition
+<P>
+* - Populated when table has been analyzed
+</FONT>
+
+</BODY>
+</HTML>
+

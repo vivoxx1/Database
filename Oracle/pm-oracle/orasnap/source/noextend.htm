@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Objects That Cannot Extend</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   ds.OWNER,
+         ds.SEGMENT_NAME,
+         ds.SEGMENT_TYPE,
+         ds.TABLESPACE_NAME,
+         ds.NEXT_EXTENT,
+         dfs.MAX,
+         dfs.SUM,
+         ds.EXTENTS
+from     dba_segments ds,
+        (select   max(BYTES) max,
+                  sum(BYTES) sum,
+                  TABLESPACE_NAME
+         from     dba_free_space
+         group by tablespace_name) dfs
+where    ds.NEXT_EXTENT > dfs.MAX
+and      ds.TABLESPACE_NAME = dfs.TABLESPACE_NAME
+order by ds.OWNER, ds.TABLESPACE_NAME, ds.SEGMENT_NAME;
+</PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,23 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Database Views</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>DATABASE VIEW NOTES:</B><BR>
+<LI><B>Owner</B> - Owner of the view
+<LI><B>View Name</B> - Name of the view
+<LI><B>Created</B> - Date/time view was created
+<LI><B>Status</B> - Status of the view
+<P>
+<LI>Views are virtual looks at tables. They don't exist until queried except as a specification statement stored in the database. 
+<LI>A single view can be very efficient, but the "stacking" of views, that is, views that reference views that reference views, can show a performance problem. 
+<LI>If you attempt to create a view using grants received from a role you will get an ORA-01933 error. You must have direct grants on all objects used in the view definition.
+</FONT>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,33 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Undocumented INIT.ORA Parameters</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>UNDOCUMENTED INIT.ORA PARAMETER NOTES:</B><BR>
+<LI><B>Parameter</B> - Name of the undocumented parameter
+<LI><B>Value</B> - Current value for the parameter
+<LI><B>Desc</B> - Brief description of parameter
+<P>
+<LI>_ALLOW_RESETLOGS_CORRUPTION - This saves you when you have corrupted redo logs
+<LI>_CORRUPTED_ROLLBACK_SEGMENTS - This saves you when you have corrupted RB segments
+<LI>_SPIN_COUNT - This shows how often the processor will take a new request (reduce CPU timeouts)
+<LI>_LOG_ENTRY_PREBUILD_THRESHOLD - Redo entries larger than this will be prebuilt
+<LI>_LATCH_SPIN_COUNT - This shows how often a latch request will be taken (reduce latch timeouts)
+<LI>_DB_BLOCK_WRITE_BATCH - Number of blocks to group in each DB Writer I/O
+<LI>_CPU_COUNT - Number of CPUs that you have (causes bugs with Parallel Query option).  Check with Oracle support for restrictions on some versions and O/S
+<LI>_INIT_SQL_FILE - Where the sql.bsq file is located
+<LI>_TRACE_FILES_PUBLIC - This allows users to see the TRACE output without major privileges
+<LI>_FAST_FULL_SCAN_ENABLED - This allow indexed fast full scans if only indexes are needed
+<LI>_CORRUPT_BLOCKS_ON_STUCK_RECOVERY - This sometimes gets a corrupted database up.
+<LI>_ALWAYS_STAR_TRANSFORMATION - This is a fast method for Data Warehouse if you have a good designer.
+<LI>_SMALL_TABLE_THRESHOLD - Small tables are pinned into memory if smaller than this
+<P>
+<LI>Do NOT change any of these values <B>unless instructed by ORACLE support</B> 
+</FONT>
+
+</BODY>
+</HTML>

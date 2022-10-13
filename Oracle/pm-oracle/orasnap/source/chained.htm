@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+<FONT FACE="Arial" SIZE="5"><B>Query For Tables Experiencing Chaining</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   OWNER,
+         TABLE_NAME,
+         nvl(CHAIN_CNT,0),
+         nvl(NUM_ROWS,0),
+         (CHAIN_CNT/NUM_ROWS)*100
+from     dba_tables
+where    owner not in ('SYS','SYSTEM')
+and      nvl(CHAIN_CNT,0) > 0
+order by (CHAIN_CNT/NUM_ROWS) desc;
+</PRE>
+
+</BODY>
+</HTML>

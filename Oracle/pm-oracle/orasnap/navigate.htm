@@ -1,0 +1,234 @@
+<HTML>
+<HEAD>
+	<TITLE>OraSnap Results (Navigation Frame)</TITLE>
+	<META NAME="Author" CONTENT="Stewart McGlaughlin">
+	<META NAME="Description" CONTENT="Oracle database performance utility.">
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+	<STYLE TYPE="text/css">
+	<!--
+	a:link    {text-decoration:none;}
+	a:visited {text-decoration:none;}
+	a:active  {text-decoration:none;}
+	a:hover   {text-decoration:underline; color: #FF3300;}
+	-->
+	</STYLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="4" FACE="Arial" COLOR="#000080">
+<B>OraSnap 2008</B>
+</FONT>
+<BR>
+<FONT SIZE="3" FACE="Arial">
+<A HREF="links.htm" TARGET="content">Quick Links</A><BR>
+<A HREF="output/minisnap.htm" TARGET="_top">Mini Snapshot</A>
+</FONT>
+<P>
+
+<FONT SIZE="2" FACE="Arial">
+<B>General</B><BR>
+(snap7/8/9/10gen.sql)<BR>
+<LI><A HREF="main/dbi.htm" TARGET="content">Database Information</A>
+<LI><A HREF="main/ver.htm" TARGET="content">Product Versions</A>
+<LI><A HREF="main/options.htm" TARGET="content">Database Options</A>
+<LI><A HREF="main/license.htm" TARGET="content">License Information</A>
+<LI><A HREF="main/initora.htm" TARGET="content">Init.ora Params</A>
+<LI><A HREF="main/undoc.htm" TARGET="content">Undoc'd Init.ora Params</A>
+<LI><A HREF="main/allinitora.htm" TARGET="content">All Init.ora Params</A>
+<LI><A HREF="main/sga.htm" TARGET="content">SGA Information</A>
+<LI><A HREF="main/datafiles.htm" TARGET="content">Datafiles / Database Size</A>
+<LI><A HREF="main/dbfiles.htm" TARGET="content">Database File Listing</A>
+<P>
+
+<B>Tablespaces</B><BR>
+(snap7/8/9/10ts.sql)<BR>
+<LI><A HREF="main/tsinfo.htm" TARGET="content">Tablespace Information</A>
+<LI><A HREF="main/tsquota.htm" TARGET="content">Tablespace Quotas</A>
+<LI><A HREF="main/tscoal.htm" TARGET="content">Tablespace Coalesced Exts</A>
+<LI><A HREF="main/tsusage.htm" TARGET="content">Tablespace Usage</A>
+<LI><A HREF="main/tssys.htm" TARGET="content">Users Default (SYSTEM)</A>
+<LI><A HREF="main/objsys.htm" TARGET="content">Objects in SYSTEM TS</A>
+<LI><A HREF="main/addextent.htm" TARGET="content">Freespace &amp; Largest Ext</A>
+<LI><A HREF="main/autoext.htm" TARGET="content">AutoExtend Information</A>
+<P>
+
+<B>Rollbacks</B><BR>
+(snap7/8/9/10rbs.sql)<BR>
+<LI><A HREF="main/rollback.htm" TARGET="content">Rollback Segments</A>
+<LI><A HREF="main/rbscont.htm" TARGET="content">Rollback Contention</A>
+<LI><A HREF="main/rbsgrowth.htm" TARGET="content">Rollback Growth</A>
+<LI><A HREF="main/rbsuser.htm" TARGET="content">Rollback Users</A>
+<LI><A HREF="main/rbsxaction.htm" TARGET="content">Rollback Transactions</A>
+<P>
+
+<B>Users</B><BR>
+(snap7/8/9/10user.sql)<BR>
+<LI><A HREF="main/userobjs.htm" TARGET="content">User Objects</A>
+<LI><A HREF="main/spacealloc.htm" TARGET="content">User Space Allocated</A>
+<LI><A HREF="main/invalid.htm" TARGET="content">Invalid Objects</A>
+<LI><A HREF="main/usermod.htm" TARGET="content">Object Modification</A>
+<LI><A HREF="main/userprivs.htm" TARGET="content">User Privileges</A>
+<LI><A HREF="main/useraccess.htm" TARGET="content">User Accessing</A>
+<LI><A HREF="main/usersess.htm" TARGET="content">User Session Count</A>
+<LI><A HREF="main/userhit1.htm" TARGET="content">User Hit Ratios</A>
+<LI><A HREF="main/datatypes.htm" TARGET="content">Datatypes</A>
+<LI><A HREF="main/defpass.htm" TARGET="content">Default Passwords</A>
+<P>
+
+<B>Tables &amp; Indexes</B><BR>
+(snap7/8/9/10ti.sql)<BR>
+<LI><A HREF="main/tiloc.htm" TARGET="content">Table / Index Locations</A>
+<LI><A HREF="main/unsureidx.htm" TARGET="content">Questionable Indexes</A>
+<LI><A HREF="main/index5.htm" TARGET="content">Tables With &gt; 5 Indexes</A>
+<LI><A HREF="main/noindex.htm" TARGET="content">Tables Without Indexes</A>
+<LI><A HREF="main/nopk.htm" TARGET="content">Tables Without PK</A>
+<LI><A HREF="main/chained.htm" TARGET="content">Table Chaining</A>
+<LI><A HREF="main/discons.htm" TARGET="content">Disabled Constraints</A>
+<LI><A HREF="main/fkcons.htm" TARGET="content">FK Constraints</A>
+<LI><A HREF="main/fkindex.htm" TARGET="content">FK Index Problems</A>
+<LI><A HREF="main/inconsistent.htm" TARGET="content">Inconsistent Datatypes</A>
+<LI><A HREF="main/noextend.htm" TARGET="content">Object Extent Warning</A>
+<LI><A HREF="main/large_objs.htm" TARGET="content">Large Objects</A>
+<LI><A HREF="main/segfrag.htm" TARGET="content">Segs &gt; 50% Of MaxExts</A>
+<LI><A HREF="main/segmax.htm" TARGET="content">Segment MaxExtents</A>
+<LI><A HREF="main/analyzed.htm" TARGET="content">Analyzed Tables</A>
+<LI><A HREF="main/analrecent.htm" TARGET="content">Recently Analyzed Tables</A>
+<LI><A HREF="main/tabcache.htm" TARGET="content">Cached Tables</A>
+<P>
+
+<B>Partitions</B><BR>
+(snap8/9/10part)<BR>
+<LI><A HREF="main/part_tabs.htm" TARGET="content">Partitioned Tables</A>
+<LI><A HREF="main/part_inds.htm" TARGET="content">Partitioned Indexes</A>
+<LI><A HREF="main/part_key.htm" TARGET="content">Partition Key Columns</A>
+<LI><A HREF="main/part_tabs2.htm" TARGET="content">Table Level Partitioning</A>
+<LI><A HREF="main/part_inds2.htm" TARGET="content">Index Level Partitioning</A>
+<P>
+
+<B>Objects</B><BR>
+(snap7/8/9/10obj.sql)<BR>
+<LI><A HREF="main/dbclusters.htm" TARGET="content">Database Clusters</A>
+<LI><A HREF="main/dbjobs.htm" TARGET="content">Database Jobs</A>
+<LI><A HREF="main/dblinks.htm" TARGET="content">Database Links</A>
+<LI><A HREF="main/dbprocs.htm" TARGET="content">Database Procs &amp; Pkgs</A>
+<LI><A HREF="main/dbseqs.htm" TARGET="content">Database Sequences</A>
+<LI><A HREF="main/dbsnaps.htm" TARGET="content">Database Snapshots</A>
+<LI><A HREF="main/dbsyns.htm" TARGET="content">Database Synonyms</A>
+<LI><A HREF="main/dbtrigs.htm" TARGET="content">Database Triggers</A>
+<LI><A HREF="main/dbviews.htm" TARGET="content">Database Views</A>
+<P>
+
+<B>Hit &amp; Miss Ratios</B><BR>
+(snap7/8/9/10hmr.sql)<BR>
+<LI><A HREF="main/buffhit.htm" TARGET="content">Buffer Hit Ratio</A>
+<LI><A HREF="main/libhit.htm" TARGET="content">Library Cache Hit Ratio</A>
+<LI><A HREF="main/ddhit.htm" TARGET="content">Data Dict Hit Ratio</A>
+
+<P>
+
+<B>Disk I/O, Events &amp; Waits</B><BR>
+(snap7/8/9/10dew.sql)<BR>
+<LI><A HREF="main/sysstata.htm" TARGET="content">System Statistics (All)</A>
+<LI><A HREF="main/sysevents.htm" TARGET="content">System Events (All)</A>
+<LI><A HREF="main/sgastat.htm" TARGET="content">SGA Statistics</A>
+<LI><A HREF="main/waitstat.htm" TARGET="content">Wait Statistics</A>
+<LI><A HREF="main/sorts.htm" TARGET="content">Sort Statistics</A>
+<LI><A HREF="main/datafileio.htm" TARGET="content">Datafile I/O</A>
+<P>
+
+<B>Full Table Scans</B><BR>
+(snap7/8/9/10fts.sql)<BR>
+<LI><A HREF="main/sysstatt.htm" TARGET="content">System Statistics (Table)</A>
+<LI><A HREF="main/pts.htm" TARGET="content">Process Table Scans</A>
+<LI><A HREF="main/ptsavg.htm" TARGET="content">Process Table Scans (Avg)</A>
+<P>
+
+<B>Data Dictionary</B><BR>
+(snap7/8/9/10dd.sql)<BR>
+<LI><A HREF="main/dictcache.htm" TARGET="content">Dictionary Cache</A>
+<LI><A HREF="main/latch.htm" TARGET="content">Latch Gets &amp; Misses</A>
+<P>
+
+<B>Cursor &amp; SQL Processing</B><BR>
+(snap7/8/9/10csp.sql)<BR>
+<LI><A HREF="main/listsql1.htm" TARGET="content">Disk Intensive SQL</A>
+<LI><A HREF="main/listsql2.htm" TARGET="content">Buffer Intensive SQL</A>
+<LI><A HREF="main/listsql3.htm" TARGET="content">Buffer SQL w/ Most Loads</A>
+<LI><A HREF="main/resource2.htm" TARGET="content">Open Cursors By User</A>
+<LI><A HREF="main/resource3.htm" TARGET="content">Running Cursors By User</A>
+<LI><A HREF="main/userhit3.htm" TARGET="content">Low Ratio Open Cursors</A>
+<LI><A HREF="main/userhit4.htm" TARGET="content">Low Ratio Running Cursors</A>
+<LI><A HREF="main/userhit2.htm" TARGET="content">Low Ratio Objects Access</A>
+<P>
+
+<B>Locks</B><BR>
+(snap7/8/9/10lock.sql)<BR>
+<LI><A HREF="main/locks.htm" TARGET="content">Lock Information</A>
+<LI><A HREF="main/locksql.htm" TARGET="content">SQL Assoc'd With Lock(s)</A>
+<P>
+
+<B>Session Statistics</B><BR>
+(snap7/8/9/10sess.sql)<BR>
+<LI><A HREF="main/sesstime.htm" TARGET="content">Session Time</A>
+<LI><A HREF="main/sessio.htm" TARGET="content">Session I/O By User</A>
+<LI><A HREF="main/sescpu.htm" TARGET="content">CPU Usage By Session</A>
+<LI><A HREF="main/resource1.htm" TARGET="content">Resource Usage By User</A>
+<LI><A HREF="main/sesstat.htm" TARGET="content">Session Stats By Session</A>
+<LI><A HREF="main/curusage.htm" TARGET="content">Cursor Usage By Session</A>
+<P>
+
+<B>Shared Pool</B><BR>
+(snap7/8/9/10sp.sql)<BR>
+<LI><A HREF="main/shpool1.htm" TARGET="content">Library Cache Statistics</A>
+<LI><A HREF="main/shpool2.htm" TARGET="content">Shared Pool Memory Usage</A>
+<LI><A HREF="main/shpool3.htm" TARGET="content">Shared Pool Loads</A>
+<LI><A HREF="main/shpool4.htm" TARGET="content">Shared Pool Executions</A>
+<LI><A HREF="main/shpool5.htm" TARGET="content">Shared Pool Details</A>
+<LI><A HREF="main/reservepool.htm" TARGET="content">Reserve Pool Settings</A>
+<LI><A HREF="main/pinned.htm" TARGET="content">Pinned Objects</A>
+<P>
+
+<B>Redo Logs</B><BR>
+(snap7/8/9/10redo.sql)<BR>
+<LI><A HREF="main/redoinfo.htm" TARGET="content">Redo Log Information</A>
+<LI><A HREF="main/redoswitch.htm" TARGET="content">Redo Log Switches</A>
+<LI><A HREF="main/redostat.htm" TARGET="content">Redo Buffer Statistics</A>
+<LI><A HREF="main/redocont.htm" TARGET="content">Redo Log Buffer Contention</A>
+<P>
+
+<B>Backups</B><BR>
+(snap7/8/9/10backup.sql)<BR>
+<LI><A HREF="main/RMANBJ.htm" TARGET="content">RMAN Backup Jobs</A>
+<LI><A HREF="main/RMANConf.htm" TARGET="content">RMAN Configuration</A>
+<LI><A HREF="main/RMANBS.htm" TARGET="content">RMAN Backup Sets</A>
+<LI><A HREF="main/RMANBP.htm" TARGET="content">RMAN Backup Pieces</A>
+<LI><A HREF="main/ArcDs.htm" TARGET="content">Archive Destinations</A>
+<LI><A HREF="main/ArcIP.htm" TARGET="content">Archiving Instance Parameters</A>
+<LI><A HREF="main/ArcHist.htm" TARGET="content">Archiving History</A>
+<P>
+
+
+<B>Two Phase Commits</B><BR>
+(snap7/8/9/10tpc.sql)<BR>
+<LI><A HREF="main/tpcpending.htm" TARGET="content">Two Phase Pending</A>
+<LI><A HREF="main/tpcneighbor.htm" TARGET="content">Two Phase Neighbors</A>
+<P>
+
+<B>Miscellaneous</B><BR>
+(snap7/8/9/10misc.sql)<BR>
+<LI><A HREF="main/dbgrowth.htm" TARGET="content">Database Growth</A>
+<LI><A HREF="main/cpinterval.htm" TARGET="content">Checkpoint Interval</A>
+<LI><A HREF="main/avgwrque.htm" TARGET="content">Write Request Queue</A>
+<LI><A HREF="main/dbwrlazy.htm" TARGET="content">Lazy DBWR Indicators</A>
+<P>
+<HR>
+<P>
+<I>Stewart McGlaughlin<BR>
+Oracle DBA</I>
+</FONT>
+
+</BODY>
+</HTML>

@@ -1,0 +1,31 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Redo Log Contention</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>REDO LOG CONTENTION NOTES:</B><BR>
+<LI><B>Redo Latch Name</B> - Name of the latch
+<LI><B>Gets</B> - Number of times gotten wait
+<LI><B>Misses</B> - Number of times gotten wait but failed first try
+<LI><B>Sleeps</B> - Number of times slept when wanted wait
+<LI><B>Immediate Gets</B> - Number of times gotten without wait
+<LI><B>Immediate Misses</B> - Number of times failed to get without wait
+<P>
+<LI>The redo log buffers are used to hold database changes before writing them to the on-line redo logs.  These buffers operate in a circular fashion and are controlled via internal database latches.  Applications that perform several simultaneous update transactions can experience poor performance if these buffers are not large enough.
+<LI>If the ratio of gets to misses or immediate_gets to immediate_misses exceeds 1%, you should consider tuning the redo buffer.  Here are some suggestions for helping to reduce redo buffer latch contention:
+<UL>
+<LI> Increase the size of the redo buffer.  An OLTP system should be able to cope with a buffer size of around 256K, and as a batch application can benefit from a redo buffer as large as 2M.  Applications with a mixture of OLTP and batch applications should set their redo buffer to approximately 1M.<BR>
+<LI> Decrease the size of the INIT.ORA parameter LOG_SMALL_ENTRY_MAX_SIZE to reduce contention for the redo allocation latch for multi-CPU machines.
+<LI> Increase the value of the INIT.ORA parameter LOG_SIMULTANEOUS_COPIES to reduce contention for the redo copy latches for multi-CPU machines.
+</UL>
+<LI>Heavy access to the redo log buffer can result in contention for redo log
+prompt buffer latches. 
+</FONT>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Buffer Hit Ratio</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   sum(decode(NAME, 'consistent gets',VALUE, 0)),
+         sum(decode(NAME, 'db block gets',VALUE, 0)),
+         sum(decode(NAME, 'physical reads',VALUE, 0)),
+         round((sum(decode(name, 'consistent gets',value, 0)) + 
+            sum(decode(name, 'db block gets',value, 0)) - 
+            sum(decode(name, 'physical reads',value, 0))) / 
+         (sum(decode(name, 'consistent gets',value, 0)) + 
+         sum(decode(name, 'db block gets',value, 0))) * 100,2)
+from     sys.v_$sysstat;
+</PRE>
+
+</BODY>
+</HTML>

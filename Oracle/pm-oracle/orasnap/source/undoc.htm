@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Undocumented INIT.ORA Parameters</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   KSPPINM,
+         nvl(KSPPSTVL,'NULL'),
+         KSPPDESC
+from     sys.x$ksppi x, sys.x$ksppcv y
+where    x.INDX = y.INDX
+and      substr(KSPPINM,1,1) = '_'
+order by KSPPINM;
+</PRE>
+
+</BODY>
+</HTML>

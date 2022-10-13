@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Role Privileges</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   rp.GRANTEE,
+         GRANTED_ROLE,
+         rp.ADMIN_OPTION,
+         DEFAULT_ROLE,
+         PRIVILEGE
+from     dba_role_privs rp, dba_sys_privs sp
+where    rp.GRANTEE = sp.GRANTEE
+and      rp.GRANTEE not in ('SYS','SYSTEM','DBA','EXP_FULL_DATABASE','IMP_FULL_DATABASE')
+order by rp.GRANTEE, GRANTED_ROLE, PRIVILEGE;
+</PRE>
+
+</BODY>
+</HTML>

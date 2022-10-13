@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Database Information</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   NAME,
+         CREATED,
+         LOG_MODE,
+         CHECKPOINT_CHANGE#,
+         ARCHIVE_CHANGE#
+from     sys.v_$database;
+
+select   STARTUP_TIME,
+         trunc(SYSDATE-(STARTUP_TIME) ) || ' day(s), ' ||
+         trunc(24*((SYSDATE-STARTUP_TIME) - trunc(SYSDATE-STARTUP_TIME)))||' hour(s), ' ||
+         mod(trunc(1440*((SYSDATE-STARTUP_TIME) - trunc(SYSDATE-STARTUP_TIME))), 60) ||' minute(s), ' ||
+         mod(trunc(86400*((SYSDATE-STARTUP_TIME) - trunc(SYSDATE-STARTUP_TIME))), 60) ||' seconds'
+from     sys.v_$instance;
+</PRE>
+
+</BODY>
+</HTML>

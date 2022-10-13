@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Two Phase Commit Neighbor Information</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   LOCAL_TRAN_ID,
+         IN_OUT,
+         DATABASE,
+         DBUSER_OWNER,
+         INTERFACE,
+         DBID,
+         SESS#,
+         BRANCH
+from     dba_2pc_neighbors
+order by LOCAL_TRAN_ID, IN_OUT;
+</PRE>
+
+</BODY>
+</HTML>

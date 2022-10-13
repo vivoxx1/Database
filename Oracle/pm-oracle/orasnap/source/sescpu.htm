@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For CPU Usage By Session</B></FONT>
+<FORM>
+    	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   nvl(ss.USERNAME,'ORACLE PROC'),
+         se.SID,
+         VALUE
+from     sys.v_$session ss, sys.v_$sesstat se, sys.v_$statname sn
+where    se.STATISTIC# = sn.STATISTIC#
+and      NAME like '%CPU used by this session%'
+and      se.SID = ss.SID
+order by VALUE desc;
+</PRE>
+
+</BODY>
+</HTML>

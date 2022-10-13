@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For FK Constraints Without Index On Child Table</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   acc.OWNER,
+         acc.CONSTRAINT_NAME,
+         acc.COLUMN_NAME,
+         acc.POSITION,
+         'No Index'
+from     dba_cons_columns acc, dba_constraints ac
+where    ac.CONSTRAINT_NAME = acc.CONSTRAINT_NAME
+and      ac.CONSTRAINT_TYPE = 'R'
+and      acc.OWNER not in ('SYS','SYSTEM')
+and      not exists (
+            select   'TRUE' 
+            from     dba_ind_columns b
+            where    b.TABLE_OWNER = acc.OWNER
+            and      b.TABLE_NAME = acc.TABLE_NAME
+            and      b.COLUMN_NAME = acc.COLUMN_NAME
+            and      b.COLUMN_POSITION = acc.POSITION)
+order by acc.OWNER, acc.CONSTRAINT_NAME, acc.COLUMN_NAME, acc.POSITION;
+</PRE>
+
+</BODY>
+</HTML>

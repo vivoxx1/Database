@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Foreign Key Constraints</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   c.OWNER,
+         c.TABLE_NAME,
+         c.CONSTRAINT_NAME,
+         cc.COLUMN_NAME,
+         r.TABLE_NAME,
+         rc.COLUMN_NAME,
+         cc.POSITION
+from     dba_constraints c, dba_constraints r, 
+         dba_cons_columns cc, dba_cons_columns rc
+where    c.CONSTRAINT_TYPE = 'R'
+and      c.OWNER not in ('SYS','SYSTEM')
+and      c.R_OWNER = r.OWNER
+and      c.R_CONSTRAINT_NAME = r.CONSTRAINT_NAME
+and      c.CONSTRAINT_NAME = cc.CONSTRAINT_NAME
+and      c.OWNER = cc.OWNER
+and      r.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+and      r.OWNER = rc.OWNER
+and      cc.POSITION = rc.POSITION
+order by c.OWNER, c.TABLE_NAME, c.CONSTRAINT_NAME, cc.POSITION;
+</PRE>
+
+</BODY>
+</HTML>

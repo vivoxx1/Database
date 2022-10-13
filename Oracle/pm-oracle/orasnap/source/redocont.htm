@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Redo Log Buffer Contention (v$latch)</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   NAME,
+         GETS,
+         MISSES,
+         SLEEPS,
+         IMMEDIATE_GETS,
+         IMMEDIATE_MISSES
+from     sys.v_$latch
+where    NAME like 'redo%';
+</PRE>
+
+</BODY>
+</HTML>

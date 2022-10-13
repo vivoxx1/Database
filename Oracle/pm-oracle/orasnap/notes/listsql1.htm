@@ -1,0 +1,24 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Shared Pool SQL with Most Disk Reads<</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>SQL WITH MOST DISK READ NOTES:</B><BR>
+<LI><B>Username</B> - Name of the user
+<LI><B>Disk Reads</B> - Total number of disk reads for this statement
+<LI><B>Executions</B> - Total number of times this statement has been executed
+<LI><B>Reads/Execs</B> - Number of reads per execution
+<LI><B>SQL Text</B> - Text of the SQL statement requiring the cursor, or the PL/SQL anonymous code
+<P>
+<LI>The goal of this statement is to highlight the SQL statements in your system that can potentially be optimized.  The disk_reads signify the volume of disk reads that are being performed on the system.  This combined with the executions (reads/executions) returns the SQL statements that have the most disk hits per statement execution.  Once identified, the top statements should be reviewed and optimized to improve overall performance.  Typically, the statement is not using an index or the execution path is forcing the statement not to use the proper indexes.  This script should be executed regularly to determine if new statements are being introduced to your system that have not been properly optimized.
+<LI>Remember 80% of most systems that are improved in terms of performance is directly attributable to poorly written SQL statements.
+<LI>
+</FONT>
+
+</BODY>
+</HTML>
+

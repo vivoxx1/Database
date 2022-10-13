@@ -1,0 +1,23 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Two Phase Commit Neighbor Information</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>TWO PHASE NEIGHBOR NOTES:</B><BR>
+<LI><B>Local Tran Id</B> - Local identifier of a transaction
+<LI><B>In/Out</B> - IN for incoming connections; OUT for outgoing
+<LI><B>Database</B> - IN: client database name; OUT: outgoing database link
+<LI><B>DBUser Owner</B> - IN: name of local user; OUT: owner of database link
+<LI><B>Interface</B> - C for request commit, otherwise N for prepare or request readonly commit
+<LI><B>DB ID</B> - The database ID at the other end of the connection
+<LI><B>Sess#</B> - Session number of the connection at this database
+<LI><B>Branch</B> - Transaction branch ID of the connection at this database
+</FONT>
+
+</BODY>
+</HTML>
+

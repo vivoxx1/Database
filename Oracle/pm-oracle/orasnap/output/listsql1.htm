@@ -1,0 +1,848 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+<BODY BGCOLOR="#C0C0C0">
+<CENTER><FONT FACE="Arial" SIZE="2">
+<TABLE WIDTH="100%">
+<TR>
+<TD><B><FONT FACE="Arial" SIZE="2"><A HREF="listsql1.htm" TARGET="_blank">13-SEP-2022 19:57:49</A></FONT></B></TD>
+<TD ALIGN="RIGHT"><B><FONT FACE="Arial" SIZE="2">DBEAI</FONT></B></TD>
+</TR>
+</TABLE><BR>
+<TABLE BORDER=1 CELLPADDING=5>
+<TR>
+<TD ALIGN="CENTER" BGCOLOR="#FFFFFF" COLSPAN=5>
+<FONT SIZE="4"><B>Shared Pool SQL with Most Disk Reads (&gt; 10000)</B></FONT>
+</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#CCCC99"><FONT FACE="Arial" SIZE="2"><B>Username</B></FONT></TD>
+<TD BGCOLOR="#CCCC99" NOWRAP><FONT FACE="Arial" SIZE="2"><B>Disk Reads</B></FONT></TD>
+<TD BGCOLOR="#CCCC99" NOWRAP><FONT FACE="Arial" SIZE="2"><B>Executions</B></FONT></TD>
+<TD BGCOLOR="#CCCC99" NOWRAP><FONT FACE="Arial" SIZE="2"><B>Reads/Execs (1)</B></FONT></TD>
+<TD BGCOLOR="#CCCC99"><FONT FACE="Arial" SIZE="2"><B>SQL Text</B></FONT></TD>
+</TR>
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ASP_MONITORING</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">         558,809,890</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  38</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          14,705,523</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT 'CME_BULK_FT_REQ_V2' NAMA,to_char(PROCESSDT, 'YYYY-MM-DD') tgl,to_char(PROCESSDT, 'hh24') as JAM,count(*) as TOTAL,ftservices  FROM cme.CME_BULK_FT_REQ_V2  WHERE PROCESSDT &gt;= trunc(sysdate)  GROUP BY to_char(PROCESSDT, 'hh24'),to_char(PROCESSDT, 'YYYY-MM-DD'), FTSERVICES  UNION ALL  SELECT 'CME_BULK_FT_REQ' NAMA,to_char(PROCESSDT, 'YYYY-MM-DD') tgl,to_char(PROCESSDT, 'hh24') as JAM,count(*) as TOTAL,ftservices  FROM cme.CME_BULK_FT_REQ  WHERE PROCESSDT
+&gt;= trunc(sysdate)  GROUP BY to_char(PROCESSDT, 'hh24'),to_char(PROCESSDT, 'YYYY-MM-DD'), FTSERVICES  UNION ALL  SELECT 'CME_BULK_FT_REQ_PRC' NAMA,to_char(PROCESSDT, 'YYYY-MM-DD') tgl,to_char(PROCESSDT, 'hh24') as JAM,count(*) as TOTAL,ftservices  FROM cme.CME_BULK_FT_REQ_PRC  WHERE PROCESSDT &gt;= trunc(sysdate)  GROUP BY to_char(PROCESSDT, 'hh24'),to_char(PROCESSDT, 'YYYY-MM-DD'), FTSERVICES  UNION ALL  SELECT 'CME_BULK_FT_REQ_PRC_V2' NAMA,to_char(PROCESSDT, 'YYYY-MM-DD') tgl,to_char(PROCESS
+DT, 'hh24') as JAM,count(*) as TOTAL,ftser</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ASP_MONITORING</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">       1,234,798,938</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  84</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          14,699,987</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT 'CME_BULK_FT_REQ_V2' NAMA,to_char(PROCESSDT, 'YYYY-MM-DD') tgl,to_char(PROCESSDT, 'hh24') as JAM,count(*) as TOTAL  FROM cme.CME_BULK_FT_REQ_V2  WHERE PROCESSDT &gt;= trunc(sysdate)  GROUP BY to_char(PROCESSDT, 'hh24'),to_char(PROCESSDT, 'YYYY-MM-DD')  UNION  SELECT 'CME_BULK_FT_REQ' NAMA,to_char(PROCESSDT, 'YYYY-MM-DD') tgl,to_char(PROCESSDT, 'hh24') as JAM,count(*) as TOTAL  FROM cme.CME_BULK_FT_REQ  WHERE PROCESSDT &gt;= trunc(sysdate)  GROUP BY to_char
+(PROCESSDT, 'hh24'),to_char(PROCESSDT, 'YYYY-MM-DD')</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">         928,725,210</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 131</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           7,089,505</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">call dbms_stats.gather_database_stats_job_proc (  )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ORA.OPR.NU.DBEAI</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           5,656,701</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           5,656,701</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT TRXHEADERID, TRXDETAILID, debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, TRXREMARK4, errormessage,RESPONSECODE, --remittanceno,batchid,  INSERTDT, FTSERVICES, BENEFICIARYBANKCODE, BENEFICIARYBANKNAME, POSTINGTIMESTAMP, TELLERID, JOURNALSEQNO --debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, count(credita
+ccno) as record --select sum(credittrfamount) from cme.cme_bulk_ft_resp_V2 where --trxheaderid IN ('202207212049572002') --trxdetailid in ('1202107151247051518')-- and --batchid IN ('FT-20220912-0002686251') and --batchid in (select batchid from cme.cme_bulkfile_req_v2 where filename like '%202208081909642696%') --and responsecode = '0' --and TRUNC(insertdt) BETWEEN to_Date ('15-07-2021 00:00:00','DD-MM-YYYY HH24:MI:SS') AND to_Date ('15-07-2021 23:59:59','DD-MM-YYYY HH24:MI:SS') --TRUNC(insertd
+t) = TRUNC(SYSDATE-1) tellerid in</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ORA.OPR.NU.DBEAI</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           5,656,701</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           5,656,701</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT TRXHEADERID, TRXDETAILID, debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, TRXREMARK4, errormessage,RESPONSECODE, --remittanceno,batchid,  INSERTDT, FTSERVICES, BENEFICIARYBANKCODE, BENEFICIARYBANKNAME, POSTINGTIMESTAMP, TELLERID, JOURNALSEQNO --debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, count(credita
+ccno) as record --select sum(credittrfamount) from cme.cme_bulk_ft_resp_V2 where --trxheaderid IN ('202207212049572002') --trxdetailid in ('1202107151247051518')-- and --batchid IN ('FT-20220912-0002686251') and --batchid in (select batchid from cme.cme_bulkfile_req_v2 where filename like '%202208081909642696%') --and responsecode = '0' --and TRUNC(insertdt) BETWEEN to_Date ('15-07-2021 00:00:00','DD-MM-YYYY HH24:MI:SS') AND to_Date ('15-07-2021 23:59:59','DD-MM-YYYY HH24:MI:SS') --TRUNC(insertd
+t) = TRUNC(SYSDATE-1) tellerid in</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ORA.OPR.NU.DBEAI</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           5,656,701</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           5,656,701</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT TRXHEADERID, TRXDETAILID, debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, TRXREMARK4, errormessage,RESPONSECODE, --remittanceno,batchid,  INSERTDT, FTSERVICES, BENEFICIARYBANKCODE, BENEFICIARYBANKNAME, POSTINGTIMESTAMP, TELLERID, JOURNALSEQNO --debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, count(credita
+ccno) as record --select sum(credittrfamount) from cme.cme_bulk_ft_resp_V2 where --trxheaderid IN ('202207212049572002') --trxdetailid in ('1202107151247051518')-- and --batchid IN ('FT-20220912-0002686251') and --batchid in (select batchid from cme.cme_bulkfile_req_v2 where filename like '%202208081909642696%') --and responsecode = '0' --and TRUNC(insertdt) BETWEEN to_Date ('15-07-2021 00:00:00','DD-MM-YYYY HH24:MI:SS') AND to_Date ('15-07-2021 23:59:59','DD-MM-YYYY HH24:MI:SS') --TRUNC(insertd
+t) = TRUNC(SYSDATE-1) tellerid in</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           2,185,454</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           2,185,454</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">insert into t_ibs_bills_arc( BILL_ID, BILL_KEY1, BILL_KEY2,     BILL_KEY3, REF1, REF2,     REF3, REF4, REF5,     REF6, REF7, REF8,     REF9, REFN1, REFN2,     REFN3, REFN4, REFN5,     REFD1, REFD2, PERIOD_OPEN,     PERIOD_CLOSE, COMPANY_CODE, CREATE_DATE,     CREATE_WHO, CHANGE_DATE, CHANGE_WHO,     PAID_FLAG, PAID_DATE, BILL_AMOUNT,     BILL_CODE, TRX_ID, PERIOD,     BILL_NAME, BILL_SHORTNAME, ACTIVE_FLAG,     IBS_FILE_ID, BILL_CCY)  select BILL_ID, BILL_KEY1, B
+ILL_KEY2,     BILL_KEY3, REF1, REF2,     REF3, REF4, REF5,     REF6, REF7, REF8,     REF9, REFN1, REFN2,     REFN3, REFN4, REFN5,     REFD1, REFD2, PERIOD_OPEN,     PERIOD_CLOSE, COMPANY_CODE, CREATE_DATE,     CREATE_WHO, CHANGE_DATE, CHANGE_WHO,     PAID_FLAG, PAID_DATE, BILL_AMOUNT,     BILL_CODE, TRX_ID, PERIOD,     BILL_NAME, BILL_SHORTNAME, ACTIVE_FLAG,     IBS_FILE_ID, BILL_CCY from t_ibs_bills where company_code||'/'||bill_key1||'/'||bill_key2||'/'||bill_key3 in  (    select company_code|
+|'/'||bill_key1||'/'||bill_key2||</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           2,185,442</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           2,185,442</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">insert into t_ibs_bills_arc( BILL_ID, BILL_KEY1, BILL_KEY2,     BILL_KEY3, REF1, REF2,     REF3, REF4, REF5,     REF6, REF7, REF8,     REF9, REFN1, REFN2,     REFN3, REFN4, REFN5,     REFD1, REFD2, PERIOD_OPEN,     PERIOD_CLOSE, COMPANY_CODE, CREATE_DATE,     CREATE_WHO, CHANGE_DATE, CHANGE_WHO,     PAID_FLAG, PAID_DATE, BILL_AMOUNT,     BILL_CODE, TRX_ID, PERIOD,     BILL_NAME, BILL_SHORTNAME, ACTIVE_FLAG,     IBS_FILE_ID, BILL_CCY)  select BILL_ID, BILL_KEY1, B
+ILL_KEY2,     BILL_KEY3, REF1, REF2,     REF3, REF4, REF5,     REF6, REF7, REF8,     REF9, REFN1, REFN2,     REFN3, REFN4, REFN5,     REFD1, REFD2, PERIOD_OPEN,     PERIOD_CLOSE, COMPANY_CODE, CREATE_DATE,     CREATE_WHO, CHANGE_DATE, CHANGE_WHO,     PAID_FLAG, PAID_DATE, BILL_AMOUNT,     BILL_CODE, TRX_ID, PERIOD,     BILL_NAME, BILL_SHORTNAME, ACTIVE_FLAG,     IBS_FILE_ID, BILL_CCY from t_ibs_bills where company_code||'/'||bill_key1||'/'||bill_key2||'/'||bill_key3 in  (    select company_code|
+|'/'||bill_key1||'/'||bill_key2||</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ASP_MONITORING</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,524,683</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,524,683</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT * FROM SPAN.SPAN_HOST_DATA_DETAILS shdd WHERE BEN_ACCOUNT ='811111000000003'</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ASP_MONITORING</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">         478,501,626</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 422</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,133,890</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT DISTINCT (B.FILE_NAME), B.INSERT_DATE, A.DEBIT_ACCOUNT_NO, C.CLIENT_NAME,  D.DEBIT_AMT AS AMOUNT, D.RESPONSE_CODE, D.RESPONSE_MESSAGE FROM SAPGUI.FILE_DETAIL a  LEFT JOIN SAPGUI.FILE_HEADER B ON A.FILE_ID = B.FILE_ID JOIN AUTOPAY2.C_CLIENTS C ON B.CLIENT_ID = C.CLIENT_ID JOIN (SELECT REMARK2, DEBIT_AMT, RESPONSE_CODE, RESPONSE_MESSAGE FROM CME.T_TRX_LOG  WHERE ctl_create_dtm&gt;=TO_DATE(to_char(sysdate-1,'yyyymmdd'),'yyyymmdd') AND ctl_create_dtm&lt;TO_DAT
+E(to_char(sysdate+1,'yyyymmdd'),'yyyymmdd') AND TRANSACTION_CODE = '7820') D ON A.FILE_ID = D.REMARK2 WHERE a.INSERT_DATE &gt;=TO_DATE(to_char(sysdate,'yyyymmdd'),'yyyymmdd') AND a.INSERT_DATE &lt;TO_DATE(to_char(sysdate+1,'yyyymmdd'),'yyyymmdd') AND upper(b.FILE_NAME) LIKE '%PAYROLL%'</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ASP_MONITORING</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          63,495,790</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  75</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             846,611</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT count(*) AS JML_UNSYNC FROM ubp.LOG_UBP_TRX lut WHERE TO_CHAR(CREATE_DATE,'yyyy-mm-dd')=TO_CHAR(SYSDATE,'yyyy-mm-dd') AND COMPANY_CODE IN ('50012','50018')        AND EVENT ='BILLPAYMENT' AND RESPONSE_CODE ='00' AND BILL_KEY1 NOT IN (       SELECT PAYMENT_CODE FROM ubp.MPN_TRX_LOG mtl WHERE RESPONSE_CODE ='00' AND TO_CHAR(CREATED_ON,'yyyy-mm-dd')=TO_CHAR(SYSDATE,'yyyy-mm-dd'))</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ORA.OPR.NU.DBEAI</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             610,633</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             610,633</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT TRXHEADERID, TRXDETAILID, debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, TRXREMARK4, errormessage,RESPONSECODE, remittanceno,batchid,  INSERTDT, FTSERVICES, BENEFICIARYBANKCODE, BENEFICIARYBANKNAME, POSTINGTIMESTAMP, TELLERID, JOURNALSEQNO --debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, count(creditacc
+no) as record --select sum(credittrfamount) from cme.cme_bulk_ft_resp_V2 where --trxheaderid IN ('202207212049572002') --trxdetailid in ('1202107151247051518')-- and --batchid IN ('FT-20220908-0002666015') and --batchid in (select batchid from cme.cme_bulkfile_req_v2 where filename like '%202208081909642696%') --and responsecode = '0' --and TRUNC(insertdt) BETWEEN to_Date ('15-07-2021 00:00:00','DD-MM-YYYY HH24:MI:SS') AND to_Date ('15-07-2021 23:59:59','DD-MM-YYYY HH24:MI:SS') TRUNC(insertdt) =
+ TRUNC(SYSDATE-1) and tellerid in</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           3,922,264</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  11</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             356,569</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN PKG_MPNG2_MT.SELECTMTCDETAILREQTRX (:1 , :2 , :3 , :4 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ETLSOASVC</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             289,468</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             289,468</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select * from sopp2008.so where TRUNC(payment_date) = to_date ('20220912', 'YYYYMMDD') </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             260,388</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             260,388</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select   NVL(SUM(a.amount), 0) AS JumlahSetoran,   COUNT(*) AS JumlahTrx from (   select     a.PAYMENT_CODE     ,CAST(MAX(b.CREATE_DATE)AS TIMESTAMP)AS MAXDATE   from mpn_trx_log a     INNER JOIN LOG_UBP_TRX b ON a.PAYMENT_CODE = b.BILL_KEY1 AND a.TRANSACTION_ID = b.TRACE_NUMBER   WHERE a.RESPONSE_CODE = '00'       AND a.SETTLEMENT_DATE = '0912'       and a.currency = 'IDR'       AND to_char(b.trx_timestamp, 'yyyy')= '2022'       AND B.COMPANY_CODE
+in ('50012','50018')       AND b.EVENT = 'BILLPAYMENT'   GROUP BY(a.PAYMENT_CODE) )d INNER JOIN LOG_UBP_TRX b ON d.PAYMENT_CODE = b.BILL_KEY1 AND CAST(b.CREATE_DATE AS TIMESTAMP) = d.MAXDATE INNER JOIN MPN_TRX_LOG a ON a.PAYMENT_CODE = b.BILL_KEY1 AND a.TRANSACTION_ID = b.TRACE_NUMBER INNER JOIN LOG_BILL c ON a.PAYMENT_CODE = c.BILL_KEY1 AND a.SETTLEMENT_DATE = c.REFERENCE18 AND b.LOG_BILL_ID=c.LOG_BILL_ID LEFT JOIN (   SELECT m.PAYMENT_CODE,     COUNT(m.PAYMENT_CODE) AS TOTAL   FROM M
+PN_TRX_LOG m   WHERE m.SETTLEMEN</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             367,966</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   3</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             122,655</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT /* DS_SVC */ /*+ dynamic_sampling(0) no_sql_tune no_monitoring optimizer_features_enable(default) no_parallel  OPT_ESTIMATE(@"innerQuery", TABLE, "B", SCALE_ROWS=2.040748872) */ NVL(C1,0), NVL(C2,0), NVL(C3,0) FROM (SELECT /*+ qb_name("innerQuery") INDEX( "B" "IDX_LOG_UBP_TRX_NEW#1")  */ COUNT(*) AS C1, 4294967295 AS C2, SUM(CASE WHEN ("B"."EVENT"='BILLPAYMENT') THEN 1 ELSE 0 END) AS C3  FROM "UBP"."LOG_UBP_TRX" "B" WHERE ("B"."EVENT"='BILLPAYMENT')) inner
+Query</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ORA.OPR.NU.DBEAI</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              93,743</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              93,743</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT TRXHEADERID, TRXDETAILID, debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, TRXREMARK4, errormessage,RESPONSECODE, --remittanceno,batchid,  INSERTDT, FTSERVICES, BENEFICIARYBANKCODE, BENEFICIARYBANKNAME, POSTINGTIMESTAMP, TELLERID, JOURNALSEQNO --debitaccno, debitamount, chargeinstruction, creditaccno, creditaccname, credittrfamount, TRXREMARK1, TRXREMARK2, TRXREMARK3, count(credita
+ccno) as record --select sum(credittrfamount) from cme.cme_bulk_ft_resp_V2 where --trxheaderid IN ('202207212049572002') --trxdetailid in ('1202107151247051518')-- and --batchid IN ('FT-20220912-0002686251') and --batchid in (select batchid from cme.cme_bulkfile_req_v2 where filename like '%202208081909642696%') --and responsecode = '0' --and TRUNC(insertdt) BETWEEN to_Date ('15-07-2021 00:00:00','DD-MM-YYYY HH24:MI:SS') AND to_Date ('15-07-2021 23:59:59','DD-MM-YYYY HH24:MI:SS') TRUNC(insertdt)
+ = TRUNC(SYSDATE-1) and tellerid </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              60,026</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              60,026</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select log_bill_id, event, trx_timestamp, create_who,bill_key1, bill_key2,create_date, response_code,response_message, company_code, payment_amount, channel_id      from  ubp.log_ubp_trx where    --bill_key1 in ('126222996905128')  --and response_message ='Panjang message (length) tidak sesuai [98]'   company_code ='30305'  and trunc(create_date) = trunc(sysdate-1)   and event = 'BILLPAYMENT'   and create_who ='DMTT001'  --and channel_id ='5'    order by create_d
+ate desc</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SPOTLIGHT</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              52,318</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              52,318</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">DECLARE job BINARY_INTEGER := :job;  next_date TIMESTAMP WITH TIME ZONE := :mydate;  broken BOOLEAN := FALSE;  job_name VARCHAR2(128) := :job_name;  job_subname VARCHAR2(128) := :job_subname;  job_owner VARCHAR2(128) := :job_owner;  job_start TIMESTAMP WITH TIME ZONE := :job_start;  job_scheduled_start TIMESTAMP WITH TIME ZONE := :job_scheduled_start;  window_start TIMESTAMP WITH TIME ZONE := :window_start;  window_end TIMESTAMP WITH TIME ZONE := :window_end;  ch
+ain_id VARCHAR2(14) :=  :chainid;  credential_owner VARCHAR2(128) := :credown;  credential_name  VARCHAR2(128) := :crednam;  destination_owner VARCHAR2(128) := :destown;  destination_name VARCHAR2(128) := :destnam;  job_dest_id varchar2(14) := :jdestid;  log_id number := :log_id;  BEGIN  BEGIN /*Quest SOO PPCM job */  quest_ppcm_snapshot_pkg.take_snapshot; END;  :mydate := next_date; IF broken THEN :b := 1; ELSE :b := 0; END IF; END; </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SPOTLIGHT</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              48,479</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              48,479</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">DELETE FROM QUEST_PPCM_SQL_TEXT TXT WHERE INSTANCE_ID &gt;= 0 AND NOT EXISTS (SELECT 1 FROM QUEST_PPCM_SQL_SNAPSHOT SNAP WHERE SNAP.SNAPSHOT_ID &gt; 0 AND SNAP.INSTANCE_ID= TXT.INSTANCE_ID AND SNAP.SQL_ID = TXT.SQL_ID)</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              17,920</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              17,920</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select log_bill_id, event, trx_timestamp, create_who,bill_key1, create_date, response_code,response_message, company_code, payment_amount, channel_id from    ubp.log_ubp_trx where  bill_key1 in ('110110015152', '110120026307', '110150015248', '110250016281', '110500022754', '110500089974', '110710008616', '110840050467', '110910024654', '111010037032', '111020015414', '111130006168', '111150030851', '111160005442', '111210002988', '111550147000', '111750056106',
+'112010179784', '112300109351', '112420022865', '120020637812', '120040978868', '120040982196', '120100644158', '120100644166', '120100644182', '120100655183', '120110654566', '120130767755', '120130770176', '120130778602', '120140606077', '120140664322', '120140664348', '120140664355', '120140670587', '121150277018', '121180076753', '122010605552', '122010605560', '122010605578', '122010605992', '122010606002', '122010606028', '122010606036', '122010606044', '122010606051', '122010606069', '122
+010606077', '122010615536', '1220</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              31,144</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   2</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              15,572</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select   a.ntpn as NTPN,   a.ntb as NTB,   '520008000990' AS KodeBank,   substr(c.reference17, 9, 2)|| substr(c.reference17, 6, 2)|| substr(c.reference17, 0, 4) AS TglTerimaBayar,   substr(c.reference17,12,2) || substr(c.reference17,15,2) AS JamTerimaBayar,   a.settlement_date AS TanggalBuku,       a.amount as JumlahSetoran,   c.cust_account_no AS CustomerAccount,   a.biller_account_number AS BillerAccount,   a.currency AS MataUang,   a.payment_code as
+ KodeBilling,   (SELECT COUNT(e.BILL_KEY1) FROM LOG_UBP_TRX e WHERE e.BILL_KEY1 = b.BILL_KEY1 AND event='BILLREVERSE') AS TOTAL_REVERSE from (   select     a.PAYMENT_CODE     ,CAST(MAX(b.CREATE_DATE)AS TIMESTAMP)AS MAXDATE   from mpn_trx_log a     INNER JOIN LOG_UBP_TRX b ON a.PAYMENT_CODE = b.BILL_KEY1 AND a.TRANSACTION_ID = b.TRACE_NUMBER   WHERE a.RESPONSE_CODE = '00'       AND a.SETTLEMENT_DATE = '0913'       and a.currency = 'IDR'       AND to_char(b.trx_timestamp, 'yyyy')= '202
+2'       AND B.COMPANY_CODE in (</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ASP_MONITORING</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,558,042</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 110</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              14,164</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">     SELECT channel_name,to_char(last_trx,'DD-MM-YYYY HH24:MI:SS') as LAST_TRX, to_char(sysdate,'DD-MM-YYYY HH24:MI:SS') as now FROM (SELECT CASE             WHEN channel_id = '7'    THEN               'MCS'             WHEN channel_id = '10'   THEN               'CPS'           END AS channel_name,           MAX(create_date) AS last_trx         FROM           ubp.log_ubp_trx         WHERE           channel_id IN (             '7',             '10'
+          )           AND trunc(create_date) = trunc(SYSDATE)         GROUP BY           CASE             WHEN channel_id = '7'    THEN               'MCS'             WHEN channel_id = '10'   THEN               'CPS' END       )     </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">AUTOPAY</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             118,567</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  19</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               6,240</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select cust_code,acct_no,acct_type,acct_cur_code,max_trx_amt,max_trx_amt_daily  from t_debit_account_bck where logdate&gt;sysdate-1 and  cust_code='9' and acct_no not in ( select acct_no from t_debit_account where cust_code='9' ) group by cust_code,acct_no,acct_type,acct_cur_code,max_trx_amt,max_trx_amt_daily</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ASP_MONITORING</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             651,735</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 109</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               5,979</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select * from (  select '60001' AS CODE,to_char(sysdate,'DDMMYY') TGL,TO_CHAR(SYSDATE,'HH24:MI') AS JAM, response_Code, response_message, count(1) as total from ubp.log_ubp_trx where create_date &gt; to_date(concat(to_char(sysdate,'yyyymmdd'),'000000'),'yyyymmddhh24miss')  and company_code = '60001' and event = 'BILLPAYMENT' and response_code &lt;&gt; '00' group by response_Code, response_message order by total desc) x  WHERE rownum &lt;= 1  UNION  select * from
+(  select '60737' AS CODE,to_char(sysdate,'DDMMYY') TGL,TO_CHAR(SYSDATE,'HH24:MI') AS JAM, response_Code, response_message, count(1) as total from ubp.log_ubp_trx where create_date &gt; to_date(concat(to_char(sysdate,'yyyymmdd'),'000000'),'yyyymmddhh24miss')  and company_code = '60737' and event = 'BILLPAYMENT' and response_code &lt;&gt; '00' group by response_Code, response_message order by total desc) x  WHERE rownum &lt;= 1  UNION  select * from (  select '60401' AS CODE,to_char(sysdate,'DDMM
+YY') TGL,TO_CHAR(SYSDATE,'HH24:MI') AS JAM, response_Code</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              14,973</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   4</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               3,743</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select sql_id, plan_hash_value, bucket_id,        begin_snap, end_snap, con_dbid from   (select   dbid, sql_id, con_dbid, bucket_id, plan_hash_value,          begin_snap, end_snap, cpu_plus_io from     (select  dbid, sql_id, con_dbid, bucket_id, plan_hash_value,                   begin_snap, end_snap, cpu_plus_io,                   row_number() over (partition by bucket_id                                      order by     cpu_plus_io desc)                     as
+within_bucket_rnk           from    (select   dbid, sql_id, con_dbid, bucket_id,                             max(plan_hash_value) keep (dense_rank last                               order by cpu_plus_io) plan_hash_value,                             max(begin_snap) keep (dense_rank last                               order by cpu_plus_io) begin_snap,                             max(end_snap) keep (dense_rank last                               order by cpu_plus_io) end_snap,
+     max(cpu_plus_io) cpu_plus_io</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              40,401</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  20</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               2,020</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select count(*) from wri$_optstat_opr o, wri$_optstat_opr_tasks t where o.id = t.op_id(+) and o.operation = 'gather_database_stats (auto)' and ((o.notes like '%&lt;error&gt;%' and  not regexp_like( o.notes, '&lt;error&gt;ORA-200[0-9][0-9]')) or  (t.notes like '%&lt;error&gt;%' and  not regexp_like( t.notes, '&lt;error&gt;ORA-200[0-9][0-9]'))) and  rownum=1</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             133,342</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 198</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 673</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select s.ts#, s.file#, s.block#, so.object_id, s.spare1, s.type#, s.hwmincr from seg$ s, sys_objects so where bitand(s.spare1,131072) = 0 and s.ts# = so.ts_number and s.file# = so.header_file and s.block# = so.header_block order by s.file# asc</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              18,794</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  28</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 671</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT   t1.ID,t1.CREATED_ON,t1.MESSAGE,t1.AMOUNT,t1.BANK_ID,t1.BILLING_INFO01,t1.BILLING_INFO010,t1.BILLING_INFO02,t1.BILLING_INFO03,t1.BILLING_INFO04,t1.BILLING_INFO05,t1.BILLING_INFO06,t1.BILLING_INFO07,t1.BILLING_INFO08,t1.BILLING_INFO09,t1.BRANCH_CODE,t1.BUDGET_ID,t1.CHANNEL_TYPE,t1.CURRENCY,t1.CUSTOMER_NAME,t1.GMT,t1.LOCAL_DATETIME,t1.PAYMENT_CODE,t1.RESPONSE_CODE,t1.SETTLEMENT_DATE,t1.SWITCHER_CODE,t1.TERMINAL_ID,t1.TERMINAL_LOCATION,t1.TRANSACTION_ID,t1.B
+ILLER_ACCOUNT_NUMBER,t1.NTB,t1.NTPN,t1.TYPE,t1.LOCAL_TRANSACTION_DATE,t1.RT_ACTIVATION_ID,t1.UPDATE_ON,t1.NOSAKTI,t1.FLAGGINGBS,t1.FLAGGINGPL,t1.WM_ROWID,t1.wm_sendTime  FROM WMB_MPNAHU_bqpdyuu t1 WHERE (WM_ROWID&gt; :1  ) ORDER BY WM_ROWID</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">CME</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             565,087</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               2,166</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 261</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT   t1.TRX_ID,t1.COMPANY_CODE,t1.BILLKEY1,t1.BILLKEY2,t1.BILLKEY3,t1.PAYMENTAMOUNT,t1.REFERENCE,t1.TRXDATETIME,t1.RRN,t1.CUST_ACCT_NO,t1.CUST_ACCT_TYPE,t1.COMP_ACCT_NO,t1.MERCHANT_ID_API,t1.FEE,t1.TRANSACTIONSTATUS,t1.STATUSMPSFLAGGING  FROM CME.API_UBP_LOG t1 WHERE (t1.RRN = :1  AND t1.TRANSACTIONSTATUS &gt;= '0' AND t1.BILLKEY1 = :2  AND t1.MERCHANT_ID_API = :3  AND t1.PAYMENTAMOUNT = :4 )  ORDER BY 8 DESC</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ASP_MONITORING</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              24,484</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 109</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 225</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select bill_key1, response_code, sum(case when event = 'BILLPAYMENT' and response_code = '00' then 1 else 0 end) as paymentberhasil,  sum(case when event = 'BILLPAYMENT' and not response_code = '00' then 1 else 0 end) as paymentgagal  from UBP.log_ubp_trx where  create_date&gt;=to_date(to_char(sysdate,'yyyymmdd'),'yyyymmdd') and  create_date&lt;to_date(to_char(sysdate+1,'yyyymmdd'),'yyyymmdd') group by bill_key1,response_code</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ASP_MONITORING</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              63,075</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 431</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 146</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select create_date-MOD((create_date-TO_DATE('1970','YYYY'))*24*60,10)/24/60 "PERIOD",  SUM(case when response_code = '00' and company_code = '60737' THEN 1 ELSE 0 end) AS sukses_gopay,  SUM(case when response_code &lt;&gt; '00' and company_code = '60737' THEN 1 ELSE 0 end) AS gagal_gopay,  SUM(case when response_code = '00' and company_code = '60001' THEN 1 ELSE 0 end) AS sukses_ovo,  SUM(case when response_code &lt;&gt; '00' and company_code = '60001' THEN 1 ELS
+E 0 end) AS gagal_ovo,  SUM(case when response_code = '00' and company_code = '89508' THEN 1 ELSE 0 end) AS sukses_dana,  SUM(case when response_code &lt;&gt; '00' and company_code = '89508' THEN 1 ELSE 0 end) AS gagal_dana,  SUM(case when response_code = '00' and company_code = '60401' THEN 1 ELSE 0 end) AS sukses_link,  SUM(case when response_code &lt;&gt; '00' and company_code = '60401' THEN 1 ELSE 0 end) AS gagal_link,  SUM(case when response_code = '00' and company_code = '89308' THEN 1 ELS
+E 0 end) AS sukses_shopeepay,  SUM(case when response_cod</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">CME</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              71,683</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               1,027</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  70</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">UPDATE  API_UBP_LOG SET STATUSMPSFLAGGING = :1 , REFERENCE = :2 , UPDATED_DATE = sysdate, TRANSACTIONSTATUS = :3   WHERE BILLKEY1 = :4  AND PAYMENTAMOUNT = :5  AND RRN = :6  AND MERCHANT_ID_API = :7 </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SPAN</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              50,520</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 820</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  62</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN SPAN.SPANCREATEREPORT (:1 , :2 , :3 , :4 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SPAN</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              22,844</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                 423</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  54</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT COUNT(*) FROM SPAN_LOG_TRX_USER WHERE FILENAME=:B1 </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           2,274,554</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             127,894</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  18</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN sys.dbms_auto_report_internal.i_save_report (:rep_ref, :snap_id, :pr_class,                                              :rep_id, :suc); END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           2,179,214</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             127,865</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  17</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT XMLTYPE(DBMS_REPORT.GET_REPORT_WITH_SUMMARY(:B1 )) FROM DUAL</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              29,976</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               1,779</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  17</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">WITH MONITOR_DATA AS (SELECT * FROM TABLE(GV$(CURSOR( SELECT USERENV('instance') AS INST_ID, KEY, NVL2(PX_QCSID, NULL, STATUS) STATUS, FIRST_REFRESH_TIME, LAST_REFRESH_TIME, REFRESH_COUNT, PROCESS_NAME, SID, SQL_ID, SQL_EXEC_START, SQL_EXEC_ID, DBOP_NAME, DBOP_EXEC_ID, SQL_PLAN_HASH_VALUE, SQL_FULL_PLAN_HASH_VALUE, SESSION_SERIAL#, SQL_TEXT, PX_SERVER#, PX_SERVER_GROUP, PX_SERVER_SET, PX_QCINST_ID, PX_QCSID, CASE WHEN ELAPSED_TIME &lt; (CPU_TIME+ APPLICATION_WAIT
+_TIME+ CONCURRENCY_WAIT_TIME+ CLUSTER_WAIT_TIME+ USER_IO_WAIT_TIME+ QUEUING_TIME) THEN (CPU_TIME+ APPLICATION_WAIT_TIME+ CONCURRENCY_WAIT_TIME+ CLUSTER_WAIT_TIME+ USER_IO_WAIT_TIME+ QUEUING_TIME) ELSE ELAPSED_TIME END ELAPSED_TIME, QUEUING_TIME, CPU_TIME, APPLICATION_WAIT_TIME, CONCURRENCY_WAIT_TIME, CLUSTER_WAIT_TIME, USER_IO_WAIT_TIME, CASE WHEN ELAPSED_TIME &lt; (CPU_TIME+ APPLICATION_WAIT_TIME+ CONCURRENCY_WAIT_TIME+ CLUSTER_WAIT_TIME+ USER_IO_WAIT_TIME+ QUEUING_TIME) THEN 0 ELSE ELAPSED_TIM
+E - (CPU_TIME+ APPLICATION_WAIT_TIME+ C</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">AUTOPAY</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              32,489</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               2,004</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  16</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT  LOG_TRX_ID, REF_ID, TRX_SEQ_NO, TRX_STATUS_CODE,          TRX_STATUS_MSG, TRX_TIMESTAMP, CUST_CODE,          BANK_CODE, SWIFT_CODE, DEBIT_ACCOUNT,   CREDIT_ACCOUNT, AMOUNT, CURRENCY,   DESCRIPTION, TRX_DATE, EMAS_STATUS,   EMAS_REASON, EMAS_LOGIN_ID, CLIENT_IP_ADDRESS FROM    AUTOPAY.T_LOG_TRX LT  WHERE LT.LOG_TRX_ID &lt;&gt; :1  AND         LT.REF_ID= :2  AND LT.CUST_CODE=:3  </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              17,425</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               1,326</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                  13</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2"> SELECT source,        (case when time_secs &lt; 1 then 1 else time_secs end) as time_secs,        operation  FROM   ( SELECT  1  as source,                 trunc((sysdate - cast(ll.log_date as date)) * 86400)                   as time_secs,                 decode(ll.operation,                        'OPEN',  0                        ,  1 ) as operation,                 ll.log_id as log_id          FROM  DBA_SCHEDULER_WINDOW_LOG ll ,                 ( SELECT max(
+l.log_id) as max_log_id                   FROM  DBA_SCHEDULER_WINDOW_LOG l ,                         DBA_SCHEDULER_WINGROUP_MEMBERS m                   WHERE  l.window_name = m.window_name                     AND  m.window_group_name = 'MAINTENANCE_WINDOW_GROUP'                     AND  l.operation in ('OPEN', 'CLOSE')                     AND  CAST(l.log_date AS DATE) &lt; ( SELECT cast(min(end_interval_time) as date) as btime FROM  WRM$_SNAPSHOT bsi  WHERE  bsi.dbid = :dbid  AND bsi.instance_nu
+mber = :inst  AND bsi.snap_id = :bid   </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           2,013,324</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             238,152</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   8</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">UPDATE  MPN_TRX_LOG SET FLAGGINGBS = :1   WHERE TRANSACTION_ID = :2 </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">IBFT</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              33,503</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               4,393</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   8</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT   t1.LOG_ISO_TRX_ID,t1.EVENT,t1.CREATED_DATETIME,t1.RESPONSE_MESSAGE,t1.COMPANY_CODE,t1.BILL_KEY1,t1.BILL_KEY2,t1.BILL_KEY3,t1.LOG_REQUEST,t1.LOG_RESPONSE,t1.PRIMARY_ACCOUNT_NUMBER,t1.PROCESSING_CODE,t1.AMOUNT_TRANSACTION,t1.AMOUNT_SETTLEMENT,t1.AMOUNT_CARD_HOLDER_BILL,t1.TRANS_DATETIME,t1.CARD_HOLDER_BILL_FEE,t1.SETTLEMENT_CONV_RATE,t1.TRACE_AUDIT_NUMBER,t1.LOCAL_TRANSACTION_TIME,t1.LOCAL_TRANSACTION_DATE,t1.MERCHENT_TYPE,t1.TRACK_2_DATA,t1.RETV_REF_NUMBE
+R,t1.CARD_ACCP_TERMINAL,t1.CARD_ACCP_NAME,t1.ADD_PRIVATE_DATA,t1.PIN_DATA,t1.RESERVED_PRIVATE_1,t1.RESERVED_PRIVATE_2,t1.RESERVED_PRIVATE_3,t1.RESERVED_PRIVATE_4,t1.ACCOUNT_IDENTIFICATION_1,t1.ACCOUNT_IDENTIFICATION_2,t1.RESERVED_PRIVATE_USE_1,t1.RESERVED_PRIVATE_USE_2,t1.RESERVED_PRIVATE_USE_3,t1.RESERVED_PRIVATE_USE_4,t1.RESERVED_PRIVATE_USE_5,t1.RESERVED_PRIVATE_USE_6,t1.RESERVED_PRIVATE_USE_7,t1.RESPONSE_CODE,t1.CURRENCY_CODE_TARNS,t1.RECV_INT_IDENT_CODE,t1.AUTH_IDENT_RESP,t1.ACQ_INST_IDENT_
+CODE,t1.ADD_RESP_DATA,t1.CAPTURE_</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ISSPLIT</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              25,497</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               3,909</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   7</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select s.ID, m.TS, m.SERVER_ID, m.MEMBER_NAME, s.NAMESPACE, s.ORIGIN, s.API_CATEGORY, s.STATUS_CODE, s.EXEC_STATUS, s.AVG_EXEC_TIME, s.EXEC_COUNT, m.CONTENT from IS_MONITOR m left join IS_SERVICE_STATS s on ( s.MONITOR_FK = m.ID ) where ( m.CATEGORY = 'servicestats' and s.ID &gt;  :v0  and s.ID &lt;=  :v1  ) order by m.ts</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">CME</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              19,575</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               3,683</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   5</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT * FROM (SELECT CREDIT_ACCOUNT_NO, FTSERVICE, BANK_CODE FROM MDR_ACCOUNT_DETAIL WHERE STATUS IS NULL ORDER BY INSERTDATE ASC) WHERE ROWNUM &lt;= 100</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             519,926</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             122,897</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   4</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT /*+ OPT_PARAM('_fix_control' '16391176:1') */ GROUP_TYPE, BUCKET_START, BUCKET_END, TM_GROUP_TYPE, TM_BUCKET_START, TM_BUCKET_END, SUM(TM_CPU_FIRST_BUCKET_VALUE) TM_CPU_FIRST_BUCKET_VALUE, SUM(TM_CPU_MIDDLE_BUCKETS_VALUE) TM_CPU_MIDDLE_BUCKETS_VALUE, SUM(TM_CPU_LAST_BUCKET_VALUE) TM_CPU_LAST_BUCKET_VALUE, SUM(TM_DB_FIRST_BUCKET_VALUE) TM_DB_FIRST_BUCKET_VALUE, SUM(TM_DB_MIDDLE_BUCKETS_VALUE) TM_DB_MIDDLE_BUCKETS_VALUE, SUM(TM_DB_LAST_BUCKET_VALUE) TM_DB_LA
+ST_BUCKET_VALUE, SUM(RREQS_FIRST_BUCKET_VALUE) RREQS_FIRST_BUCKET_VALUE, SUM(RREQS_MIDDLE_BUCKETS_VALUE) RREQS_MIDDLE_BUCKETS_VALUE, SUM(RREQS_LAST_BUCKET_VALUE) RREQS_LAST_BUCKET_VALUE, SUM(WREQS_FIRST_BUCKET_VALUE) WREQS_FIRST_BUCKET_VALUE, SUM(WREQS_MIDDLE_BUCKETS_VALUE) WREQS_MIDDLE_BUCKETS_VALUE, SUM(WREQS_LAST_BUCKET_VALUE) WREQS_LAST_BUCKET_VALUE, SUM(RBYTES_FIRST_BUCKET_VALUE) RBYTES_FIRST_BUCKET_VALUE, SUM(RBYTES_MIDDLE_BUCKETS_VALUE) RBYTES_MIDDLE_BUCKETS_VALUE, SUM(RBYTES_LAST_BUCKET_
+VALUE) RBYTES_LAST_BUCKET_VALUE, </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SPAN</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              12,475</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               4,625</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   3</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT   t1.FILE_NAME,t1.BATCHID,t1.TRXHEADERID,t1.SPAN_FN_TYPE,t1.DEBIT_ACCOUNT,t1.DEBIT_ACCOUNT_TYPE,t1.DOCUMENT_DATE,t1.TOTAL_AMOUNT,t1.TOTAL_RECORD,t1.PROC_STATUS,t1.PROC_DESCRIPTION,t1.XML_FILE_NAME,t1.RESPONSE_CODE,t1.ACK_FILE_NAME,t1.ACK_STATUS,t1.ACK_DESCRIPTION,t1.CREATE_DATE,t1.UPDATE_DATE,t1.RETRY_STATUS,t1.RETUR_STATUS,t1.TRXTYPE,t1.SC_FILE_NAME,t1.SC_TRXDETAILID_START,t1.SC_TRXDETAILID_END,t1.ASYNCHRONOUS,t1.SC_SETTLEMENT,t1.PAYROLL_TYPE,t1.GL_ACCOUN
+T,t1.RETRY_NUMBER_L1,t1.SCDATE,t1.FORCED_ACK,t1.RETRY_NUMBER_L2,t1.LEGSTATUS,t1.L1_STATUS,t1.L2_STATUS,t1.FTP_STATUS,t1.CHANGE_STATUS,t1.TOTAL_SENDTOHOST,t1.LATE_UPDATE_FLAGGING,t1.XML_VOID_FILE_NAME,t1.VOID_FLAG,t1.REJECTED_FILE_FLAG,t1.EXTRACT_FILE_FLAG,t1.EXEC_FILE_FLAG,t1.WAIT_STATUS,t1.TOTAL_AMOUNT_SENDTOHOST,t1.XML_REJECTED_FILE_NAME  FROM SPAN_DATA_VALIDATION t1 WHERE (t1.PROC_STATUS = :1  AND ( t1.TRXTYPE = :2  OR t1.TRXTYPE = :3  ) AND t1.DOCUMENT_DATE = TO_CHAR(SYSDATE,'YYYY-MM-DD')) <
+/FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">IBFT</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             152,641</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              82,495</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   2</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  IBFT.LOG_ISO_TRX(LOG_ISO_TRX_ID, EVENT, CREATED_DATETIME, RESPONSE_MESSAGE, COMPANY_CODE, BILL_KEY1, BILL_KEY2, BILL_KEY3, LOG_REQUEST, LOG_RESPONSE, PRIMARY_ACCOUNT_NUMBER, PROCESSING_CODE, AMOUNT_TRANSACTION, AMOUNT_SETTLEMENT, AMOUNT_CARD_HOLDER_BILL, TRANS_DATETIME, CARD_HOLDER_BILL_FEE, SETTLEMENT_CONV_RATE, TRACE_AUDIT_NUMBER, LOCAL_TRANSACTION_TIME, LOCAL_TRANSACTION_DATE, RESPONSE_CODE, MERCHENT_TYPE, TRACK_2_DATA, RETV_REF_NUMBER, CARD_ACCP_
+TERMINAL, CARD_ACCP_NAME, ADD_PRIVATE_DATA, CURRENCY_CODE_TARNS, PIN_DATA, RESERVED_PRIVATE_1, RESERVED_PRIVATE_2, RESERVED_PRIVATE_3, RESERVED_PRIVATE_4, ACCOUNT_IDENTIFICATION_1, ACCOUNT_IDENTIFICATION_2, RESERVED_PRIVATE_USE_1, RESERVED_PRIVATE_USE_2, RESERVED_PRIVATE_USE_3, RESERVED_PRIVATE_USE_4, RESERVED_PRIVATE_USE_5, RESERVED_PRIVATE_USE_6, RESERVED_PRIVATE_USE_7, RECV_INT_IDENT_CODE, AUTH_IDENT_RESP, ACQ_INST_IDENT_CODE, ADD_RESP_DATA, CAPTURE_DATE, MTI, HEADER) VALUES (PRIMALOGID.nextv
+al, :1 , sysdate, :2 , :3 , :4 , </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          15,619,807</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          12,352,226</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  LOG_UBP_TRX(LOG_UBP_TRX_ID, LOG_BILL_ID, EVENT, TRX_TIMESTAMP, TRACE_NUMBER, TRACE_KEY, ORIGINAL_TRACE_KEY, BILL_KEY1, BILL_KEY2, BILL_KEY3, EBS_REMARK, REVERSED_FLAG, CREATE_WHO, CREATE_DATE, CHANGE_WHO, CHANGE_DATE, RETRIEVAL_NUMBER, CAPTURE_DATE, REF1, REF2, REF3, CH_TRACE_NUMBER, CH_RETRIEVAL_NUMBER, CHANNEL_ID, RESPONSE_CODE, RESPONSE_MESSAGE, COMPANY_CODE, COMPANY_ID, LOG_REQUEST, LOG_RESPONSE, PAYMENT_AMOUNT, CHANNEL_DTM) VALUES (:1 , :2 , :3
+, SYSDATE, :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 , :12 , SYSDATE, :13 , :14 , :15 , :16 , :17 , :18 , :19 , :20 , :21 , :22 , :23 , :24 , :25 , :26 , :27 , :28 , :29 , :30 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             171,057</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             144,494</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select /*+ index(idl_ub1$ i_idl_ub11) */ piece#,length,piece from idl_ub1$ where obj#=:1 and part=:2 and version=:3 order by piece#</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ISSPLIT</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              11,238</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">               9,513</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select count(*) from IS_MONITOR where CATEGORY= :v0 </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,996,123</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,904,821</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  LOG_UBP_TRX(LOG_UBP_TRX_ID, LOG_BILL_ID, EVENT, TRX_TIMESTAMP, TRACE_NUMBER, TRACE_KEY, ORIGINAL_TRACE_KEY, BILL_KEY1, BILL_KEY2, BILL_KEY3, EBS_REMARK, REVERSED_FLAG, CREATE_WHO, CREATE_DATE, CHANGE_WHO, CHANGE_DATE, RETRIEVAL_NUMBER, CAPTURE_DATE, REF1, REF2, REF3, CH_TRACE_NUMBER, CH_RETRIEVAL_NUMBER, CHANNEL_ID, RESPONSE_CODE, RESPONSE_MESSAGE, COMPANY_CODE, COMPANY_ID, LOG_REQUEST, LOG_RESPONSE, PAYMENT_AMOUNT, CHANNEL_DTM) VALUES (:1 , :2 , :3
+, :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 , :12 , :13 , :14 , :15 , :16 , :17 , :18 , :19 , :20 , :21 , :22 , :23 , :24 , :25 , :26 , :27 , :28 , :29 , :30 , :31 , :32 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             171,105</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             179,357</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  MPN_TRX_LOG(ID, CREATED_ON, MESSAGE, AMOUNT, BANK_ID, BILLING_INFO01, BILLING_INFO010, BILLING_INFO02, BILLING_INFO03, BILLING_INFO04, BILLING_INFO05, BILLING_INFO06, BILLING_INFO07, BILLING_INFO08, BILLING_INFO09, BRANCH_CODE, BUDGET_ID, CHANNEL_TYPE, CURRENCY, CUSTOMER_NAME, GMT, LOCAL_DATETIME, PAYMENT_CODE, RESPONSE_CODE, SETTLEMENT_DATE, SWITCHER_CODE, TERMINAL_ID, TERMINAL_LOCATION, TRANSACTION_ID, BILLER_ACCOUNT_NUMBER, NTB, NTPN, TYPE, LOCAL_
+TRANSACTION_DATE, RT_ACTIVATION_ID, UPDATE_ON, NOSAKTI, FLAGGINGBS, FLAGGINGPL) VALUES (:1 , SYSDATE, :2 , :3 , :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 , :12 , :13 , :14 , :15 , :16 , :17 , :18 , :19 , :20 , :21 , :22 , :23 , :24 , :25 , :26 , :27 , :28 , :29 , :30 , :31 , :32 , :33 , :34 , :35 , :36 , :37 , :38 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SPAN</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              12,283</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              14,952</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN SPAN.SPANHOSTRESPONSE (:1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              17,267</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              24,545</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  BPJSBPU_SIMPLE_BAYAR(REQ_ID, JSON_DATA, RET, MSG, KODE, REMARK, RETRY_COUNT, CURRENCY_CODE, CUST_ACCT_NO, MANUAL_HIT_COUNT, FAULT, CHANNEL_ID, COMPANY_CODE, URL, MERCHANT_TYPE, NIK, BLN_PROGRAM, TRACE_NUMBER, TERMINAL_ID, KODE_IURAN) VALUES (:1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 , :12 , :13 , :14 , :15 , :16 , :17 , :18 , :19 , :20 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             109,152</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             169,442</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select /*+ index(idl_ub2$ i_idl_ub21) */ piece#,length,piece from idl_ub2$ where obj#=:1 and part=:2 and version=:3 order by piece#</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SAMS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              19,194</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              32,742</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select  trim(LOG_ATM_ID), trim(PAN), trim(PROCESSING_CODE), trim(MTI), AMOUNT,  CASE    WHEN LENGTH(REQUEST_TIME) = 13 THEN REQUEST_TIME   WHEN REQUEST_TIME LIKE '%bit12%' THEN TO_CHAR(response_time,'YYMMDD HH24MISS')   WHEN LENGTH(REQUEST_TIME) = 23 THEN TO_CHAR(TO_TIMESTAMP(SUBSTR(request_time,0,19), 'MM/DD/YYYY HH24:MI:SS'), 'YYMMDD HH24MISS')   WHEN REQUEST_TIME IS NULL THEN TO_CHAR(response_time,'YYYY-MM-DD HH24:MI:SS')   ELSE REQUEST_TIME END AS REQ
+UEST_TIME,  TO_CHAR(response_time,'YYYY-MM-DD HH24:MI:SS') as RESPONSE_TIME,  trim(STAN), trim(RRN), trim(TERMINAL_ID), trim(NVL(MERCHANT_TYPE, '-')) AS MERCHANT_TYPE, EVENT, trim(RESPONSE_CODE), DEBIT_ACCT,  trim(NVL(DEBIT_AMNT, '-')) AS DEBIT_AMNT,  trim(NVL(CREDIT_ACCT, '-')) AS CREDIT_ACCT, CREDIT_AMNT, HOST_RESP_CODE, trim(NVL(REVERSAL_RESP_CODE, '-')) AS REVERSAL_RESP_CODE, CHANNEL, trim(RESPONSE_MESSAGE), TRANSYS_ID from SAMS_TRX_LOG where TRANSYS_ID &gt; :1  and TRANSYS_ID &lt;= :2
+  order by TRANSYS_ID</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              10,237</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              17,719</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   1</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN PKG_BPJSJO.MOVESPLITTRXTOLOGTRX (:1 , :2 , :3 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SAMSCLSTR</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          17,657,038</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          36,114,215</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">UPDATE IS_USER_TASKS SET                    DESCRIPTION= :v0  ,                    SERVICE= :v1  ,                    TARGET= :v2  ,                    RUNASUSER= :v3  ,                    RUNFROMEND= :v4  ,                    TASKTYPE= :v5  ,                    STARTTIME= :v6  ,                    ENDTIME= :v7  ,                    TIMEINTERVAL= :v8  ,                    MONTHMASK= :v9  ,                    DAYOFWEEKMASK= :v10  ,                    DAYOFMONTHMAS
+K= :v11  ,                    HOURMASK= :v12  ,                    MINUTEMASK= :v13  ,                    STATE= :v14  ,                    RUNNINGON= :v15  ,                    UUIDREF= :v16  ,                    NEXTRUN= :v17  ,                    LATENESS= :v18  ,                    LATENESSACTION= :v19  ,                    INPUTS= :v20  ,                    INCLUDECLUSTERNODES= :v21  ,                    INTERNALTASK= :v22  ,                    START_AT= :v23  ,                    END_AT= :
+v24  ,                    RUN_AT=</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              16,957</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              37,476</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">SELECT   t1.LOG_ID,t1.ACTIVATION_ID,t1.NOTAGIHAN,t1.KODEREFBANK,t1.SPLIT_TRX_ID,t1.STATUS,t1.MESSAGE,t1.EXTERNAL_ID,t1.TRANSACTION_CODE,t1.TELLER_ID,t1.JOURNAL_SEQ,t1.CHANNEL_ID,t1.TRX_TIMESTAMP,t1.DEBIT_ACC,t1.DEBIT_AMT,t1.CREDIT_ACC,t1.CREDIT_AMT,t1.CHARGES_AMOUNT,t1.CREATE_DATE,t1.DEBIT_CURR,t1.CREDIT_CURR,t1.CHARGES_CURR,t1.REMARK1,t1.REMARK2,t1.REMARK3,t1.REMARK4,t1.RESPONSE_CODE,t1.RESPONSE_MESSAGE,t1.REFERENCE1,t1.REFERENCE2,t1.REFERENCE3,t1.REFERENCE4,t1.
+REFERENCE5  FROM BPJSJO_TRX_HISTORY t1 WHERE (t1.SPLIT_TRX_ID = :1  AND t1.REFERENCE2 = 'Fund Transfer')  ORDER BY 6 DESC</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              22,845</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              55,481</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select cols,audit$,textlength,intcols,nvl(property,0),flags,rowid from view$ where obj#=:1</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              60,179</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             169,251</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select /*+ index(idl_sb4$ i_idl_sb41) */ piece#,length,piece from idl_sb4$ where obj#=:1 and part=:2 and version=:3 order by piece#</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,414,189</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           4,552,004</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  LOG_BILL(LOG_BILL_ID, COMPANY_ID, CUSTOMER_CODE, OPEN_DATE, CLOSE_DATE, REFERENCE1, REFERENCE2, REFERENCE3, REFERENCE4, REFERENCE5, REFERENCE6, REFERENCE7, REFERENCE8, REFERENCE9, REFERENCE10, REFERENCE11, REFERENCE12, REFERENCE13, REFERENCE14, REFERENCE15, REFERENCE16, REFERENCE17, REFERENCE18, REFERENCE19, REFERENCE20, BILL_KEY1, BILL_KEY2, BILL_KEY3, CUST_CHARGE_AMOUNT, COMP_CHARGE_AMOUNT, SOA_TRANSACTION_ID, CREATE_WHO, CREATE_DATE, CHANGE_WHO, C
+HANGE_DATE, CUSTOMER_NAME, COMP_ACCOUNT_NO, CHARGE_ACCOUNT_NO, CUST_ACCOUNT_NO, CUST_ACCOUNT_NAME, REFERENCE21, REFERENCE22, REFERENCE23, REFERENCE24, REFERENCE25, REFERENCE26, REFERENCE27, REFERENCE28, REFERENCE29, REFERENCE30, REFERENCE31, REFERENCE32, REFERENCE33, REFERENCE34, REFERENCE35, REFERENCE36, REFERENCE37, REFERENCE38, REFERENCE39, REFERENCE40, REFERENCED1, REFERENCED2, REFERENCED3, REFERENCED4, REFERENCED5, REFERENCED6, REFERENCED7, REFERENCED8, REFERENCED9, REFERENCED10, REFERENCE4
+1, REFERENCE42, REFERENCE43, REFE</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              10,940</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              35,715</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  BPJSJO_TRX_SPLIT(LOG_TRX_ID, CREATEDDATE, UPDATEDDATE, MESSAGES, RET, BLNTAGIHAN, EVENT, TAGIHAN, KODEDIVISI, NAMAPERUSAHAAN, NOTAGIHAN, NPP, TRACE_NUMBER, KODEREFBANK, STATUS, REFERENCE1, REFERENCE2, REFERENCE3, REFERENCE4, REFERENCE5) VALUES (BPJSJO_TRXSPLIT_ID.NEXTVAL, SYSDATE, :1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 , :12 , :13 , :14 , :15 , :16 , :17 , :18 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              19,060</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              64,214</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN PKG_IBS.MOVE_TO_ARC (:1 , :2 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              43,626</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             169,442</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select /*+ index(idl_char$ i_idl_char1) */ piece#,length,piece from idl_char$ where obj#=:1 and part=:2 and version=:3 order by piece#</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             305,870</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,611,625</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select /*+ rule */ bucket, endpoint, col#, epvalue, epvalue_raw, ep_repeat_count, endpoint_enc from histgrm$ where obj#=:1 and intcol#=:2 and row#=:3 order by bucket</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             454,693</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           2,705,152</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">UPDATE  LOG_BILL SET COMPANY_ID = :1 , CUSTOMER_CODE = :2 , OPEN_DATE = :3 , CLOSE_DATE = :4 , REFERENCE1 = :5 , REFERENCE2 = :6 , REFERENCE3 = :7 , REFERENCE4 = :8 , REFERENCE5 = :9 , REFERENCE6 = :10 , REFERENCE7 = :11 , REFERENCE8 = :12 , REFERENCE9 = :13 , REFERENCE10 = :14 , REFERENCE11 = :15 , REFERENCE12 = :16 , REFERENCE13 = :17 , REFERENCE14 = :18 , REFERENCE15 = :19 , REFERENCE16 = :20 , REFERENCE17 = :21 , REFERENCE18 = :22 , REFERENCE19 = :23 , REFERE
+NCE20 = :24 , BILL_KEY1 = :25 , BILL_KEY2 = :26 , BILL_KEY3 = :27 , CUST_CHARGE_AMOUNT = :28 , COMP_CHARGE_AMOUNT = :29 , SOA_TRANSACTION_ID = :30 , CHANGE_WHO = :31 , CHANGE_DATE = SYSDATE, CUSTOMER_NAME = :32 , COMP_ACCOUNT_NO = :33 , CHARGE_ACCOUNT_NO = :34 , CUST_ACCOUNT_NO = :35 , CUST_ACCOUNT_NAME = :36 , REFERENCE21 = :37 , REFERENCE22 = :38 , REFERENCE23 = :39 , REFERENCE24 = :40 , REFERENCE25 = :41 , REFERENCE26 = :42 , REFERENCE27 = :43 , REFERENCE28 = :44 , REFERENCE29 = :45 , REFEREN
+CE30 = :46 , REFERENCE31 = :47 , </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              74,528</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             450,992</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select owner#,name,namespace,remoteowner,linkname,p_timestamp,p_obj#, nvl(property,0),subname,type#,flags,d_attrs from dependency$ d, obj$ o where d_obj#=:1 and p_obj#=obj#(+) order by order#</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              10,474</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              64,214</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO T_IBS_BILLS_ARC SELECT * FROM T_IBS_BILLS WHERE COMPANY_CODE||'/'||BILL_KEY1||'/'||BILL_KEY2||'/'||BILL_KEY3 = :B1 </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              47,071</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             462,045</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select order#,columns,types from access$ where d_obj#=:1</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">CME</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              13,749</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             159,307</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN pkg_bulkfile_V2.moveFTPrcToReq (:1 , :2 , :3 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">AUTOPAY2</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              40,417</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             566,420</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO T_CTX_LOG ( IID, CLIENT_ID, RID, DB_ACCT_NO, CR_ACCT_NO, CR_BANK_CODE, CR_BRANCH_NO, CR_CITY_CODE, TX_AMT, TX_CUR, REMARK1, REMARK2, REMARK3, EMAS_USER, EMAS_SEQ, USR_TRF_METHOD, EFF_TRF_METHOD, DB_AMT, CR_AMT, CH_AMT, CH_CUR, RSP_CODE, RSP_ERROR_MSG, RSP_TIMESTAMP, START_DTM, END_DTM, ORI_IID, SESS_ID, SESS_SEQ, RSP_ERROR_NO, REMITTANCE_NO, EXTERNAL_ID) SELECT :B32 , :B31 , :B30 , :B29 , :B28 , :B27 , :B26 , :B25 , :B24 , :B23 , :B22 , :B21 , :B20 ,
+:B19 , :B18 , :B17 , :B16 , :B15 , :B14 , :B13 , :B12 , :B11 , :B10 , :B9 , :B8 , :B7 , :B6 , :B5 , :B4 , :B3 , :B2 , :B1 FROM DUAL WHERE NOT EXISTS(SELECT 1 FROM T_CTX_LOG WHERE EXTERNAL_ID = :B1 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              21,340</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             305,711</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">begin SYS.SCHEDULER$NTFY_SVC_METRICS(context =&gt; :1,reginfo =&gt; sys.aq$_reg_info(:2, :3, :4, :5, :6, :7),descr =&gt; sys.aq$_descriptor(:8, :9, :10, sys.msg_prop_t(:11, :12, :13, :14, :15, :16, :17, :18, sys.aq$_agent(:19, :20, :21), :22, :23), sys.aq$_ntfn_descriptor(:24), :25, :26), payload =&gt; :27, payloadl =&gt; :28); end; </FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">AUTOPAY2</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              68,688</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,096,189</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN PKG_TRX.LOG_CTX (:1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 , :12 , :13 , :14 , :15 , :16 , :17 , :18 , :19 , :20 , :21 , :22 , :23 , :24 , :25 , :26 , :27 , :28 , :29 , :30 , :31 , :32 , :33 , :34 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              14,852</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             304,388</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  T_LOYALTY_ISO_RAW(TRANSACTIONID, EVENTNAME, INCOMINGDATE, OUTGOINGDATE, RAWREQUEST, RAWRESPONSE, ERRORCODE, ERRORDESC, PROCCODE, MERCHANTTYPE, SYSTRACENO) VALUES (:1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ISSPLIT</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             211,510</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           4,605,231</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">insert into IS_MONITOR ( TS, SERVER_ID, MEMBER_NAME, CATEGORY, PATH,  CONTENT ) values(  :v0 ,  :v1 ,  :v2 ,  :v3 ,  :v4 ,  :v5 ) RETURNING ID INTO :RC1</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">CME</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              20,393</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             453,983</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  CME.T_TRX_LOG(LOG_ID, EXTERNAL_ID, TRANSACTION_CODE, TELLER_ID, JOURNAL_SEQ, CHANNEL_ID, TRX_TIMESTAMP, DEBIT_ACC, DEBIT_AMT, CREDIT_ACC, CREDIT_AMT, CHARGES_SWIFT, CHARGES_AMOUNT, VALUE_DATE, DEBIT_CURR, CREDIT_CURR, CHARGES_CURR, REMARK1, REMARK2, REMARK3, REMARK4, DEST_BANK_CODE, REMITTANCE_NUMBER, INTERNAL_ID, RESPONSE_CODE, RESPONSE_MESSAGE, RESPONSE_TIMESTAMP, REQ_DETAIL, RSP_DETAIL, CTL_CREATE_DTM, CTL_CREATE_BY, CTL_UPDATE_DTM, CTL_UPDATE_BY,
+ ORIGINAL_JOURNAL_SEQ, RATE_IBT_BUY, RATE_IBT_SELL, RATE_TT_BUY, RATE_TT_SELL, CHEQUE_NUMBER) VALUES (:1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 , :12 , :13 , :14 , :15 , :16 , :17 , :18 , :19 , :20 , :21 , :22 , :23 , :24 , :25 , :26 , :27 , :28 , :29 , :30 , :31 , :32 , :33 , :34 , :35 , :36 , :37 , :38 , :39 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              12,297</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             305,711</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">insert into "SYS"."SYS$SERVICE_METRICS_TAB"  (q_name, msgid, corrid, priority, state, delay, expiration,   time_manager_info, local_order_no, chain_no, enq_time, step_no, enq_uid,   enq_tid, retry_count, exception_qschema, exception_queue, recipient_key,   dequeue_msgid, user_data, sender_name, sender_address, sender_protocol,   user_prop, cscn, dscn)   values (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, 0, :15,         :16, :17, :18, :19, :20, :
+21, :22, :23, :24, :25)</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              12,722</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             404,080</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select text from view$ where rowid=:1</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              30,457</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,091,178</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  T_LOYALTY_WS_DETAIL(ID, TRANSACTIONID, REDEEMID, REDEEMVALUE, TXNREF, LOYALTYID, ACCOUNTID, TXNID, TYPE, NAME, QUANTITY, RESPCODE, RESPDESC, ACTIONNAME, REQUESTDATE, RESPONSEDATE) VALUES (:1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 , :12 , :13 , :14 , :15 , :16 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">ISSPLIT</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             101,983</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           3,875,597</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">insert into IS_SERVICE_STATS ( MONITOR_FK, NAMESPACE, ORIGIN, API_CATEGORY, STATUS_CODE, EXEC_STATUS, AVG_EXEC_TIME, EXEC_COUNT) values(  :v0 ,  :v1 ,  :v2 ,  :v3 ,  :v4 ,  :v5 ,  :v6 ,  :v7  )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              14,847</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             568,648</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select pos#,intcol#,col#,spare1,bo#,spare2,spare3 from icol$ where obj#=:1</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">AUTOPAY2</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              15,349</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             660,420</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN PKG_TRX.LOAD_LAST_CTX (:1 , :2 , :3 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">UBP</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              10,548</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             456,656</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">INSERT INTO  LOG_BILL_DETAIL(LOG_BILL_DETAIL_ID, LOG_BILL_ID, BILL_CODE, BILL_NAME, BILL_SHORTNAME, BILL_AMOUNT, PAID_FLAG, CUST_CHARGE_AMOUNT, COMP_CHARGE_AMOUNT, BILL_REFERENCE, CREATE_WHO, CREATE_DATE, CHANGE_WHO, CHANGE_DATE, BILL_CCY) VALUES (:1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 , :9 , :10 , :11 , :12 , :13 , :14 , :15 )</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              19,531</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,169,234</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select intcol#,nvl(pos#,0),col#,nvl(spare1,0) from ccol$ where con#=:1</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             385,753</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          26,399,310</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">insert into sys.aud$( sessionid,entryid,statement,ntimestamp#, userid,userhost,terminal,action#,returncode, obj$creator,obj$name,auth$privileges,auth$grantee, new$owner,new$name,ses$actions,ses$tid,logoff$pread, logoff$lwrite,logoff$dead,comment$text,spare1,spare2,  priv$used,clientid,sessioncpu,proxy$sid,user$guid, instance#,process#,xid,scn,auditid,  sqlbind,sqltext,obj$edition,dbid,rls$info,current_user)  values(:1,:2,:3,SYS_EXTRACT_UTC(SYSTIMESTAMP),     :4,:
+5,:6,:7,:8,     :9,:10,:11,:12,     :13,:14,:15,:16,:17,     :18,:19,:20,:21,:22,     :23,:24,:25,:26,:27,     :28,:29,:30,:31,:32,     :33,:34,:35,:36,:37,:38)</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SPAN</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              21,163</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,583,686</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN PKG_BULKFILE.selectUpdateSPANBulkRMSPAP2T (:1 , :2 , :3 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              15,175</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,782,477</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select type#,blocks,extents,minexts,maxexts,extsize,extpct,user#,iniexts,NVL(lists,65535),NVL(groups,65535),cachehint,hwmincr, NVL(spare1,0),NVL(scanhint,0),NVL(bitmapranges,0) from seg$ where ts#=:1 and file#=:2 and block#=:3</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SPAN</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              11,158</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           1,584,412</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">BEGIN pkg_bulkfile.selectUpdateSPANBulkFilePrc (:1 , :2 , :3 , :4 ) ; END;</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              35,380</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          11,087,962</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select col#, grantee#, privilege#,max(mod(nvl(option$,0),2)), max(bitand(nvl(option$,0), 8) /8), max(bitand(nvl(option$,0), 16) /16), max(bitand(nvl(option$,0),64) /64), max(bitand(nvl(option$,0), 128) /128) from objauth$ where obj#=:1 and col# is not null group by privilege#, col#, grantee# order by col#, grantee#</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              26,848</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          11,089,521</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select grantee#,privilege#,nvl(col#,0),max(mod(nvl(option$,0),2)),max(bitand(nvl(option$,0), 8) /8), max(bitand(nvl(option$,0), 16) /16), max(bitand(nvl(option$,0),64) /64), max(bitand(nvl(option$,0), 128) /128) from objauth$ where obj#=:1 group by grantee#,privilege#,nvl(col#,0) order by grantee#</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              15,225</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">           6,564,485</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select i.obj#,i.ts#,i.file#,i.block#,i.intcols,i.type#,i.flags,i.property,i.pctfree$,i.initrans,i.maxtrans,i.blevel,i.leafcnt,i.distkey,i.lblkkey,i.dblkkey,i.clufac,i.cols,i.analyzetime,i.samplesize,i.dataobj#,nvl(i.degree,1),nvl(i.instances,1),i.rowcnt,mod(i.pctthres$,256),i.indmethod#,i.trunccnt,nvl(c.unicols,0),nvl(c.deferrable#+c.valid#,0),nvl(i.spare1,i.intcols),i.spare4,i.spare2,i.spare6,decode(i.pctthres$,null,null,mod(trunc(i.pctthres$/256),256)),nvl(i.ev
+aledition#,1),nvl(i.unusablebefore#,0),nvl(i.unusablebeginning#,0), ist.cachedblk,ist.cachehit,ist.logicalread from ind$ i, ind_stats$ ist, (select enabled, min(intcols) unicols,min(to_number(bitand(defer,1))) deferrable#,min(to_number(bitand(defer,4))) valid# from cdef$ where obj#=:1 and enabled &gt; 1 group by enabled) c where i.obj#=c.enabled(+) and i.obj# = ist.obj#(+) and i.bo#=:1 order by i.obj#</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">              15,905</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">          10,234,622</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select con#,obj#,rcon#,enabled,nvl(defer,0),spare2,spare3,refact from cdef$ where robj#=:1</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">SYS</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">             104,500</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">         403,322,169</FONT></TD>
+	<TD ALIGN="CENTER"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD><FONT FACE="Arial" SIZE="2">select /*+ rule */ bucket_cnt, row_cnt, cache_cnt, null_cnt, timestamp#, sample_size, minimum, maximum, distcnt, lowval, hival, density, col#, spare1, spare2, avgcln, minimum_enc, maximum_enc from hist_head$ where obj#=:1 and intcol#=:2</FONT></TD>
+	</TR>
+
+</TABLE><BR>
+<FORM ACTION="../source/listsql1.htm" METHOD=GET>
+<INPUT TYPE=submit NAME=foo VALUE="Source Code"></FORM>
+</FONT></CENTER>
+<SCRIPT LANGUAGE="JavaScript" SRC="footer.js"></SCRIPT>
+</BODY></HTML>

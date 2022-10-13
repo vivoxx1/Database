@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Tablespace Usage</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   ddf.TABLESPACE_NAME,
+         ddf.BYTES,
+         ddf.BYTES-DFS.BYTES,
+         round(((ddf.BYTES-dfs.BYTES)/ddf.BYTES)*100,2),
+         dfs.BYTES,
+         round((1-((ddf.BYTES-dfs.BYTES)/ddf.BYTES))*100,2)
+from    (select TABLESPACE_NAME,
+                sum(BYTES) bytes 
+         from   dba_data_files 
+         group  by TABLESPACE_NAME) ddf,
+        (select TABLESPACE_NAME,
+                sum(BYTES) bytes 
+         from   dba_free_space 
+         group  by TABLESPACE_NAME) dfs
+where    ddf.TABLESPACE_NAME=dfs.TABLESPACE_NAME
+order by ((ddf.BYTES-dfs.BYTES)/ddf.BYTES) desc;
+
+select   'TOTALS',
+         sum(a.BYTES),
+         sum(a.BYTES-b.BYTES),
+         sum(b.BYTES)
+from     sys.orasnap_ddf a, sys.orasnap_dfs b
+where    a.TABLESPACE_NAME = b.TABLESPACE_NAME;
+
+</PRE>
+
+</BODY>
+</HTML>

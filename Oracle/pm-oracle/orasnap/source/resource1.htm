@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Resource Usage By User</B></FONT>
+<FORM>
+    	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   ses.SID,
+         nvl(ses.USERNAME,'ORACLE PROC'),
+         sn.NAME,
+         sest.VALUE
+from     sys.v_$session ses, sys.v_$statname sn, sys.v_$sesstat sest
+where    ses.SID = sest.SID
+and      sn.STATISTIC# = sest.STATISTIC#
+and      sest.VALUE is not null
+and      sest.VALUE != 0            
+order by ses.USERNAME, ses.SID, sn.NAME;
+</PRE>
+
+</BODY>
+</HTML>

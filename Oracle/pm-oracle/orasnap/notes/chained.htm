@@ -1,0 +1,29 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Tables Experiencing Chaining</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>TABLES EXPERIENCING CHAINING NOTES:</B><BR>
+<LI><B>Owner Name</B> - Owner of the table
+<LI><B>Table Name</B> - Name of the table
+<LI><B>Chained Rows</B> - Number of chained rows
+<LI><B>Total Rows</B> - Number of total rows 
+<LI><B>Percent Chained</B> - Percentage of chained rows
+<P>
+<LI> Chaining can occur when there is not enough room in the data blocks to
+store changes.  A chained record is one that exists in multiple blocks instead
+of a single block.  Accessing multiple blocks for the same record can be costly in terms of
+performance.
+<LI> To avoid chaining, set PCTFREE (amount of space reserved in a block for
+updates) correctly.  This parameter is set when the table is created.  The
+default value is set to 10 (10 percent free for updates) but this needs to
+be much higher in a table where there is a large frequency of update activity.
+</FONT>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,23 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Database Procedures / Packages</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>DATABASE PROCEDURE/PACKAGE NOTES:</B><BR>
+<LI><B>Owner</B> - Owner of the object
+<LI><B>Name</B> - Name of the object
+<LI><B>Type</B> - Type of object
+<P>
+<LI>PL/SQL procedures are stored, named objects that can return zero, one, or many values to the calling process. However, only one row of values can be returned from a single procedure call. Procedure variables used for sending variables into the program and for receiving values from the program are specified at the start of the program and designated as IN (input variables only that can't have their values altered by the program, so they're treated as constants), OUT (output variables that are set by the program during execution), and IN OUT (variables that are used for both input and output of values.)
+<LI>When creating procedures, the next line after the end of the procedure definition must be a forward slash (/) to tell Oracle to compile the procedure. The last statement of a PL/SQL procedure must end with a semicolon.
+<LI>Neither input nor output is required from a procedure. A procedure also doesn't require a declarative section. In fact, the only required part of a procedure is the PROCEDURE line and the executable block.
+<LI>Procedures are created using the CREATE PROCEDURE command. 
+</FONT>
+
+</BODY>
+</HTML>
+

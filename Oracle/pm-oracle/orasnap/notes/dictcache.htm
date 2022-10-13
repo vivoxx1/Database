@@ -1,0 +1,33 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Data Dictionary Cache</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>DATA DICTIONARY CACHE NOTES:</B><BR>
+<LI><B>Parameter</B> - Name of the parameter that determines the number of entries in the data dictionary cache.
+<LI><B>Gets</B> - Total number of requests for information on the data object.
+<LI><B>Getmisses</B> - Number of data requests resulting in cache misses.
+<LI><B>% Cache Misses</B> - Miss Ratio
+<LI><B>Count</B> - Total number of entries in the cache
+<LI><B>Usage</B> - Number of cache entries that contain valid data.
+<P>
+<LI>This report shows the DC cache statistics (a part of the shared pool). 
+<LI>Whenever the database parses a SQL statement, it scans the text for syntax and semantic correctness.  The semantic
+check requires cross-referencing of the information in the SQL statement and the data dictionary, including the
+table names, columns-to-date relationships, column names, data types, and security access privileges.  To resolve
+the relationships, Oracle uses the data dictionary cache in the SGA.  When the data sought in not in the cache, Oracle
+executes SQL statements to retrieve the data dictionary information from the SYSTEM tablespace.  These statements for data
+dictionary information represent one type of recursive SQL statement.  To increase the size available to the dictionary
+cache, increase the size of the shared pool area (via the SHARED_POOL_SIZE init.ora parameter.)
+<LI>Missing a get on the data dictionary or shared pool area of the SGA is more costly than missing a get
+on a data buffer or waiting for a redo buffer.
+<LI>If these parameters look familiar - you are probably recalling them from Oracle v6 (when you tuned these in the 
+init.ora file)
+</FONT>
+
+</BODY>
+</HTML>

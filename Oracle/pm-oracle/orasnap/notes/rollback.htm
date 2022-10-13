@@ -1,0 +1,35 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Rollback Segment Information</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>ROLLBACK SEGMENT INFORMATION NOTES:</B><BR>
+<LI><B>Segment Name</B> - Name of the rollback segment.
+<LI><B>Owner</B> - Owner of the rollback segment. 
+<LI><B>Tablespace</B> - Name of the tablespace containing the rollback segment.
+<LI><B>Segment ID</B> - ID number of the rollback segment.
+<LI><B>File ID</B> - ID number of the block containing the segment header.
+<LI><B>Block ID</B> - Starting block number of the extent.
+<LI><B>Initial Extent</B> - Initial extent size in bytes.
+<LI><B>Next Extent</B> - Secondary extent size in bytes.
+<LI><B>Min Extents</B> - Minimum number of extents.
+<LI><B>Max Extents</B> - Maximum number of extents.
+<LI><B>PCT Increase</B> - Percent increase for extent size.
+<LI><B>Status</B> - ONLINE if the segment is online, or PENDING OFFLINE if the segment is going offline but some active
+(distributed) transactions are using the rollback segment.  When the transaction(s) complete, the segment goes OFFLINE.
+<LI><B>Instance</B> - Instance this rollback segment belongs to (Parallel Server), or NULL for a single-instance system .
+<P>
+<LI>Rollback segments store system undo data allowing non-committed transactions to be rolled back, they can be likened to before image logs or journals in other database systems. Rollback segments store the before images of changed data.
+<LI>In addition to the SYSTEM rollback segment created when the database is built for use strictly by the SYSTEM tablespace, there must be at least one additional rollback segment  created. Usually the number of private rollback segments is determined by determining how many concurrent users will access the database and deciding how many users should be assigned to each rollback segment (by specifying the MINEXTENTS value). For example if you have 100 concurrent users and you want (on the average) 20 users per rollback segment then the MINEXTENTS would be set to 20 for each of 5 rollback segments. For private rollback segments the calculated ratio of  the initialization parameters TRANSACTIONS/TRANSACTIONS_PER_ROLLBACK_SEGMENT rounded up to the nearest integer should be used to determine the number of rollback segments created. 
+<LI>You cannot take the SYSTEM rollback segment offline.
+<LI>If the owner is SYS, they're private.  If the owner is PUBLIC they're public.
+<LI>You cannot alter a rollback segment from public to private or private to public. It must be dropped and re-created for this type of change.  
+</FONT>
+
+</BODY>
+</HTML>
+

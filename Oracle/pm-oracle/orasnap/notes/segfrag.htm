@@ -1,0 +1,28 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Segments With More Than 50% Of MaxExtents</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>SEGMENTS WITH MORE THAN 50% OF MAXEXTENTS NOTES:</B><BR>
+<LI><B>Owner</B> - Owner of the object
+<LI><B>Tablespace Name</B> - Name of the tablespace
+<LI><B>Segment Name</B> - Name of the segment
+<LI><B>Segment Type</B> - Type of segment
+<LI><B>Size</B> - Size of the object (bytes)
+<LI><B>Extents</B> - Current number of extents
+<LI><B>Max Extents</B> - Maximum extents for the segment
+<LI><B>Percentage</B> - Percentage of extents in use
+<P>
+<LI> As of v7.3.4, you can set MAXEXTENTS=UNLIMITED to avoid ORA-01631: max # extents (%s) reached in table $s.%s.
+<LI> To calculate the MAXEXTENTS value on versions &lt; 7.3.4 use the following equation: DBBLOCKSIZE / 16 - 7
+<LI> Here are the MAXEXTENTS for common blocksizes: 1K=57, 2K=121, 4K=249, 8K=505, and 16K=1017
+<LI> Multiple extents in and of themselves aren't bad.  However, if you also have chained rows, this can hurt performance.
+</FONT>
+
+</BODY>
+</HTML>
+

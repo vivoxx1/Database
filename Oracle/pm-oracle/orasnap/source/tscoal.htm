@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Tablespace Coalesced Extents</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   TABLESPACE_NAME,
+         TOTAL_EXTENTS,
+         EXTENTS_COALESCED,
+         PERCENT_EXTENTS_COALESCED,
+         TOTAL_BYTES,
+         BYTES_COALESCED,
+         TOTAL_BLOCKS,
+         BLOCKS_COALESCED,
+         PERCENT_BLOCKS_COALESCED
+from     dba_free_space_coalesced
+order by TABLESPACE_NAME;
+</PRE>
+
+</BODY>
+</HTML>

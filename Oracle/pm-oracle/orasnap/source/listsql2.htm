@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Shared Pool With Most Buffer Scans</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   EXECUTIONS,
+         BUFFER_GETS,
+         round(DISK_READS / decode(EXECUTIONS, 0, 1, EXECUTIONS) / 400,2),
+         SQL_TEXT
+from     sys.v_$sqlarea
+where    BUFFER_GETS / decode(EXECUTIONS,0,1, EXECUTIONS) / 400 > 10 
+order by EXECUTIONS desc;
+</PRE>
+
+</BODY>
+</HTML>

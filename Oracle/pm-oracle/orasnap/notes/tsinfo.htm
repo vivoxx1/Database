@@ -1,0 +1,34 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Tablespace Information</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>TABLESPACE INFORMATION NOTES:</B><BR>
+<LI><B>Tablespace Name</B> - Name of the tablespace
+<LI><B>Initial Extent</B> - Default initial extent size
+<LI><B>Next Extent</B> - Default incremental extent size
+<LI><B>Min Extents</B> - Default minimum number of extents
+<LI><B>Max Extents</B> - Default maximum number of extents
+<LI><B>Percent Increase</B> - Default percent increase for extent size
+<LI><B>Min Ext Size *</B> - Minimum extent size for the tablespace
+<LI><B>Status</B> - Tablespace status: ONLINE, OFFLINE, or INVALID (tablespace has been dropped)
+<LI><B>Contents</B> - Type of tablespace.  This column will have 'TEMPORARY' (v7.3+) for dedicated temporary tablespaces, and 'PERMANENT' for tablespaces that can store both temporary sort segments and permanent objects.
+<LI><B>Logging *</B> - Default logging attribute
+<LI><B>Extent Mgmt *</B> - Extent management: DICTIONARY or LOCAL
+<LI><B>Allocation Type *</B> - Type of extent allocation in effect for this tablespace
+<LI><B>Plugged In *</B> - YES, the tablespace is plugged in; NO, it is not plugged in.  If a tablespace is transported to an instance, the tablespace has its PLUGGED_IN value set to YES. 
+
+<P>
+<LI>By setting PCTINCREASE > 0, the SMON background process will automatically coalesce neighboring free extents in the tablespace.
+<LI>As of Oracle7.3, you can create a dedicated temporary tablespace.  In this kind of tablespace, a single temporary segment is created; it supports multiple users concurrently.  The temporary segment does not get dropped when the users no longer needs it; instead, it remains in the temporary tablespace awaiting another user request for temporary segment space.  Keeping the temporary segment in place avoids the costs associated with the creation and dropping of temporary segments.
+<P>&nbsp;<P>
+* - Denotes v8 columns
+</FONT>
+
+</BODY>
+</HTML>
+

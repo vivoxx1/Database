@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For CheckPoint Interval (Minutes)</B></FONT>
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   round(min(to_number(to_date(lh2.FIRST_TIME,'mm/dd/yy hh24:mi:ss') -
+         to_date(lh1.FIRST_TIME,'mm/dd/yy hh24:mi:ss') ) * 24 * 60),2),
+         round(max(to_number(to_date(lh2.FIRST_TIME,'mm/dd/yy hh24:mi:ss') -
+         to_date(lh1.FIRST_TIME,'mm/dd/yy hh24:mi:ss') ) * 24 * 60),2),
+         round(avg(to_number(to_date(lh2.FIRST_TIME,'mm/dd/yy hh24:mi:ss') -
+         to_date(lh1.FIRST_TIME,'mm/dd/yy hh24:mi:ss') ) * 24 * 60),2)
+from     sys.v_$loghist lh1, sys.v_$loghist lh2
+where    lh1.SEQUENCE# + 1 = lh2.SEQUENCE#
+and      lh1.SEQUENCE# < (
+         select   max (SEQUENCE#)
+         from     sys.v_$loghist);
+</PRE>
+
+</BODY>
+</HTML>

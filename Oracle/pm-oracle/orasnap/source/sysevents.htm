@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For System Events (ALL)</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   EVENT,
+         TOTAL_WAITS,
+         TOTAL_TIMEOUTS,
+         TIME_WAITED,
+         round(AVERAGE_WAIT,2)
+from     sys.v_$system_event
+order by TOTAL_WAITS;
+</PRE>
+
+</BODY>
+</HTML>

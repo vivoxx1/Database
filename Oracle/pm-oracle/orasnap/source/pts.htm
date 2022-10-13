@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Table Scan Statistics By User Process</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   "Username",
+         "SID",
+         "Long Scans",
+         "Short Scans",
+         "Rows Retreived",
+from     sys.orasnap_pts;
+
+
+<B>TEMPORARY VIEW</B>
+create or replace view SYS.ORASNAP_PTS
+as
+select   ss.USERNAME "Username",
+         se.SID "SID", 
+         sum(decode(NAME,'table scans (short tables)',value)) "Short Scans",
+         sum(decode(NAME,'table scans (long tables)', value)) "Long Scans",
+         sum(decode(NAME,'table scan rows gotten',value)) "Rows Retreived"
+from     sys.v_$session ss, 
+         sys.v_$sesstat se, 
+         sys.v_$statname sn
+where    se.statistic# = sn.statistic#
+and     (NAME  like '%table scans (short tables)%'
+         or NAME  like '%table scans (long tables)%'
+         or NAME  like '%table scan rows gotten%')
+and      se.SID = ss.SID
+and      ss.USERNAME is not null
+and      ss.AUDSID != userenv('SESSIONID')
+group by ss.USERNAME, se.SID;
+</PRE>
+
+</BODY>
+</HTML>

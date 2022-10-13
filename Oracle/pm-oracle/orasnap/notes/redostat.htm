@@ -1,0 +1,27 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Redo Buffers</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>REDO BUFFER NOTES:</B><BR>
+<LI><B>Parameter</B> - Name of the parameter
+<LI><B>Value</B> - Current value for the parameter
+<P>
+<LI><B>redo blocks written</B> - The number of redo blocks that have been written.
+<LI><B>redo buffer allocation retries</B> - The number of attempts to allocate space in the redo buffer.  A value other then 0 indicates that the redo writer is falling behind.  This could be caused by log switches or checkpoints.  By adjusting the LOG_CHECKPOINT_INTERVAL and LOG_CHECKPOINT_TIMEOUT parameters in the init.ora, you will be able to minimize the number of checkpoints.  You can also increase the number of LGWR writers.  These parameters are new in Oracle8 and are defined in the init.ora parameters LGWR_IO_SLAVES and ARCH_IO_SLAVES.
+<LI><B>redo entries</B> - This statistic increments each time redo entries are copied into the redo log buffer. (ie. The number of attempts to allocate spaec in the redo) 
+<LI><B>redo log space requests</B> - The active log file is full and Oracle is waiting for disk space to be allocated for the redo log entries. Space is created by performing a log switch. Small Log files in relation to the size of the SGA or the commit rate of the work load can cause problems. When the log switch occurs, Oracle must ensure that all committed dirty buffers are written to disk before switching to a new log file. If you have a large SGA full of dirty buffers and small redo log files, a log switch must wait for DBWR to write dirty buffers to disk before continuing.  
+<LI><B>redo size</B> - The total amount of redo generated in bytes.  
+<LI><B>redo small copies</B> - The number of redo entries that where copies to the redo buffer using the redo allocation latch.  By dividing this statistic by the number of redo entries, you will get the percentage of entries that used the allocation latch.  This percentage should be less then 10 percent.  If it is above 10 percent, try decreasing the size of the LOG_SMALL_ENTRY_MAX_SIZE in the init.ora.
+<LI><B>redo synch writes</B> - Usually, redo that is generated and copied into the log buffer need not be flushed out to disk immediately. The log buffer is a circular buffer that LGWR periodically flushes. Redo sync writes increments when changes being applied must be written out to disk due to a commit.  
+<LI><B>redo wastage</B> - Number of bytes wasted because redo blocks needed to be written before they are completely full. Early writing may be needed to commit transactions, to be able to write a database buffer or to switch logs.  
+<LI><B>redo writes</B> - Count of the total number of writes by LGWR to the redo log files.  
+</FONT>
+
+</BODY>
+</HTML>
+

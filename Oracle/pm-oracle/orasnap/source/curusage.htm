@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Cursor Usage By Session</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   USERNAME,
+         SID,
+         "Recursive Calls",
+         "Opened Cursors",
+         "Current Cursors"
+from     sys.orasnap_user_cursors
+order by "Recursive Calls", USERNAME, SID;
+
+
+<B>TEMPORARY VIEW</B>
+
+create or replace view SYS.ORASNAP_USER_CURSORS 
+as
+select   nvl(ss.USERNAME,'ORACLE PROC') Username,
+         se.SID SID, 
+         sum(decode(NAME,'recursive calls',value)) "Recursive Calls",
+         sum(decode(NAME,'opened cursors cumulative',value)) "Opened Cursors",
+         sum(decode(NAME,'opened cursors current',value)) "Current Cursors"
+from     sys.v_$session ss, sys.v_$sesstat se, sys.v_$statname sn
+where    se.statistic# = sn.statistic#
+and     (NAME  like '%opened cursors current%'
+         or NAME  like '%recursive calls%'
+         or NAME  like '%opened cursors cumulative%')
+and      se.SID = ss.SID
+and      ss.USERNAME is not null
+and      ss.AUDSID != userenv('SESSIONID')
+group by ss.USERNAME, se.SID;
+</PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+<BODY BGCOLOR="#C0C0C0">
+<CENTER><FONT FACE="Arial" SIZE="2">
+<TABLE WIDTH="100%">
+<TR>
+<TD><B><FONT FACE="Arial" SIZE="2"><A HREF="redocont.htm" TARGET="_blank">13-SEP-2022 19:59:11</A></FONT></B></TD>
+<TD ALIGN="RIGHT"><B><FONT FACE="Arial" SIZE="2">DBEAI</FONT></B></TD>
+</TR>
+</TABLE><BR>
+<TABLE BORDER=1 CELLPADDING=5>
+<TR>
+<TD ALIGN="CENTER" BGCOLOR="#FFFFFF" COLSPAN=6>
+<FONT SIZE="4"><B>Redo Log Buffer Contention</B></FONT>
+</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#CCCC99"><FONT FACE="Arial" SIZE="2"><B>Redo Latch Name</B></FONT></TD>
+<TD BGCOLOR="#CCCC99" ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2"><B>Gets</B></FONT></TD>
+<TD BGCOLOR="#CCCC99" ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2"><B>Misses</B></FONT></TD>
+<TD BGCOLOR="#CCCC99" ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2"><B>Sleeps</B></FONT></TD>
+<TD BGCOLOR="#CCCC99" ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2"><B>Immediate Gets</B></FONT></TD>
+<TD BGCOLOR="#CCCC99" ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2"><B>Immediate Misses</B></FONT></TD>
+</TR>
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">redo log management</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">redo transport task</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">           1,019,293</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                  24</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                  14</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">redo writing</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       2,262,849,207</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          10,180,788</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">              52,642</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">redo copy</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">              74,214</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                  16</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                  13</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">      25,770,943,082</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">           3,840,531</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">redo allocation</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       6,188,972,839</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">          28,889,964</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">             218,078</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">       4,258,380,173</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">         110,273,399</FONT></TD>
+	</TR>
+
+<TR>
+	<TD><FONT FACE="Arial" SIZE="2">redo gen encryption key structure</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">               7,747</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	<TD ALIGN="RIGHT"><FONT FACE="Arial" SIZE="2">                   0</FONT></TD>
+	</TR>
+
+</TABLE><BR>
+<FORM ACTION="../source/redocont.htm" METHOD=GET>
+<INPUT TYPE=submit NAME=foo VALUE="Source Code"></FORM>
+</FONT></CENTER>
+<SCRIPT LANGUAGE="JavaScript" SRC="footer.js"></SCRIPT>
+</BODY></HTML>

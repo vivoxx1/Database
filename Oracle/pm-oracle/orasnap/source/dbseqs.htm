@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Database Sequences</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   SEQUENCE_OWNER,
+         SEQUENCE_NAME,
+         MIN_VALUE,
+         MAX_VALUE,
+         INCREMENT_BY,
+         CYCLE_FLAG,
+         ORDER_FLAG,
+         CACHE_SIZE,
+         LAST_NUMBER
+from     dba_sequences
+where    SEQUENCE_OWNER not in ('SYS','SYSTEM')
+order by SEQUENCE_OWNER,SEQUENCE_NAME;
+</PRE>
+
+</BODY>
+</HTML>

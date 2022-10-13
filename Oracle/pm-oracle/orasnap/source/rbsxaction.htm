@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Rollback Statistics On Transaction Tables</B></FONT>
+<FORM>
+    	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   NAME,
+         VALUE
+from     sys.v_$sysstat
+where    name in (
+            'consistent gets',
+            'consistent changes',
+            'transaction tables consistent reads - undo records applied',
+            'transaction tables consistent read rollbacks',
+            'data blocks consistent reads - undo records applied',
+            'no work - consistent read gets',
+            'cleanouts only - consistent read gets',
+            'rollbacks only - consistent read gets',
+            'cleanouts and rollbacks - consistent read gets')
+order by NAME;
+</PRE>
+
+</BODY>
+</HTML>

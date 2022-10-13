@@ -1,0 +1,36 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For System Statistics (Table)</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>SYSTEM STATISTICS (TABLE) NOTES:</B><BR>
+<LI><B>Statistic Name</B> - Name of the statistic
+<LI><B>Bytes</B> - Size
+<P>
+<LI>This query provides information on the full table scan activity.  If your application is OLTP only, having long full
+table scans can be an indicator of having missing or incorrect indexes or untuned SQL.
+<LI><B>Table fetch by rowid</B> reflect the cumulative number of rows fetched from tables using a TABLE ACCESS BY ROWID
+operation.
+<LI><B>Table fetch continued row</B> reflect the cumulative number of continued rows fetched.  This value is incremented
+when accessing a row that is longer than a block in length and when accessing &quot;migrated&quot; rows.  Migrated rows are
+rows that were relocated from their original location to a new location because of an <B>update</B> that increased their
+size to the point where they could no longer be accommodated inside their original block.  Access to migrated rows will
+cause this statistic's value to increment only if the access is performed by ROWID.  Full table scans of tables that
+contain migrated rows do not cause this counter to increment.
+<LI><B>Table scan blocks gotten</B> reflect the cumulative number of blocks read for full table scans.
+<LI><B>Table scans rows gotten</B> reflect the cumulative number of rows read for full table scans.
+<LI><B>Table scans (cache partitions)</B> is used with the Parallel Query Option.  The number of RowID ranges corresponds
+to the number of simultaneous query server processes that scan the table.
+<LI><B>Table scans (long scans/long tables)</B> indicate a full scan of a table that has &gt; 5 database blocks.
+<LI><B>Table scans (rowid ranges)</B> is used with the Parallel Query Option.  The number of RowID ranges corresponds
+to the number of simultaneous query server processes that scan the table.
+<LI><B>Table scans (short scans/short tables)</B> indicate a full scan of a table that has &lt;= 5 database blocks.
+</FONT>
+
+</BODY>
+</HTML>
+

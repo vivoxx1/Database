@@ -1,0 +1,24 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Shared Pool SQL with Most Buffer Scans</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>SQL WITH MOST BUFFER SCAN NOTES:</B><BR>
+<LI><B>Username</B> - Name of the user
+<LI><B>Buffer Gets</B> - Total number of buffer gets for this statement
+<LI><B>Executions</B> - Total number of times this statment has been executed
+<LI><B>Gets/Execs</B> - Number of buffer gets per execution
+<LI><B>SQL Text</B> - Text of the SQL statement requiring the cursor, or the PL/SQL anonymous code
+<P>
+<LI>The buffer_gets column provides information on SQL statements that may not possess the large disk hits, but possess a large number of memory hits (higher than normally desired).  In this case, the SQL statement may be using an index, but using the wrong index.  These types of SQL statements can involve a join operation that is forcing the path to utilize a different index than desired or using multiple indexes and forcing index merging.  
+<LI>Excessive BUFFER_GETS suggests that the query is causing heavy memory (logical) reads
+<LI>Check for overindexes tables
+</FONT>
+
+</BODY>
+</HTML>
+

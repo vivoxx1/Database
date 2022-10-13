@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Tablespace Information</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   TABLESPACE_NAME,
+         INITIAL_EXTENT,
+         NEXT_EXTENT,
+         MIN_EXTENTS,
+         MAX_EXTENTS,
+         PCT_INCREASE,
+         MIN_EXTLEN,
+         STATUS,
+         CONTENTS,
+         LOGGING<FONT COLOR="#FF0000">,
+         EXTENT_MANAGEMENT,  -- Columns not available in v8.0.x
+         ALLOCATION_TYPE,    -- Remove these columns if running 
+         PLUGGED_IN          -- against a v8.0.x database</FONT>
+from     dba_tablespaces
+order by TABLESPACE_NAME; 
+</PRE>
+
+</BODY>
+</HTML>

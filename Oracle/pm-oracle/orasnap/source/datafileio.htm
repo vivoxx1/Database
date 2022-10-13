@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Disk I/O By Datafile</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   NAME,
+         PHYRDS,
+         round((PHYRDS / pd.PHYS_READS)*100,2),
+         PHYWRTS,
+         round(PHYWRTS * 100 / pd.PHYS_WRTS,2),
+         fs.PHYBLKRD + fs.PHYBLKWRT
+from    (select sum(PHYRDS) phys_reads, 
+                sum(PHYWRTS) phys_wrts
+         from sys.v_$filestat) pd,
+         sys.v_$datafile df, 
+         sys.v_$filestat fs
+where    df.FILE# = fs.FILE# 
+order by fs.PHYBLKRD + fs.PHYBLKWRT desc;
+
+select   NAME,
+         PHYRDS,
+         round((PHYRDS / pd.PHYS_READS)*100,2),
+         PHYWRTS,
+         round(PHYWRTS * 100 / pd.PHYS_WRTS,2),
+         fs.PHYBLKRD + fs.PHYBLKWRT
+from    (select sum(PHYRDS) phys_reads, 
+                sum(PHYWRTS) phys_wrts
+         from sys.v_$filestat) pd,
+         sys.v_$datafile df, 
+         sys.v_$filestat fs
+where    df.FILE# = fs.FILE# 
+order by PHYRDS desc;
+
+select   NAME,
+         PHYRDS,
+         round((PHYRDS / pd.PHYS_READS)*100,2),
+         PHYWRTS,
+         round(PHYWRTS * 100 / pd.PHYS_WRTS,2),
+         fs.PHYBLKRD + fs.PHYBLKWRT
+from    (select sum(PHYRDS) phys_reads, 
+                sum(PHYWRTS) phys_wrts
+         from sys.v_$filestat) pd,
+         sys.v_$datafile df, 
+         sys.v_$filestat fs
+where    df.FILE# = fs.FILE# 
+order by PHYWRTS desc;
+
+</PRE>
+
+</BODY>
+</HTML>

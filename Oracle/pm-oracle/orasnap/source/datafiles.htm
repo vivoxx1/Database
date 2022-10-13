@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+<FONT FACE="Arial" SIZE="5"><B>Query For Datafile Information</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   FILE_NAME,
+         d.TABLESPACE_NAME,
+         d.BYTES,
+         sum(nvl(e.BYTES,0)),
+         round(sum(nvl(e.BYTES,0)) / (d.BYTES), 4) * 100,
+         d.BYTES - nvl(sum(e.BYTES),0)
+from     DBA_EXTENTS e,	DBA_DATA_FILES d
+where    d.FILE_ID = e.FILE_ID (+)
+group by FILE_NAME, d.TABLESPACE_NAME, d.FILE_ID, d.BYTES, STATUS
+order by d.TABLESPACE_NAME, d.FILE_ID;
+</PRE>
+
+</BODY>
+</HTML>

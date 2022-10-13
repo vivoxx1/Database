@@ -1,0 +1,10 @@
+
+This software is distributed as freeware, meaning you can use and distribute it as you wish, provided the distribution files are not modified and kept together and that you do not charge anything for this service. You are not allowed to distribute this program as part of a commercial product without prior written permission from Stewart McGlaughlin.
+
+You use the program at your own risk - the author accepts no responsibility for any problems or losses, which might arise from its use, and support for the software is not guaranteed.
+
+Enjoy,
+Stewart McGlaughlin
+
+Homepage: http://www.oracle-books.com/orasnap
+Yahoo Group: http://tech.groups.yahoo.com/group/orasnap

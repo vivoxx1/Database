@@ -1,0 +1,20 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Open Cursors By User</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>OPEN CURSORS BY USER NOTES:</B><BR>
+<LI><B>Username</B> - Name of the user
+<LI><B>SID</B> - Session ID of the user
+<LI><B>SQL Text</B> - Text of the SQL statement requiring the cursor, or the PL/SQL anonymous code
+<P>
+<LI>This report identified the current activity in your system and highlights if and when cursors are not being closed properly.  If a user is identified from this statement with a large number of open cursors, it may signify that an application module or modules are not closing cursors when complete.  As a general rule, cursors should be closed when they are no longer needed to eliminate system overhead (this is often times a common PL/SQL coding area overlooked). 
+</FONT>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Object Modification</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   OWNER,
+         OBJECT_NAME,
+         OBJECT_TYPE,
+         to_char(LAST_DDL_TIME,'MM/DD/YYYY HH24:MI:SS'),
+         to_char(CREATED,'MM/DD/YYYY HH24:MI:SS'),
+         STATUS
+from     dba_objects
+where    (SYSDATE - LAST_DDL_TIME) < 7
+order by LAST_DDL_TIME DESC;
+</PRE>
+
+</BODY>
+</HTML>

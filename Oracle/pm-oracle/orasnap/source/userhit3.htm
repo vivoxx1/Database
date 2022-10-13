@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Open Cursors With Low Hit Ratio (&lt; 60%)</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   nvl(se0.USERNAME,'ORACLE PROC'),
+         se0.SID,
+         SQL_TEXT
+from     sys.v_$open_cursor oc0, sys.v_$session se0
+where    se0.SADDR = oc0.SADDR   
+and      se0.USERNAME != 'SYS'
+and      60 < (
+         select "Hit Ratio"
+         from (select  nvl(se.USERNAME,'ORACLE PROC') "Username",
+                        se.SID "SID",
+                        sum(decode(name, 'consistent gets',value, 0))  "Consistent Gets",
+                        sum(decode(name, 'db block gets',value, 0))  "DB Block Gets",
+                        sum(decode(name, 'physical reads',value, 0))  "Physical Reads",
+                        (sum(decode(name, 'consistent gets',value, 0))  +
+                         sum(decode(name, 'db block gets',value, 0))  -
+                         sum(decode(name, 'physical reads',value, 0)))  /
+                        (sum(decode(name, 'consistent gets',value, 0))  +
+                         sum(decode(name, 'db block gets',value, 0))  )  * 100 "Hit Ratio"
+               from     sys.v_$sesstat ss, sys.v_$statname sn, sys.v_$session se
+               where    ss.SID = se.sid
+               and      sn.STATISTIC# = ss.statistic#
+               and      VALUE != 0
+               and      sn.NAME in ('db block gets', 'consistent gets', 'physical reads')
+               and      se.AUDSID != userenv('sessionid')
+               group by se.USERNAME, se.SID)
+where    nvl(se0.USERNAME,'ORACLE PROC') = "Username"
+         and se0.SID = "SID")
+order by USERNAME, se0.SID, OWNER;
+</PRE>
+
+</BODY>
+</HTML>

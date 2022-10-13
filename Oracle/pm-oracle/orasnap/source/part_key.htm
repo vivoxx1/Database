@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Partition Key Columns</B></FONT>
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   OWNER,
+         NAME,
+         OBJECT_TYPE,
+         COLUMN_NAME,
+         COLUMN_POSITION
+from     dba_part_key_columns
+where    OWNER not in ('SYS','SYSTEM')
+order by OWNER, NAME, OBJECT_TYPE, COLUMN_NAME, COLUMN_POSITION;
+</PRE>
+
+</BODY>
+</HTML>

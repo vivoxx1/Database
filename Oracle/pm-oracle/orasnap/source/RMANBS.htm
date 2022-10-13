@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Open Cursors By User</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select bs.recid,
+       backup_type,
+	   device_type,
+	   DECODE(bs.controlfile_included, 'NO', '-', bs.controlfile_included),
+	   NVL(sp.spfile_included, '-'),
+	   bs.incremental_level,
+	   bs.pieces,
+	   TO_CHAR(bs.start_time, 'mm/dd/yyyy HH24:MI:SS'),
+	   TO_CHAR(bs.completion_time, 'mm/dd/yyyy HH24:MI:SS'),
+	   bs.elapsed_seconds,
+	   bp.tag,
+	   bs.block_size,
+	   bs.keep,
+	   NVL(TO_CHAR(bs.keep_until, 'mm/dd/yyyy HH24:MI:SS'), '<br>') ,
+	   bs.keep_options
+FROM
+    v$backup_set bs, 
+	(select distinct set_stamp
+       , set_count
+       , tag
+       , device_type
+     from v$backup_piece
+     where status in ('A', 'X')) bp
+       ,(select distinct set_stamp, set_count, 'YES' spfile_included
+     from v$backup_spfile)                 sp
+WHERE
+      bs.set_stamp = bp.set_stamp
+  AND bs.set_count = bp.set_count
+  AND bs.set_stamp = sp.set_stamp (+)
+  AND bs.set_count = sp.set_count (+)
+ORDER BY
+    bs.recid;
+</PRE>
+
+</BODY>
+</HTML>

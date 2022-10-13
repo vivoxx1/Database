@@ -1,0 +1,27 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Analyzed Tables</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>ANALYZED TABLE NOTES:</B><BR>
+<LI><B>Owner</B> - Owner of the table
+<LI><B>Analyzed</B> - Number of analyzed tables
+<LI><B>Not Analyzed</B> - Number of tables that have not be analyzed
+<LI><B>Total</B> - Total number of tables owned by user
+<P>
+<LI>The ANALYZE statement allows you to validate and compute statistics for an index, table, or cluster.
+These statistics are used by the cost-based optimizer when it calculates the most efficient plan for retrieval.
+In addition to its role in statement optimization, ANALYZE also helps in validating object structures and in
+managing space in your system.  You can choose the following operations: COMPUTER, ESTIMATE, and DELETE.
+Early version of Oracle7 produced unpredicatable results when the ESTIMATE operation was used.  It is best
+to compute your statistics.
+<LI>A COMPUTE will cause a table-level lock to be placed on the table during the operation.
+</FONT>
+
+</BODY>
+</HTML>
+

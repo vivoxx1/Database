@@ -1,0 +1,46 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Redo Log Switch History</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>REDO LOG SWITCH HISTORY NOTES:</B><BR>
+<LI><B>Day</B> - Date of the switches
+<LI><B>00-23</B> - Time of the switch (24 hour)
+<P>
+<LI>Look for any excessive (&gt;4) log switches during the same hour
+<LI>Oracle recommends 15-20 minute log switching
+<P>
+The following describes the INIT.ORA parameters that you can set to make the writing of redo log files as efficient as possible:<BR>
+
+<B>LOG_CHECKPOINT_INTERVAL</B>
+<LI>Number of new redo log file blocks needed to trigger a checkpoint. (These are operating system blocks, not Oracle blocks.) This parameter controls the frequency of checkpoints, which has a major impact on performance. Checkpoints occur regardless of archiving method. Each checkpoint forces all modified database buffers in the buffer cache to be written to the database; old log files don't need to be kept for instance recovery. Because database-processing overheads are incurred each time a checkpoint is written, you perform checkpoints only as each log file fills and a log file switch occurs by setting LOG_CHECKPOINT_INTERVAL larger than the size of the redo log file size. All of your redo logs should be set to the same size.
+<LI>Forcing checkpoints within your redo log files reduces the time taken to do instance recovery, because the amount of work needed to roll forward is not as large. The same effect can be achieved by having very small redo log files, automatically forcing checkpoints every time each one fills. The ongoing performance of the database is a more important consideration than the time taken to perform a recovery of your database, which is a much rarer event. 
+<LI>Usually having either four or six redo logs of 5 or 10 megabytes each works well for most sites. If you are performing huge once-off data loads into your database, consider increasing the size of your redos (perhaps to 500 megabytes). Other options that you may consider are to use the UNRECOVERABLE clause in your CREATE TABLE and CREATE INDEX statements. You may also consider taking a cold backup before processing and turning off archiving for the duration of the processing. You then perform your data loads, take a cold backup, and reenable archiving.
+<LI>It is advisable to ping-pong your redo logs if you have archiving enabled. This means that redo logs 1, 3, and 5 will be on disk A, and redo logs 2, 4, and 6 will be on disk B. When a redo log switch occurs, having the next redo on an alternate disk allows you to read from one redo (e.g., redo 1), which is written to your archive logs, and write new changes from the log buffer to redo 2, which is located on another disk.
+<P>
+<B>CHECKPOINT_PROCESS</B>
+<LI>Enables the CKPT process. When a checkpoint occurs, it forces the redo log writer process (LGWR) to update each data file in your database with the latest checkpoint information. This writing momentarily stops the LGWR process from performing its primary role of writing log entries to the redo logs. Set CHECKPOINT_PROCESS to TRUE to cause CKPT to handle the updating of the data files and prevent the LGWR process from being held up while it performs this task. This is especially important when you have many data files in your database.
+<P>
+<B>LOG_CHECKPOINT_TIMEOUT</B>
+<LI>Specifies the frequency, in seconds, with which checkpoints will occur. You should probably leave this parameter at its default value of 0. That value forces the LOG_CHECKPOINT_INTERVAL parameter to be the deciding factor on the frequency of checkpoints. It is recommended that you set the LOG_CHECKPOINT_INTERVAL to a value higher than the size of your redo logs. This forces checkpoints to occur when a redo log fills and a redo log switch occurs.
+<P>
+<B>LOG_BUFFER</B>
+<LI>Number of physical bytes allocated to the redo log buffer in the SGA. Whenever a database buffer block is modified, the redo information is also written to the log buffer pool. Only the modified data are written by the LGWR to the redo log, not the entire database block, unless you are performing hot backups, in which case the entire block is written to the log buffer, redo logs, and archive logs. Whenever a commit occurs, only the changes within the redo buffer need to be written to disk. The actual database blocks can be written by the DBWR from the buffer cache to the data files at a later time.
+<LI>If the redo log buffer is too small, LGWR will have to write to disk too frequently, causing a disk I/O bottleneck on the redo log disks and potentially a wait for a user process to have its changes placed into the log buffer. If many processes are accessing the log buffer, they will be forced to wait for the write to complete; the result is redo log contention. 
+<LI>You can reduce log file disk I/O overheads and redo log contention by increasing the value of the LOG_BUFFER parameter to at least 64 kilobytes on a busy OLTP database. Our benchmarks show that heavily used applications that have a lot of database modifications will often have their response times improved more than 50% by enlarging the LOG_BUFFER to 1 megabyte. Overnight jobs that perform heavy updates may also improve by increasing LOG_BUFFER even more.
+<P>
+To optimize redo log file disk I/O, do the following:
+<LI>Separate redo log files from database data files
+<LI>Place redo files on faster disks.
+<LI>Increase the LOG_BUFFER parameter.
+<LI>If you are multiplexing your redo logs using Oracle's redo group facility, be careful where you place your mirrored redos. You must ensure that they are not located on a heavily used data file disk. Ideally, each side of the redo should be on a disk of its own.
+<LI>If you have archivelog enabled, ping-pong your redos. 
+</FONT>
+
+</BODY>
+</HTML>
+

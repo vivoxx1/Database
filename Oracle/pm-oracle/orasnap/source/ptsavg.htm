@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Average Full Table Scan By User</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   "Username",
+         "SID",
+         "Short Scans",
+         "Long Scans",
+         "Rows Retreived",
+         round(("Rows Retrieved" - ("Short Scans" * 5)) / ("Long Scans"),2)
+from     sys.orasnap_pts
+where    "Long Scans" != 0
+order by "Long Scans" desc;
+
+
+<B>TEMPORARY VIEW</B>
+create or replace view SYS.ORASNAP_PTS
+as
+select   ss.username "Username",
+         se.sid "SID",
+         sum(decode(name,'table scans (short tables)',value)) "Short Scans",
+         sum(decode(name,'table scans (long tables)', value)) "Long Scans",
+         sum(decode(name,'table scan rows gotten',value)) "Rows Retreived"
+from     sys.v_$session ss, sys.v_$sesstat se, sys.v_$statname sn
+where    se.statistic# = sn.statistic#
+and      (name  like '%table scans (short tables)%'
+or       name  like '%table scans (long tables)%'
+or       name  like '%table scan rows gotten%')
+and      se.sid = ss.sid
+and      ss.username is not null
+group by ss.username, se.sid;
+</PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,23 @@
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Tablespace Free And Largest</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   TABLESPACE_NAME,
+         sum(BYTES),
+         max(BYTES)
+from     dba_free_space
+group by TABLESPACE_NAME;
+</PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,31 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Rollback Growth</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>ROLLBACK GROWTH NOTES:</B><BR>
+<LI><B>Segment Name</B> - Name of rollback segment.
+<LI><B>Seg#</B> - Rollback segment number.
+<LI><B>Size</B> - Size in bytes of the rollback segment.
+<LI><B>OptSize</B> - Optimal size of rollback segment.
+<LI><B>HWM</B> - High Water Mark of rollback segment size.
+<LI><B>Extends</B> - Number of times rollback segment was extended to have a new extent.
+<LI><B>Wraps</B> - Number of times rollback segment wraps from one extent to another.
+<LI><B>Shrinks</B> - Number of times rollback segment shrank, eliminating one or more additional extents each time.
+<LI><B>Average Shrink</B> - Total size of freed extents divided by number of shrinks.
+<LI><B>Average Active</B> - Current average size of active extents, where &quot;active&quot; extents have uncommitted
+transaction data.
+<LI><B>Status</B> - ONLINE if the segment is online, or PENDING OFFLINE if the segment is going offline but some active
+(distributed) transactions are using the rollback segment.  When the transaction(s) complete, the segment goes OFFLINE.
+<P>
+<LI>The first time the rollback segment is extended beyond its optimal setting, when the transaction releases it, it stays at the extended size. If further down the line, the rollback segment is extended yet again, beyond its already extended size - when the transaction releases the rollback segment, only then will oracle shrink it back to its optimal size, as it is read from v$rollstat.optsize.
+<LI>Note: This report only shows information for ROLLBACK segments that are ONLINE.
+</FONT>
+
+</BODY>
+</HTML>
+

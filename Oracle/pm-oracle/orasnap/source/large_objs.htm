@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For Large Objects</B></FONT>
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   owner,
+         segment_name,
+         segment_type,
+         tablespace_name,
+         bytes,
+         initial_extent,
+         next_extent,
+         extents,
+         pct_increase
+from 	 dba_segments
+where    bytes > (
+         select avg(bytes) 
+         from   dba_segments
+         where  owner not in ('SYS','SYSTEM'))
+and      owner  not in ('SYS','SYSTEM')
+order by bytes desc; 
+</PRE>
+
+</BODY>
+</HTML>

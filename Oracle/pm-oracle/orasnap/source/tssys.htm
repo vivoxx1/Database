@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT FACE="Arial" SIZE="5"><B>Query For User Default Tablespaces</B></FONT>
+
+<FORM>
+	<INPUT TYPE=BUTTON VALUE="Previous Page" ONCLICK="history.back()">
+</FORM>
+<P>
+<PRE>
+select   USERNAME,
+         CREATED,
+         PROFILE,
+         DEFAULT_TABLESPACE,
+         TEMPORARY_TABLESPACE
+from     dba_users
+order by DEFAULT_TABLESPACE, TEMPORARY_TABLESPACE, USERNAME;
+</PRE>
+
+</BODY>
+</HTML>

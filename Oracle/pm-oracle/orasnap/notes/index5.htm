@@ -1,0 +1,25 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Tables With More Than 5 Indexes</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>TABLES WITH MORE THAN 5 INDEXES NOTES:</B><BR>
+<LI><B>Owner</B> - Owner of the table 
+<LI><B>Table Name</B> - Name of the table
+<LI><B>Index Count</B> - Number of indexes
+<P>
+<LI>Over indexing can have an impact on Inserts, Updates, and Deletes
+<LI>Large batch inserts can be slowed by indexes, you may wish to drop indexes before large inserts are done. Usually, if the insert is around 15 - 20% of the current size. 
+<LI>Indexes do not give back space from deleted rows
+<LI>Primary keys are unique and cannot be null
+<LI>Unique keys may have no duplicates, but may be null
+<LI>Index foreign keys to prevent locking problems
+</FONT>
+
+</BODY>
+</HTML>
+

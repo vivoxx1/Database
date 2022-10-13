@@ -1,0 +1,31 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Notes For Segment MaxExtents</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#C0C0C0">
+
+<FONT SIZE="2" FACE="Arial">
+<B>SEGMENT MAXEXTENT NOTES:</B><BR>
+<LI><B>Owner</B> - Owner of the segment
+<LI><B>Segment Type</B> - Type of segment
+<LI><B>Max Extents</B> - MaxExtents value
+<LI><B>Count</B> - Number of records with this MaxExtents value
+<P>
+<LI>Your maxextents are dependent on your blocksize and version of Oracle you're running:
+<UL>
+<LI>1K  DB_BLOCKSIZE = 57 extents
+<LI>2K  DB_BLOCKSIZE = 121 extents
+<LI>4K  DB_BLOCKSIZE = 249 extents
+<LI>8K  DB_BLOCKSIZE = 505 extents
+<LI>16K DB_BLOCKSIZE = 1017 extents
+</UL>
+<P>
+<LI>You can use (DBBLOCKSIZE / 16 -7) to determine the correct MAXEXTENTS for your blocksize
+<LI>As of Oracle v7.3 you can specify MAXEXTENTS UNLIMITED (actually 2,147,483,645 extents)
+</FONT>
+
+</BODY>
+</HTML>
+

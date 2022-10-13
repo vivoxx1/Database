@@ -1,0 +1,15 @@
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.233.3.100)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=SKNDRC)(CID=(PROGRAM=sqlplus)(HOST=jksskdb5)(USER=oracle))))
+
+  VERSION INFORMATION:
+	TNS for HPUX: Version 10.2.0.3.0 - Production
+	Oracle Bequeath NT Protocol Adapter for HPUX: Version 10.2.0.3.0 - Production
+	TCP/IP NT Protocol Adapter for HPUX: Version 10.2.0.3.0 - Production
+  Time: 22-DEC-2010 12:41:47
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
