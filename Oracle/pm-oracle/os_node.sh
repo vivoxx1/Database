@@ -1,4 +1,3 @@
-set -x
 hostname
 date
 uptime
